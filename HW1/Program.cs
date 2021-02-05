@@ -1,14 +1,21 @@
-﻿using System;
+﻿// <copyright file="Program.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace HW1
 {
-    class Program
+    using System;
+
+    /// <summary>
+    /// The main program class.
+    /// </summary>
+    internal class Program
     {
         /// <summary>
-        /// Main function of the program
+        /// Main function of the program.
         /// </summary>
-        /// <param name="args"></param>
-        static void Main(string[] args)
+        /// <param name="args">A string array.</param>
+        private static void Main(string[] args)
         {
             string inputString;
 

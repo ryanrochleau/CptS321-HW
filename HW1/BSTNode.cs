@@ -1,4 +1,8 @@
-﻿namespace HW1
+﻿// <copyright file="BSTNode.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace HW1
 {
     using System;
     using System.Collections.Generic;

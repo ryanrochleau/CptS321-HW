@@ -1,4 +1,8 @@
-﻿namespace HW1
+﻿// <copyright file="BST.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace HW1
 {
     using System;
     using System.Collections.Generic;
@@ -81,6 +85,24 @@
         }
 
         /// <summary>
+        /// Get the level count of the BST.
+        /// </summary>
+        /// <returns>Returns the level of the BST.</returns>
+        public int GetTreeLevelCount()
+        {
+            return this.GetTreeLevelCount(this.root);
+        }
+
+        /// <summary>
+        /// Gets the count of nodes in the binary search tree.
+        /// </summary>
+        /// <returns>The number of nodes in the BST as an integer.</returns>
+        public int GetNodeCount()
+        {
+            return this.GetNodeCount(this.root);
+        }
+
+        /// <summary>
         /// Recursive function that traverses and prints the BST.
         /// </summary>
         /// <param name="inputNode">The current BSTNode.</param>
@@ -97,19 +119,10 @@
         }
 
         /// <summary>
-        /// Gets the count of nodes in the binary search tree.
-        /// </summary>
-        /// <returns>The number of nodes in the BST as an integer.</returns>
-        public int GetNodeCount()
-        {
-            return this.GetNodeCount(this.root);
-        }
-
-        /// <summary>
         /// Recursive function for counting the number of node in the BST.
         /// </summary>
         /// <param name="inputNode">The current BSTNode.</param>
-        /// <returns>Returns the count of child nodes and itself</returns>
+        /// <returns>Returns the count of child nodes and itself.</returns>
         private int GetNodeCount(BSTNode inputNode)
         {
             int count = 1;
@@ -132,15 +145,6 @@
         }
 
         /// <summary>
-        /// Get the level count of the BST.
-        /// </summary>
-        /// <returns>Returns the level of the BST.</returns>
-        public int GetTreeLevelCount()
-        {
-            return this.GetTreeLevelCount(this.root);
-        }
-
-        /// <summary>
         /// Main function which calculates the level of the BST.
         /// </summary>
         /// <param name="inputNode">The current node.</param>
@@ -156,7 +160,7 @@
             leftLevel = this.GetTreeLevelCount(inputNode.GetLeftNode());
             rightLevel = this.GetTreeLevelCount(inputNode.GetRightNode());
 
-            if (leftLevel>rightLevel)
+            if (leftLevel > rightLevel)
             {
                 return leftLevel + 1;
             }
