@@ -25,6 +25,7 @@ namespace HW1
             }
 
             newBST.PrintInSortedOrder();
+            Console.WriteLine(newBST.GetNodeCount());
         }
     }
 }
