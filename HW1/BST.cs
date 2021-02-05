@@ -46,9 +46,15 @@ namespace HW1
                 {
                     parentNode = traversalNode;
 
+                    // Check for identical values
+                    if (inputData == parentNode.GetData())
+                    {
+                        return;
+                    }
+
                     // Input value is less than the current value
                     // so go left
-                    if (inputData < this.root.GetData())
+                    if (inputData < parentNode.GetData())
                     {
                         traversalNode = parentNode.GetLeftNode();
 
@@ -103,11 +109,53 @@ namespace HW1
         }
 
         /// <summary>
+        /// Calculate the theoretical level count of
+        /// a BST given its node count.
+        /// </summary>
+        /// <returns>
+        /// Returns the theoretical level count
+        /// of a BST.
+        /// </returns>
+        public int GetTheoreticalLevelCount()
+        {
+            return (int)Math.Ceiling(Math.Log2(this.GetNodeCount() + 1));
+        }
+
+        /// <summary>
+        /// Main program which does everything for Homework 1.
+        /// </summary>
+        public void RunProgram()
+        {
+            string inputString;
+
+            Console.WriteLine("Input a string of numbers delimited by a single space.");
+            inputString = Console.ReadLine();
+
+            string[] subs = inputString.Split(' ');
+            int[] inputIntegers = Array.ConvertAll(subs, int.Parse);
+
+            foreach (var num in inputIntegers)
+            {
+                this.InsertNode(num);
+            }
+
+            Console.WriteLine("\n" + "In Order");
+            this.PrintInSortedOrder();
+
+            Console.WriteLine("\n" + "Node Count: " + this.GetNodeCount() + "\n");
+
+            Console.WriteLine("Levels: " + this.GetTreeLevelCount() + "\n");
+
+            Console.WriteLine("Theoretical Levels: " + this.GetTheoreticalLevelCount() + "\n");
+        }
+
+        /// <summary>
         /// Recursive function that traverses and prints the BST.
         /// </summary>
         /// <param name="inputNode">The current BSTNode.</param>
         private void PrintInSortedOrder(BSTNode inputNode)
         {
+            // In order traversal of list
             if (inputNode != null)
             {
                 this.PrintInSortedOrder(inputNode.GetLeftNode());
@@ -131,11 +179,13 @@ namespace HW1
                 return 0;
             }
 
+            // Get count of nodes on left
             if (inputNode.GetLeftNode() != null)
             {
                 count += this.GetNodeCount(inputNode.GetLeftNode());
             }
 
+            // Get count of nodes on right
             if (inputNode.GetRightNode() != null)
             {
                 count += this.GetNodeCount(inputNode.GetRightNode());
