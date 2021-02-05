@@ -12,6 +12,7 @@
         private BSTNode root;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="BST"/> class.
         /// Constructor for BST.
         /// </summary>
         public BST()
@@ -36,10 +37,13 @@
             {
                 BSTNode traversalNode = this.root, parentNode = this.root;
 
+                // Loop until we find an empty spot
                 while (true)
                 {
                     parentNode = traversalNode;
 
+                    // Input value is less than the current value
+                    // so go left
                     if (inputData < this.root.GetData())
                     {
                         traversalNode = parentNode.GetLeftNode();
@@ -50,6 +54,9 @@
                             return;
                         }
                     }
+
+                    // Input value is greater than the current value
+                    // so go right
                     else
                     {
                         traversalNode = parentNode.GetRightNode();
@@ -122,6 +129,41 @@
             }
 
             return count;
+        }
+
+        /// <summary>
+        /// Get the level count of the BST.
+        /// </summary>
+        /// <returns>Returns the level of the BST.</returns>
+        public int GetTreeLevelCount()
+        {
+            return this.GetTreeLevelCount(this.root);
+        }
+
+        /// <summary>
+        /// Main function which calculates the level of the BST.
+        /// </summary>
+        /// <param name="inputNode">The current node.</param>
+        /// <returns>Returns the level of the current node.</returns>
+        private int GetTreeLevelCount(BSTNode inputNode)
+        {
+            int leftLevel, rightLevel;
+            if (inputNode == null)
+            {
+                return 0;
+            }
+
+            leftLevel = this.GetTreeLevelCount(inputNode.GetLeftNode());
+            rightLevel = this.GetTreeLevelCount(inputNode.GetRightNode());
+
+            if (leftLevel>rightLevel)
+            {
+                return leftLevel + 1;
+            }
+            else
+            {
+                return rightLevel + 1;
+            }
         }
     }
 }
