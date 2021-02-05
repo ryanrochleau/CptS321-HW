@@ -42,7 +42,7 @@
 
                     if (inputData < this.root.GetData())
                     {
-                        traversalNode = this.root.GetLeftNode();
+                        traversalNode = parentNode.GetLeftNode();
 
                         if (traversalNode == null)
                         {
@@ -52,7 +52,7 @@
                     }
                     else
                     {
-                        traversalNode = this.root.GetRightNode();
+                        traversalNode = parentNode.GetRightNode();
 
                         if (traversalNode == null)
                         {
@@ -61,6 +61,31 @@
                         }
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Public function to print tree in order.
+        /// Passes root into recursive PrintInSortedOrder function.
+        /// </summary>
+        public void PrintInSortedOrder()
+        {
+            this.PrintInSortedOrder(this.root);
+        }
+
+        /// <summary>
+        /// Recursive function that traverses and prints the BST.
+        /// </summary>
+        /// <param name="inputNode">The current BSTNode</param>
+        private void PrintInSortedOrder(BSTNode inputNode)
+        {
+            if (inputNode != null)
+            {
+                this.PrintInSortedOrder(inputNode.GetLeftNode());
+
+                Console.WriteLine(inputNode.GetData() + " ");
+
+                this.PrintInSortedOrder(inputNode.GetRightNode());
             }
         }
     }
