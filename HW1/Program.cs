@@ -17,6 +17,13 @@ namespace HW1
             string[] subs = inputString.Split(' ');
             int[] inputIntegers = Array.ConvertAll(subs, int.Parse);
 
+
+            BST newBST = new BST();
+
+            foreach (var num in inputIntegers)
+            {
+                newBST.InsertNode(num);
+            }
         }
     }
 }
