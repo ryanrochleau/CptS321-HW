@@ -1,20 +1,31 @@
-﻿// <copyright file="BSTNode.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="BSTNode.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
 // </copyright>
+
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace HW1
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     /// <summary>
     /// The class that represents a node.
     /// </summary>
     internal class BSTNode
     {
+        /// <summary>
+        /// Integer data stored in the node.
+        /// </summary>
         private int data;
+
+        /// <summary>
+        /// Left node of the current node.
+        /// </summary>
         private BSTNode leftNode;
+
+        /// <summary>
+        /// Right node of the current node.
+        /// </summary>
         private BSTNode rightNode;
 
         /// <summary>

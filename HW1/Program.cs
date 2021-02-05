@@ -1,11 +1,11 @@
-﻿// <copyright file="Program.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="Program.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
 // </copyright>
+
+using System;
 
 namespace HW1
 {
-    using System;
-
     /// <summary>
     /// The main program class.
     /// </summary>

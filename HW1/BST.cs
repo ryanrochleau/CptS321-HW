@@ -1,18 +1,21 @@
-﻿// <copyright file="BST.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="BST.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
 // </copyright>
+
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace HW1
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     /// <summary>
     /// This class represent a binary search tree.
     /// </summary>
     internal class BST
     {
+        /// <summary>
+        /// Root node of the BST.
+        /// </summary>
         private BSTNode root;
 
         /// <summary>
@@ -58,6 +61,7 @@ namespace HW1
                     {
                         traversalNode = parentNode.GetLeftNode();
 
+                        // Node is null so insert here.
                         if (traversalNode == null)
                         {
                             parentNode.SetLeftNode(newNode);
@@ -71,6 +75,7 @@ namespace HW1
                     {
                         traversalNode = parentNode.GetRightNode();
 
+                        // Node is null so insert here.
                         if (traversalNode == null)
                         {
                             parentNode.SetRightNode(newNode);
@@ -128,12 +133,15 @@ namespace HW1
         {
             string inputString;
 
+            // Read the input string from the user
             Console.WriteLine("Input a string of numbers delimited by a single space.");
             inputString = Console.ReadLine();
 
+            // Split the input string into substrings and then into integers
             string[] subs = inputString.Split(' ');
             int[] inputIntegers = Array.ConvertAll(subs, int.Parse);
 
+            // Insert every integer into the tree
             foreach (var num in inputIntegers)
             {
                 this.InsertNode(num);
@@ -207,9 +215,11 @@ namespace HW1
                 return 0;
             }
 
+            // Get the levels of the left and right subtrees
             leftLevel = this.GetTreeLevelCount(inputNode.GetLeftNode());
             rightLevel = this.GetTreeLevelCount(inputNode.GetRightNode());
 
+            // Return the larger of the two subtrees
             if (leftLevel > rightLevel)
             {
                 return leftLevel + 1;
