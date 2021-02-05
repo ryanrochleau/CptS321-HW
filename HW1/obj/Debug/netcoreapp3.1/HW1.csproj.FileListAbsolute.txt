@@ -1,0 +1,13 @@
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\HW1\bin\Debug\netcoreapp3.1\HW1.exe
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\HW1\bin\Debug\netcoreapp3.1\HW1.deps.json
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\HW1\bin\Debug\netcoreapp3.1\HW1.runtimeconfig.json
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\HW1\bin\Debug\netcoreapp3.1\HW1.runtimeconfig.dev.json
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\HW1\bin\Debug\netcoreapp3.1\HW1.dll
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\HW1\bin\Debug\netcoreapp3.1\HW1.pdb
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\HW1\obj\Debug\netcoreapp3.1\HW1.csprojAssemblyReference.cache
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\HW1\obj\Debug\netcoreapp3.1\HW1.AssemblyInfoInputs.cache
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\HW1\obj\Debug\netcoreapp3.1\HW1.AssemblyInfo.cs
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\HW1\obj\Debug\netcoreapp3.1\HW1.csproj.CoreCompileInputs.cache
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\HW1\obj\Debug\netcoreapp3.1\HW1.dll
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\HW1\obj\Debug\netcoreapp3.1\HW1.pdb
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\HW1\obj\Debug\netcoreapp3.1\HW1.genruntimeconfig.cache
