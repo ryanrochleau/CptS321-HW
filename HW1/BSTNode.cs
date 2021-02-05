@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HW1
+﻿namespace HW1
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     /// <summary>
-    /// The class that represents a node
+    /// The class that represents a node.
     /// </summary>
-    class BSTNode
+    internal class BSTNode
     {
         private int data;
-        public BSTNode leftNode;
-        public BSTNode rightNode;
+        private BSTNode leftNode;
+        private BSTNode rightNode;
 
         /// <summary>
-        /// Constructor for BSTNode
+        /// Constructor for BSTNode.
         /// </summary>
-        /// <param name="inputData"></param>
+        /// <param name="inputData">An integer</param>
         public BSTNode(int inputData)
         {
             this.data = inputData;
@@ -30,7 +30,7 @@ namespace HW1
         /// <returns>
         /// Returns the integer data in the node
         /// </returns>
-        public int getData()
+        public int GetData()
         {
             return this.data;
         }
@@ -41,7 +41,7 @@ namespace HW1
         /// <returns>
         /// Returns the left BSTNode
         /// </returns>
-        public BSTNode getLeftNode()
+        public BSTNode GetLeftNode()
         {
             return this.leftNode;
         }
@@ -52,7 +52,7 @@ namespace HW1
         /// <returns>
         /// Returns the right BSTNode
         /// </returns>
-        public BSTNode getRightNode()
+        public BSTNode GetRightNode()
         {
             return this.rightNode;
         }
@@ -60,8 +60,8 @@ namespace HW1
         /// <summary>
         /// Setter for the integer data
         /// </summary>
-        /// <param name="inputData"></param>
-        public void setData(int inputData)
+        /// <param name="inputData">An integer</param>
+        public void SetData(int inputData)
         {
             this.data = inputData;
         }
@@ -69,8 +69,8 @@ namespace HW1
         /// <summary>
         /// Setter for the left BSTNode
         /// </summary>
-        /// <param name="inputNode"></param>
-        public void setLeftNode(BSTNode inputNode)
+        /// <param name="inputNode">A BSTNode</param>
+        public void SetLeftNode(BSTNode inputNode)
         {
             this.leftNode = inputNode;
         }
@@ -78,8 +78,8 @@ namespace HW1
         /// <summary>
         /// Setter for the right BSTNode
         /// </summary>
-        /// <param name="inputNode"></param>
-        public void setRightNode(BSTNode inputNode)
+        /// <param name="inputNode">A BSTNode</param>
+        public void SetRightNode(BSTNode inputNode)
         {
             this.rightNode = inputNode;
         }
