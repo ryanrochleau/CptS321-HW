@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cEcV302fc76oyq1BrK5/EN8GfqFa2S9Bbu+D8HT1+6LopjKUBC9sEw8PDmlBCmT+cGvaN5TGL2ZJgVrCcacoEA==",
+  "dgSpecHash": "ODaqZTRzT72MOeOzmRX1YBVIu9oAXw99hM59/kt5E1Q3SrZ3u2h00OBU5R91Ikroj2nD3vy/RStEJRJmjloPMw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ryan\\source\\repos\\HW2Tests\\HW2Tests\\HW2Tests.csproj",
+  "projectFilePath": "C:\\Users\\Ryan\\Desktop\\CptS321-HW\\cpts321-hws\\HW2Tests\\HW2Tests\\HW2Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ryan\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
     "C:\\Users\\Ryan\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
@@ -20,6 +20,7 @@
     "C:\\Users\\Ryan\\.nuget\\packages\\nunit\\3.12.0\\nunit.3.12.0.nupkg.sha512",
     "C:\\Users\\Ryan\\.nuget\\packages\\nunit3testadapter\\3.16.1\\nunit3testadapter.3.16.1.nupkg.sha512",
     "C:\\Users\\Ryan\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
+    "C:\\Users\\Ryan\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
     "C:\\Users\\Ryan\\.nuget\\packages\\system.appcontext\\4.1.0\\system.appcontext.4.1.0.nupkg.sha512",
     "C:\\Users\\Ryan\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\Ryan\\.nuget\\packages\\system.collections.nongeneric\\4.3.0\\system.collections.nongeneric.4.3.0.nupkg.sha512",
