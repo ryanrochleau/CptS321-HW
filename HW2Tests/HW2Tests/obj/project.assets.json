@@ -5722,11 +5722,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ryan\\source\\repos\\HW2Tests\\HW2Tests\\HW2Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Ryan\\Desktop\\CptS321-HW\\cpts321-hws\\HW2Tests\\HW2Tests\\HW2Tests.csproj",
       "projectName": "HW2Tests",
-      "projectPath": "C:\\Users\\Ryan\\source\\repos\\HW2Tests\\HW2Tests\\HW2Tests.csproj",
+      "projectPath": "C:\\Users\\Ryan\\Desktop\\CptS321-HW\\cpts321-hws\\HW2Tests\\HW2Tests\\HW2Tests.csproj",
       "packagesPath": "C:\\Users\\Ryan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ryan\\source\\repos\\HW2Tests\\HW2Tests\\obj\\",
+      "outputPath": "C:\\Users\\Ryan\\Desktop\\CptS321-HW\\cpts321-hws\\HW2Tests\\HW2Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Ryan\\AppData\\Roaming\\NuGet\\NuGet.Config",
