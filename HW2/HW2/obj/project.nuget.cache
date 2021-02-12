@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "n2e1wIHY0vTNitL6VoQ3rpS+ejacUPxL/KDOjSC7Ff1zNd2LqvyrfjNQJoxyqCvbAD+Dm3+GuQQfIidR1gVJOQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Ryan\\source\\repos\\HW2\\HW2\\HW2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ryan\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512"
+  ],
+  "logs": []
+}
