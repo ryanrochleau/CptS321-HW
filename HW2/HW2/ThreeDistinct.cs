@@ -22,7 +22,7 @@
 
             for (int i = 0; i < 10000; i++)
             {
-                this.randomIntegersList.Add(rand.Next(200001));
+                this.randomIntegersList.Add(rand.Next(20001));
             }
         }
 
@@ -70,7 +70,7 @@
             // Since randomIntegersList can only contain values 0-20000, I loop through
             // and check to see if each value is contained in the array and then add 1 if
             // it is.
-            for (int i = 0; i < 20000; i++)
+            for (int i = 0; i < 20001; i++)
             {
                 if (this.randomIntegersList.Contains(i))
                 {
@@ -107,6 +107,15 @@
             }
 
             return count;
+        }
+
+        /// <summary>
+        /// Getter for the list for use in the tests.
+        /// </summary>
+        /// <returns>Returns the list we are using for each function.</returns>
+        public List<int> GetList()
+        {
+            return this.randomIntegersList;
         }
     }
 }
