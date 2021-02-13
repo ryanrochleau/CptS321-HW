@@ -62,7 +62,7 @@
         /// looping through all possible value (0-20000) and checking if the list contains
         /// that value. If it does, add 1 to the count.
         /// </summary>
-        /// <returns>Returns the total numbers of distinct values in randomIntegersList.</returns>
+        /// <returns>Returns the total number of distinct values in randomIntegersList.</returns>
         public int BigOOneMethod()
         {
             int count = 0;
@@ -73,6 +73,34 @@
             for (int i = 0; i < 20000; i++)
             {
                 if (this.randomIntegersList.Contains(i))
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        /// <summary>
+        /// Returns the number of distinct numbers in randomIntegersList by sorting the list
+        /// and then loop through each value keep track of previous and current values. When
+        /// these values don't equal each other, add 1 to the count.
+        /// </summary>
+        /// <returns>Returns the total number of distinct values in randomIntegersList.</returns>
+        public int SortedMethod()
+        {
+            this.randomIntegersList.Sort();
+            int prev, current = -1, count = 0;
+
+            // Looping through each value in the sorted list and checking the previous,
+            // and current values as we go along. Any time the two are different, we are crossing over
+            // to a new unique value so we add 1 to the count.
+            foreach (int value in this.randomIntegersList)
+            {
+                prev = current;
+                current = value;
+
+                if (current != prev)
                 {
                     count++;
                 }
