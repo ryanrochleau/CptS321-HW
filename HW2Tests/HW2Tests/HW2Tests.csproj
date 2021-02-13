@@ -16,4 +16,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="HW2">
+      <HintPath>..\..\HW2\HW2\bin\Debug\netcoreapp3.1\HW2.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
