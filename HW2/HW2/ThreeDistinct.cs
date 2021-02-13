@@ -1,15 +1,22 @@
-﻿namespace HW2
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+﻿// <copyright file="ThreeDistinct.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
+// </copyright>
 
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HW2
+{
     /// <summary>
     /// Class that represents all three distinct value
     /// implementations for the homework assignment.
     /// </summary>
     public class ThreeDistinct
     {
+        /// <summary>
+        /// List of random integers for use in the functions.
+        /// </summary>
         private List<int> randomIntegersList = new List<int>();
 
         /// <summary>

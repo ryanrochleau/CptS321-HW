@@ -1,9 +1,13 @@
-﻿namespace HW2.Tests
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using NUnit.Framework;
+﻿// <copyright file="HW2Tests.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
+// </copyright>
 
+using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
+
+namespace HW2.Tests
+{
     /// <summary>
     /// Tests for HW2 functions.
     /// </summary>
@@ -30,8 +34,13 @@
             ThreeDistinct firstDistinctEmpty = new ThreeDistinct(emptyList);
             ThreeDistinct firstDistinctOne = new ThreeDistinct(oneDistinctList);
 
+            // Standard random array
             Assert.AreEqual(firstDistinct.HashSetMethod(), firstDistinct.GetList().Distinct().Count());
+
+            // Empty array
             Assert.AreEqual(firstDistinctEmpty.HashSetMethod(), firstDistinctEmpty.GetList().Distinct().Count());
+
+            // Array with only one unique value but many entries
             Assert.AreEqual(firstDistinctOne.HashSetMethod(), firstDistinctOne.GetList().Distinct().Count());
 
             Assert.Pass();
@@ -50,8 +59,13 @@
             ThreeDistinct secondDistinctEmpty = new ThreeDistinct(emptyList);
             ThreeDistinct secondDistinctOne = new ThreeDistinct(oneDistinctList);
 
+            // Standard random array
             Assert.AreEqual(secondDistinct.BigOOneMethod(), secondDistinct.GetList().Distinct().Count());
+
+            // Empty array
             Assert.AreEqual(secondDistinctEmpty.BigOOneMethod(), secondDistinctEmpty.GetList().Distinct().Count());
+
+            // Array with only one unique value but many etries
             Assert.AreEqual(secondDistinctOne.BigOOneMethod(), secondDistinctOne.GetList().Distinct().Count());
 
             Assert.Pass();
@@ -70,8 +84,13 @@
             ThreeDistinct thirdDistinctEmpty = new ThreeDistinct(emptyList);
             ThreeDistinct thirdDistinctOne = new ThreeDistinct(oneDistinctList);
 
+            // Standard random array
             Assert.AreEqual(thirdDistinct.SortedMethod(), thirdDistinct.GetList().Distinct().Count());
+
+            // Empty array
             Assert.AreEqual(thirdDistinctEmpty.SortedMethod(), thirdDistinctEmpty.GetList().Distinct().Count());
+
+            // Array with only one unique value but many entries
             Assert.AreEqual(thirdDistinctOne.SortedMethod(), thirdDistinctOne.GetList().Distinct().Count());
 
             Assert.Pass();
