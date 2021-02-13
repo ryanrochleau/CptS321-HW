@@ -56,5 +56,29 @@
 
             return valuesHashSet.Count;
         }
+
+        /// <summary>
+        /// Returns the number of distinct numbers in randomIntegersList by
+        /// looping through all possible value (0-20000) and checking if the list contains
+        /// that value. If it does, add 1 to the count.
+        /// </summary>
+        /// <returns>Returns the total numbers of distinct values in randomIntegersList.</returns>
+        public int BigOOneMethod()
+        {
+            int count = 0;
+
+            // Since randomIntegersList can only contain values 0-20000, I loop through
+            // and check to see if each value is contained in the array and then add 1 if
+            // it is.
+            for (int i = 0; i < 20000; i++)
+            {
+                if (this.randomIntegersList.Contains(i))
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
     }
 }
