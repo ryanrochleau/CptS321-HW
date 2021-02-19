@@ -22,6 +22,23 @@
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Product"/> class.
+        /// Constructor for all parameters.
+        /// </summary>
+        /// <param name="uniqueId">New product id.</param>
+        /// <param name="description">new product description.</param>
+        /// <param name="isPhysical">New product isPhysical.</param>
+        /// <param name="inStock">New amount in stock.</param>
+        public Product(string uniqueId, string description, bool isPhysical, int inStock)
+        {
+            this.uniqueId = uniqueId;
+            this.description = description;
+            this.isPhysical = isPhysical;
+            this.inStock = inStock;
+        }
+
+
+        /// <summary>
         /// Gets the unique id of the product.
         /// </summary>
         /// <returns>A string unique id.</returns>

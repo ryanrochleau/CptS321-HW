@@ -1,10 +1,17 @@
-﻿using System;
-
-namespace Exam1
+﻿namespace Exam1
 {
+    using System;
+
+    /// <summary>
+    /// Main program class.
+    /// </summary>
     class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// Standard main function.
+        /// </summary>
+        /// <param name="args">Inputs from terminal.</param>
+        private static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
         }
