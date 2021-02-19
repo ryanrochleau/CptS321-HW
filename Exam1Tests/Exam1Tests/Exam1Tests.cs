@@ -56,6 +56,7 @@ namespace Exam1Tests
             // Using except on the output list and the shoesAndSocksList to check if the set differance is empty.
             Assert.IsFalse(shoesAndSocksList.Except(testStore.Search("pair", -1)).ToList().Any());
             shoesAndSocksList.Except(testStore.Search("pair", -1));
+
             // Empty search should return the entire list of products.
             Assert.IsFalse(allProductsList.Except(testStore.Search(string.Empty, -1)).ToList().Any());
 
@@ -83,32 +84,53 @@ namespace Exam1Tests
             Product shoes = new Product();
             shoes.SetUniqueId("Shoes");
             shoes.SetDescription("A pair of shoes.");
+            shoes.SetIsPhysical(true);
+            shoes.SetInStock(7);
 
             Product socks = new Product();
             socks.SetUniqueId("Socks");
             socks.SetDescription("A pair of socks.");
+            socks.SetIsPhysical(true);
+            socks.SetInStock(7);
 
             Product eBook = new Product();
             eBook.SetUniqueId("eBook");
             eBook.SetDescription("An electronic book.");
-
-            List<Product> emptyProductList = new List<Product>();
+            eBook.SetIsPhysical(false);
+            eBook.SetInStock(0);
 
             List<Product> allProductsList = new List<Product>();
             allProductsList.Add(shoes);
             allProductsList.Add(socks);
             allProductsList.Add(eBook);
 
-            List<Product> shoesAndSocksList = new List<Product>();
-            allProductsList.Add(shoes);
-            allProductsList.Add(socks);
 
             Store testStore = new Store(allProductsList);
 
-            // Make a dummy search.
+            // Make a dummy search and save.
             testStore.Search("pair", -1);
+            testStore.SaveSearch();
 
-            // var fileNameCheck = testStore.GetRecentSearchTime();
+            // Get the current time to check if file exists with same name.
+            var fileNameCheck = testStore.GetRecentSearchTime();
+
+            // Check if the file exists.
+            FileAssert.Exists(fileNameCheck);
+
+            testStore.Search("Watermelon", -1);
+            testStore.SaveSearch();
+
+            fileNameCheck = testStore.GetRecentSearchTime();
+
+            FileAssert.Exists(fileNameCheck);
+
+            testStore.Search("pair socks", 1);
+            testStore.SaveSearch();
+
+            fileNameCheck = testStore.GetRecentSearchTime();
+
+            FileAssert.Exists(fileNameCheck);
+
             Assert.Pass();
         }
 

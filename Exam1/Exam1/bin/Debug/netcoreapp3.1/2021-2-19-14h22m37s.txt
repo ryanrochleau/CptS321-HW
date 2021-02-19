@@ -1,0 +1,11 @@
+pair
+ID: Shoes
+Description: A pair of shoes.
+Physical: False
+In Stock: inf
+
+ID: Socks
+Description: A pair of socks.
+Physical: True
+In Stock: 7
+

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.IO;
 
     public class Store
     {
@@ -121,7 +122,7 @@
 
             this.SetRecentSearch(searchQuery);
 
-            string fileName = $"{timeNow.Year}-{timeNow.Month}-{timeNow.Day}-{timeNow.Hour}h{timeNow.Minute}m{timeNow.Second}s";
+            string fileName = $"{timeNow.Year}-{timeNow.Month}-{timeNow.Day}-{timeNow.Hour}h{timeNow.Minute}m{timeNow.Second}s.txt";
             this.SetRecentSearchTime(fileName);
 
             if (searchQuery.Length == 0)
@@ -242,6 +243,7 @@
             }
 
             this.SetRecentSearchProducts(returnList);
+            this.PrintProducts(returnList);
             return returnList;
         }
 
@@ -260,7 +262,7 @@
 
             this.SetRecentSearch(searchQuery);
 
-            string fileName = $"{timeNow.Year}-{timeNow.Month}-{timeNow.Day}-{timeNow.Hour}h{timeNow.Minute}m{timeNow.Second}s";
+            string fileName = $"{timeNow.Year}-{timeNow.Month}-{timeNow.Day}-{timeNow.Hour}h{timeNow.Minute}m{timeNow.Second}s.txt";
             this.SetRecentSearchTime(fileName);
 
             if (searchQuery.Length == 0)
@@ -378,7 +380,70 @@
             }
 
             this.SetRecentSearchProducts(returnList);
+            this.PrintProducts(returnList);
             return returnList;
+        }
+
+        /// <summary>
+        /// Will print all products in the inventory.
+        /// </summary>
+        public void PrintProducts()
+        {
+            foreach (Product product in this.products)
+            {
+                Console.WriteLine($"ID: {product.GetUniqueId()}\rDescription: {product.GetDescription()}\rPhysical: {product.GetIsPhysical()}\r");
+                if (product.GetIsPhysical() == true)
+                {
+                    Console.WriteLine($"In Stock:{product.GetInStock()}");
+                }
+                else
+                {
+                    Console.WriteLine("In Stock: inf");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Prints all products in the input list.
+        /// </summary>
+        /// <param name="productList">A list of products.</param>
+        public void PrintProducts(List<Product> productList)
+        {
+            foreach (Product product in productList)
+            {
+                string writeString = $"ID: {product.GetUniqueId()}\nDescription: {product.GetDescription()}\nPhysical: {product.GetIsPhysical()}";
+                Console.WriteLine(writeString);
+                if (product.GetIsPhysical() == true)
+                {
+                    Console.WriteLine($"In Stock:{product.GetInStock()}\n");
+                }
+                else
+                {
+                    Console.WriteLine("In Stock: inf\n");
+                }
+            }
+        }
+
+        public void SaveSearch()
+        {
+            StreamWriter sw = File.CreateText(this.recentSearchTime);
+            sw.WriteLine(this.recentSearch);
+
+            foreach (Product product in this.recentSearchProducts)
+            {
+                sw.WriteLine("ID: " + product.GetUniqueId());
+                sw.WriteLine("Description: " + product.GetDescription());
+                sw.WriteLine("Physical: " + product.GetIsPhysical().ToString());
+                if (product.GetIsPhysical() == true)
+                {
+                    sw.WriteLine("In Stock: " + product.GetInStock().ToString() + "\n");
+                }
+                else
+                {
+                    sw.WriteLine("In Stock: inf\n");
+                }
+            }
+            sw.Close();
         }
     }
 }
