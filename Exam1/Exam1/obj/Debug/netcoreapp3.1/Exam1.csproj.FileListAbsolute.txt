@@ -1,0 +1,13 @@
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\Exam1\Exam1\bin\Debug\netcoreapp3.1\Exam1.exe
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\Exam1\Exam1\bin\Debug\netcoreapp3.1\Exam1.deps.json
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\Exam1\Exam1\bin\Debug\netcoreapp3.1\Exam1.runtimeconfig.json
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\Exam1\Exam1\bin\Debug\netcoreapp3.1\Exam1.runtimeconfig.dev.json
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\Exam1\Exam1\bin\Debug\netcoreapp3.1\Exam1.dll
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\Exam1\Exam1\bin\Debug\netcoreapp3.1\Exam1.pdb
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\Exam1\Exam1\obj\Debug\netcoreapp3.1\Exam1.csprojAssemblyReference.cache
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\Exam1\Exam1\obj\Debug\netcoreapp3.1\Exam1.AssemblyInfoInputs.cache
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\Exam1\Exam1\obj\Debug\netcoreapp3.1\Exam1.AssemblyInfo.cs
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\Exam1\Exam1\obj\Debug\netcoreapp3.1\Exam1.csproj.CoreCompileInputs.cache
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\Exam1\Exam1\obj\Debug\netcoreapp3.1\Exam1.dll
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\Exam1\Exam1\obj\Debug\netcoreapp3.1\Exam1.pdb
+C:\Users\Ryan\Desktop\CptS321-HW\cpts321-hws\Exam1\Exam1\obj\Debug\netcoreapp3.1\Exam1.genruntimeconfig.cache

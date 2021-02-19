@@ -7,7 +7,7 @@
     /// <summary>
     /// Class representing a product.
     /// </summary>
-    internal class Product
+    public class Product
     {
         private string uniqueId;
         private string description;

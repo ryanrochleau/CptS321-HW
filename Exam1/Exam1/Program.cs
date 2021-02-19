@@ -5,13 +5,13 @@
     /// <summary>
     /// Main program class.
     /// </summary>
-    class Program
+    public class Program
     {
         /// <summary>
         /// Standard main function.
         /// </summary>
         /// <param name="args">Inputs from terminal.</param>
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
         }
