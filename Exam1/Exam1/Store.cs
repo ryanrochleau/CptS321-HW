@@ -424,6 +424,9 @@
             }
         }
 
+        /// <summary>
+        /// Saves the most recent search into a text file.
+        /// </summary>
         public void SaveSearch()
         {
             StreamWriter sw = File.CreateText(this.recentSearchTime);
@@ -443,7 +446,86 @@
                     sw.WriteLine("In Stock: inf\n");
                 }
             }
+
             sw.Close();
+        }
+
+        /// <summary>
+        /// Restocks all physical products with less than N items in stock.
+        /// </summary>
+        public void Restock()
+        {
+            int nValue, replaceAllChoice, continueChoice = 0, stockToAdd;
+            List<Product> productList = new List<Product>();
+
+            while (continueChoice == 0)
+            {
+                productList.Clear();
+                Console.Clear();
+                Console.WriteLine("Please enter a value N where products with less than N stock will be restocked: ");
+
+                nValue = Convert.ToInt32(Console.ReadLine());
+
+                foreach (Product product in this.products)
+                {
+                    if (product.GetIsPhysical())
+                    {
+                        if (product.GetInStock() < nValue)
+                        {
+                            productList.Add(product);
+                        }
+                    }
+                }
+
+                Console.Clear();
+                Console.WriteLine("List of products with stock less than N\n\n");
+                this.PrintProducts(productList);
+
+                Console.WriteLine("Do you want to restock all items?\n");
+                Console.WriteLine("Write 1 for Yes and 2 for No\n");
+
+                replaceAllChoice = Convert.ToInt32(Console.ReadLine());
+
+                if (replaceAllChoice == 1)
+                {
+                    Console.Clear();
+                    productList.Clear();
+                    Console.WriteLine("Enter stock to add: \n");
+
+                    stockToAdd = Convert.ToInt32(Console.ReadLine());
+
+                    Console.Clear();
+
+                    foreach (Product product in this.products)
+                    {
+                        if (product.GetIsPhysical())
+                        {
+                            if (product.GetInStock() < nValue)
+                            {
+                                product.SetInStock(product.GetInStock() + stockToAdd);
+                                productList.Add(product);
+                            }
+                        }
+                    }
+
+                    Console.WriteLine("Updated product information\n\n");
+                    this.PrintProducts(productList);
+                    continueChoice = 1;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Do you want to enter a new N value?\n");
+                    Console.WriteLine("Write 1 for Yes and 2 for No\n");
+
+                    replaceAllChoice = Convert.ToInt32(Console.ReadLine());
+
+                    if (replaceAllChoice == 2)
+                    {
+                        continueChoice = 1;
+                    }
+                }
+            }
         }
     }
 }

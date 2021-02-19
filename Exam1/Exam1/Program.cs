@@ -17,12 +17,20 @@
             Product shoes = new Product();
             shoes.SetUniqueId("Shoes");
             shoes.SetDescription("A pair of shoes.");
+            shoes.SetIsPhysical(true);
+            shoes.SetInStock(7);
 
             Product socks = new Product();
             socks.SetUniqueId("Socks");
             socks.SetDescription("A pair of socks.");
             socks.SetIsPhysical(true);
-            socks.SetInStock(7);
+            socks.SetInStock(6);
+
+            Product redBall = new Product();
+            redBall.SetUniqueId("Red Ball");
+            redBall.SetDescription("A red ball.");
+            redBall.SetIsPhysical(true);
+            redBall.SetInStock(5);
 
             Product eBook = new Product();
             eBook.SetUniqueId("eBook");
@@ -34,11 +42,11 @@
             allProductsList.Add(shoes);
             allProductsList.Add(socks);
             allProductsList.Add(eBook);
+            allProductsList.Add(redBall);
 
             Store testStore = new Store(allProductsList);
 
-            testStore.Search();
-            testStore.SaveSearch();
+            testStore.Restock();
         }
     }
 }
