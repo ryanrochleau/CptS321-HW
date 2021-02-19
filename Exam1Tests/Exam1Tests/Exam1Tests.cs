@@ -48,14 +48,14 @@ namespace Exam1Tests
             allProductsList.Add(eBook);
 
             List<Product> shoesAndSocksList = new List<Product>();
-            allProductsList.Add(shoes);
-            allProductsList.Add(socks);
+            shoesAndSocksList.Add(shoes);
+            shoesAndSocksList.Add(socks);
 
             Store testStore = new Store(allProductsList);
 
             // Using except on the output list and the shoesAndSocksList to check if the set differance is empty.
             Assert.IsFalse(shoesAndSocksList.Except(testStore.Search("pair", -1)).ToList().Any());
-
+            shoesAndSocksList.Except(testStore.Search("pair", -1));
             // Empty search should return the entire list of products.
             Assert.IsFalse(allProductsList.Except(testStore.Search(string.Empty, -1)).ToList().Any());
 
@@ -67,6 +67,9 @@ namespace Exam1Tests
 
             // Or search should return eBook and Socks.
             Assert.IsFalse(emptyProductList.Except(testStore.Search("eBook Socks", 2)).ToList().Any());
+
+            // Ensuring that Except, ToList, and All() are working so testing a True case rather than all false.
+            Assert.IsTrue(allProductsList.Except(testStore.Search("pair", -1)).ToList().Any());
 
             Assert.Pass();
         }

@@ -83,6 +83,24 @@
         }
 
         /// <summary>
+        /// Gets the recent search list of products.
+        /// </summary>
+        /// <returns>List of products that was returned in recent search.</returns>
+        public List<Product> GetRecentSearchProducts()
+        {
+            return this.recentSearchProducts;
+        }
+
+        /// <summary>
+        /// Sets the recentSearchProducts list to the input list.
+        /// </summary>
+        /// <param name="newProducts">A list of products.</param>
+        public void SetRecentSearchProducts(List<Product> newProducts)
+        {
+            this.recentSearchProducts = newProducts;
+        }
+
+        /// <summary>
         /// Searches the product list according to the input provided by the user.
         /// The user can give multiple strings delimited by spaces and then indicate whether
         /// the search is an AND or OR search. AND searches will ensure that all strings are
@@ -96,12 +114,19 @@
             int isAndorOr = -1;
             List<Product> returnList = new List<Product>();
             bool successful = true;
+            DateTime timeNow = DateTime.Now;
 
             Console.WriteLine("Enter a search query: ");
             searchQuery = Console.ReadLine();
+
             this.SetRecentSearch(searchQuery);
+
+            string fileName = $"{timeNow.Year}-{timeNow.Month}-{timeNow.Day}-{timeNow.Hour}h{timeNow.Minute}m{timeNow.Second}s";
+            this.SetRecentSearchTime(fileName);
+
             if (searchQuery.Length == 0)
             {
+                this.SetRecentSearchProducts(this.GetProductList());
                 return this.GetProductList();
             }
             else
@@ -117,6 +142,9 @@
                     // AND search
                     if (isAndorOr == 1)
                     {
+                        searchQuery += "And";
+                        this.SetRecentSearch(searchQuery);
+
                         // Nested foreach loops to loop through each product and check that each string
                         // is present in the product or not. Set successful to false and break if there
                         // is no occurance of the string since this is an AND search.
@@ -149,6 +177,9 @@
                     // OR search
                     else
                     {
+                        searchQuery += "Or";
+                        this.SetRecentSearch(searchQuery);
+
                         // Nested foreach loops as in AND implementation. Break if we find a field with
                         // the substring since this is an OR search.
                         foreach (Product product in this.products)
@@ -210,6 +241,7 @@
                 }
             }
 
+            this.SetRecentSearchProducts(returnList);
             return returnList;
         }
 
@@ -224,9 +256,16 @@
         {
             List<Product> returnList = new List<Product>();
             bool successful = true;
+            DateTime timeNow = DateTime.Now;
+
+            this.SetRecentSearch(searchQuery);
+
+            string fileName = $"{timeNow.Year}-{timeNow.Month}-{timeNow.Day}-{timeNow.Hour}h{timeNow.Minute}m{timeNow.Second}s";
+            this.SetRecentSearchTime(fileName);
 
             if (searchQuery.Length == 0)
             {
+                this.SetRecentSearchProducts(this.GetProductList());
                 return this.GetProductList();
             }
             else
@@ -239,6 +278,9 @@
                     // AND search
                     if (isAndorOr == 1)
                     {
+                        searchQuery += "And";
+                        this.SetRecentSearch(searchQuery);
+
                         // Nested foreach loops to loop through each product and check that each string
                         // is present in the product or not. Set successful to false and break if there
                         // is no occurance of the string since this is an AND search.
@@ -271,6 +313,9 @@
                     // OR search
                     else
                     {
+                        searchQuery += "Or";
+                        this.SetRecentSearch(searchQuery);
+
                         // Nested foreach loops as in AND implementation. Break if we find a field with
                         // the substring since this is an OR search.
                         foreach (Product product in this.products)
@@ -332,6 +377,7 @@
                 }
             }
 
+            this.SetRecentSearchProducts(returnList);
             return returnList;
         }
     }
