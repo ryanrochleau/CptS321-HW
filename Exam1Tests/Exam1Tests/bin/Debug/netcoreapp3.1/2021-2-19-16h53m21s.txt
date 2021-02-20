@@ -1,0 +1,6 @@
+pair socks And
+ID: Socks
+Description: A pair of socks.
+Physical: True
+In Stock: 7
+

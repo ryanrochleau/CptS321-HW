@@ -2,13 +2,13 @@
 // Copyright (c) Ryan Rochleau. All rights reserved.
 // </copyright>
 
+using System.Collections.Generic;
+using System.Linq;
+using Exam1;
+using NUnit.Framework;
+
 namespace Exam1Tests
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using Exam1;
-    using NUnit.Framework;
-
     /// <summary>
     /// Tests for the exam.
     /// </summary>
@@ -104,7 +104,6 @@ namespace Exam1Tests
             allProductsList.Add(socks);
             allProductsList.Add(eBook);
 
-
             Store testStore = new Store(allProductsList);
 
             // Make a dummy search and save.
@@ -140,38 +139,8 @@ namespace Exam1Tests
         [Test]
         public void RestockTest()
         {
-            Product shoes = new Product();
-            shoes.SetUniqueId("Shoes");
-            shoes.SetDescription("A pair of shoes.");
-            shoes.SetIsPhysical(true);
-            shoes.SetInStock(2);
-
-            Product socks = new Product();
-            socks.SetUniqueId("Socks");
-            socks.SetDescription("A pair of socks.");
-            socks.SetIsPhysical(true);
-            socks.SetInStock(3);
-
-            Product eBook = new Product();
-            eBook.SetUniqueId("eBook");
-            eBook.SetDescription("An electronic book.");
-            eBook.SetIsPhysical(false);
-            eBook.SetInStock(0);
-
-            List<Product> emptyProductList = new List<Product>();
-
-            List<Product> allProductsList = new List<Product>();
-            allProductsList.Add(shoes);
-            allProductsList.Add(socks);
-            allProductsList.Add(eBook);
-
-            List<Product> shoesAndSocksList = new List<Product>();
-            allProductsList.Add(shoes);
-            allProductsList.Add(socks);
-
-            Store testStore = new Store(allProductsList);
-
-            Assert.Pass();
+            // Skipped this test case. Too many issues with Console.Clear() but program would
+            // be messy without it. Also don't know how to simulate user inputs.
         }
     }
 }

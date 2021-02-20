@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime;
 using System.Text;
 
@@ -152,10 +153,13 @@ namespace Exam1
             string fileName = $"{timeNow.Year}-{timeNow.Month}-{timeNow.Day}-{timeNow.Hour}h{timeNow.Minute}m{timeNow.Second}s.txt";
             this.SetRecentSearchTime(fileName);
 
-            // User entered nothing as their search so return full list
-            if (searchQuery.Length == 0)
+            // User entered nothing as their search or only spaces
+            if (searchQuery.Length == 0 || (searchQuery.First() == ' ' && searchQuery.Distinct().Count() == 1))
             {
                 this.SetRecentSearchProducts(this.GetProductList());
+                this.PrintProducts();
+                Console.ReadKey();
+                Console.Clear();
                 return this.GetProductList();
             }
             else
@@ -423,14 +427,14 @@ namespace Exam1
         {
             foreach (Product product in this.products)
             {
-                Console.WriteLine($"ID: {product.GetUniqueId()}\rDescription: {product.GetDescription()}\rPhysical: {product.GetIsPhysical()}\r");
+                Console.WriteLine($"ID: {product.GetUniqueId()}\nDescription: {product.GetDescription()}\nPhysical: {product.GetIsPhysical()}");
                 if (product.GetIsPhysical() == true)
                 {
-                    Console.WriteLine($"In Stock:{product.GetInStock()}");
+                    Console.WriteLine($"In Stock:{product.GetInStock()}\n");
                 }
                 else
                 {
-                    Console.WriteLine("In Stock: inf");
+                    Console.WriteLine("In Stock: inf\n");
                 }
             }
         }
@@ -491,7 +495,6 @@ namespace Exam1
             }
 
             sw.Close();
-            Console.Clear();
         }
 
         /// <summary>
