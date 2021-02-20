@@ -1,8 +1,12 @@
-﻿namespace Exam1
-{
-    using System;
-    using System.Collections.Generic;
+﻿// <copyright file="Program.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
+// </copyright>
 
+using System;
+using System.Collections.Generic;
+
+namespace Exam1
+{
     /// <summary>
     /// Main program class.
     /// </summary>
@@ -14,6 +18,7 @@
         /// <param name="args">Inputs from terminal.</param>
         public static void Main(string[] args)
         {
+            // Setting up some sample products
             Product shoes = new Product();
             shoes.SetUniqueId("Shoes");
             shoes.SetDescription("A pair of shoes.");
@@ -35,8 +40,14 @@
             Product eBook = new Product();
             eBook.SetUniqueId("eBook");
             eBook.SetDescription("An electronic book.");
+            eBook.SetIsPhysical(false);
+            eBook.SetInStock(0);
 
-            List<Product> emptyProductList = new List<Product>();
+            Product visualStudio = new Product();
+            visualStudio.SetUniqueId("Visual Studio");
+            visualStudio.SetDescription("Copy of Visual Studio");
+            visualStudio.SetIsPhysical(false);
+            visualStudio.SetInStock(0);
 
             List<Product> allProductsList = new List<Product>();
             allProductsList.Add(shoes);
@@ -46,7 +57,8 @@
 
             Store testStore = new Store(allProductsList);
 
-            testStore.Restock();
+            // Run the program
+            testStore.RunProgram();
         }
     }
 }

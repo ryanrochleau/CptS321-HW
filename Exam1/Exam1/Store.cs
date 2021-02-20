@@ -1,15 +1,39 @@
-﻿namespace Exam1
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-    using System.IO;
+﻿// <copyright file="Store.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
+// </copyright>
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime;
+using System.Text;
+
+namespace Exam1
+{
+    /// <summary>
+    /// A class that represent the store.
+    /// </summary>
     public class Store
     {
+        /// <summary>
+        /// A list of all products in the store.
+        /// </summary>
         private List<Product> products = new List<Product>();
+
+        /// <summary>
+        /// String containing the date and time for the most recent search.
+        /// Used as the file name for saving a search.
+        /// </summary>
         private string recentSearchTime;
+
+        /// <summary>
+        /// String which is the most recent search entered by the user.
+        /// </summary>
         private string recentSearch;
+
+        /// <summary>
+        /// List of products that were returned from the most recent search.
+        /// </summary>
         private List<Product> recentSearchProducts = new List<Product>();
 
         /// <summary>
@@ -111,20 +135,24 @@
         /// <returns>A list of products.</returns>
         public List<Product> Search()
         {
+            Console.Clear();
             string searchQuery;
             int isAndorOr = -1;
             List<Product> returnList = new List<Product>();
             bool successful = true;
             DateTime timeNow = DateTime.Now;
 
+            // Getting search query
             Console.WriteLine("Enter a search query: ");
             searchQuery = Console.ReadLine();
+            Console.Clear();
 
             this.SetRecentSearch(searchQuery);
 
             string fileName = $"{timeNow.Year}-{timeNow.Month}-{timeNow.Day}-{timeNow.Hour}h{timeNow.Minute}m{timeNow.Second}s.txt";
             this.SetRecentSearchTime(fileName);
 
+            // User entered nothing as their search so return full list
             if (searchQuery.Length == 0)
             {
                 this.SetRecentSearchProducts(this.GetProductList());
@@ -143,7 +171,7 @@
                     // AND search
                     if (isAndorOr == 1)
                     {
-                        searchQuery += "And";
+                        searchQuery += " And";
                         this.SetRecentSearch(searchQuery);
 
                         // Nested foreach loops to loop through each product and check that each string
@@ -178,7 +206,7 @@
                     // OR search
                     else
                     {
-                        searchQuery += "Or";
+                        searchQuery += " Or";
                         this.SetRecentSearch(searchQuery);
 
                         // Nested foreach loops as in AND implementation. Break if we find a field with
@@ -214,6 +242,7 @@
                 // Only 1 token present in the input string
                 else
                 {
+                    // Loop through all products and check for occurance of search query
                     foreach (Product product in this.products)
                     {
                         foreach (string substring in subs)
@@ -242,8 +271,11 @@
                 }
             }
 
+            // Printing the list and adding it to the recent searched list
             this.SetRecentSearchProducts(returnList);
             this.PrintProducts(returnList);
+            Console.ReadKey();
+            Console.Clear();
             return returnList;
         }
 
@@ -280,7 +312,7 @@
                     // AND search
                     if (isAndorOr == 1)
                     {
-                        searchQuery += "And";
+                        searchQuery += " And";
                         this.SetRecentSearch(searchQuery);
 
                         // Nested foreach loops to loop through each product and check that each string
@@ -315,7 +347,7 @@
                     // OR search
                     else
                     {
-                        searchQuery += "Or";
+                        searchQuery += " Or";
                         this.SetRecentSearch(searchQuery);
 
                         // Nested foreach loops as in AND implementation. Break if we find a field with
@@ -429,9 +461,20 @@
         /// </summary>
         public void SaveSearch()
         {
+            // No recent search
+            if (string.IsNullOrEmpty(this.recentSearch))
+            {
+                Console.Clear();
+                Console.WriteLine("No recent search to save.");
+                Console.ReadKey();
+                Console.Clear();
+                return;
+            }
+
             StreamWriter sw = File.CreateText(this.recentSearchTime);
             sw.WriteLine(this.recentSearch);
 
+            // Loop through all products that were in the recently searched products list
             foreach (Product product in this.recentSearchProducts)
             {
                 sw.WriteLine("ID: " + product.GetUniqueId());
@@ -448,6 +491,7 @@
             }
 
             sw.Close();
+            Console.Clear();
         }
 
         /// <summary>
@@ -458,6 +502,7 @@
             int nValue, replaceAllChoice, continueChoice = 0, stockToAdd;
             List<Product> productList = new List<Product>();
 
+            // Loop for when the user says no and wants to enter a new N value
             while (continueChoice == 0)
             {
                 productList.Clear();
@@ -465,7 +510,9 @@
                 Console.WriteLine("Please enter a value N where products with less than N stock will be restocked: ");
 
                 nValue = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
 
+                // Get the list of products with stock < N
                 foreach (Product product in this.products)
                 {
                     if (product.GetIsPhysical())
@@ -486,6 +533,7 @@
 
                 replaceAllChoice = Convert.ToInt32(Console.ReadLine());
 
+                // User wants to add stock to the returned items
                 if (replaceAllChoice == 1)
                 {
                     Console.Clear();
@@ -496,6 +544,9 @@
 
                     Console.Clear();
 
+                    // Loop through and add stock to all the items with stock < N
+                    // Also store the newly changed Products for printing at the end
+                    // of the function
                     foreach (Product product in this.products)
                     {
                         if (product.GetIsPhysical())
@@ -510,8 +561,13 @@
 
                     Console.WriteLine("Updated product information\n\n");
                     this.PrintProducts(productList);
+                    Console.ReadKey();
+                    Console.Clear();
                     continueChoice = 1;
                 }
+
+                // User said no to the returned items and is now asked if they want to enter
+                // a new N value or exit
                 else
                 {
                     Console.Clear();
@@ -524,6 +580,40 @@
                     {
                         continueChoice = 1;
                     }
+
+                    Console.Clear();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Main driver for the program.
+        /// </summary>
+        public void RunProgram()
+        {
+            int userChoice = 1;
+
+            while (userChoice != 4)
+            {
+                Console.WriteLine("Enter an option 1-4");
+                Console.WriteLine("1. Search\n");
+                Console.WriteLine("2. Save Search\n");
+                Console.WriteLine("3. Restock\n");
+                Console.WriteLine("4. Exit\n");
+
+                userChoice = Convert.ToInt32(Console.ReadLine());
+
+                switch (userChoice)
+                {
+                    case 1:
+                        this.Search();
+                        break;
+                    case 2:
+                        this.SaveSearch();
+                        break;
+                    case 3:
+                        this.Restock();
+                        break;
                 }
             }
         }

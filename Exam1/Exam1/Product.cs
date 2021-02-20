@@ -1,17 +1,37 @@
-﻿namespace Exam1
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+﻿// <copyright file="Product.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
+// </copyright>
 
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Exam1
+{
     /// <summary>
     /// Class representing a product.
     /// </summary>
     public class Product
     {
+        /// <summary>
+        /// Unique ID for the product.
+        /// </summary>
         private string uniqueId;
+
+        /// <summary>
+        /// Description of the product.
+        /// </summary>
         private string description;
+
+        /// <summary>
+        /// Bool for whether or not the item is physical or electronic.
+        /// True is physical, false is electronic.
+        /// </summary>
         private bool isPhysical;
+
+        /// <summary>
+        /// Number of this product in stock.
+        /// </summary>
         private int inStock;
 
         /// <summary>
@@ -36,7 +56,6 @@
             this.isPhysical = isPhysical;
             this.inStock = inStock;
         }
-
 
         /// <summary>
         /// Gets the unique id of the product.
