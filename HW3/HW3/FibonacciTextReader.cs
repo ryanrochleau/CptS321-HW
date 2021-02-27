@@ -21,10 +21,12 @@ namespace HW3
         {
             if (this.callsMade == 0)
             {
+                this.callsMade++;
                 return 0.ToString();
             }
             else if (this.callsMade == 1)
             {
+                this.callsMade++;
                 return 1.ToString();
             }
             else
@@ -33,8 +35,20 @@ namespace HW3
                 this.firstLastValue = this.secondLastValue;
                 this.secondLastValue = returnValue;
 
+                this.callsMade++;
                 return returnValue.ToString();
             }
+        }
+
+        public override string ReadToEnd()
+        {
+            StringBuilder stringBuilder = new StringBuilder(string.Empty);
+            for (int i = 0; i < this.maxLines; i++)
+            {
+                stringBuilder.Append((i + 1).ToString() + ": " + this.ReadLine() + "\r\n");
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }

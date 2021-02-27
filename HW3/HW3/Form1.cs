@@ -33,6 +33,11 @@ namespace HW3
             this.LoadFile();
         }
 
+        /// <summary>
+        /// Button for displaying first 50 numbers of the fibonacci sequence.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
 
