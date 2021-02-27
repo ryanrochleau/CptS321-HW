@@ -46,7 +46,7 @@ namespace HW3
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(805, 416);
             this.textBox1.TabIndex = 0;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // LoadFileButton
             // 
@@ -57,7 +57,7 @@ namespace HW3
             this.LoadFileButton.TabIndex = 1;
             this.LoadFileButton.Text = "Load From File";
             this.LoadFileButton.UseVisualStyleBackColor = true;
-            this.LoadFileButton.Click += new System.EventHandler(this.button1_Click);
+            this.LoadFileButton.Click += new System.EventHandler(this.LoadFileClick);
             // 
             // FirstFiftyFibButton
             // 
@@ -67,7 +67,7 @@ namespace HW3
             this.FirstFiftyFibButton.TabIndex = 2;
             this.FirstFiftyFibButton.Text = "Fib 50";
             this.FirstFiftyFibButton.UseVisualStyleBackColor = true;
-            this.FirstFiftyFibButton.Click += new System.EventHandler(this.button2_Click);
+            this.FirstFiftyFibButton.Click += new System.EventHandler(this.FibFiftyClick);
             // 
             // FirstHundredFibButton
             // 
@@ -77,7 +77,7 @@ namespace HW3
             this.FirstHundredFibButton.TabIndex = 3;
             this.FirstHundredFibButton.Text = "Fib 100";
             this.FirstHundredFibButton.UseVisualStyleBackColor = true;
-            this.FirstHundredFibButton.Click += new System.EventHandler(this.button3_Click);
+            this.FirstHundredFibButton.Click += new System.EventHandler(this.FibHundredClick);
             // 
             // SaveFileButton
             // 
@@ -87,16 +87,16 @@ namespace HW3
             this.SaveFileButton.TabIndex = 4;
             this.SaveFileButton.Text = "Save File";
             this.SaveFileButton.UseVisualStyleBackColor = true;
-            this.SaveFileButton.Click += new System.EventHandler(this.button4_Click);
+            this.SaveFileButton.Click += new System.EventHandler(this.SaveFileClick);
             // 
             // saveFileDialog1
             // 
-            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.SaveFileDialog1_FileOk);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk_1);
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.OpenFileDialog1_FileOk_1);
             // 
             // Form1
             // 

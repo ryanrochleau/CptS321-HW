@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="FibonacciTextReader.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -11,9 +15,27 @@ namespace HW3
     /// </summary>
     public class FibonacciTextReader : TextReader
     {
+        /// <summary>
+        /// The number of fibonacci lines.
+        /// </summary>
         private int maxLines = -1;
+
+        /// <summary>
+        /// Numbers of calls made by ReadLine. Used for special
+        /// case of first and second numbers.
+        /// </summary>
         private int callsMade = 0;
+
+        /// <summary>
+        /// The first of the last two values for calculating a
+        /// fibonacci number.
+        /// </summary>
         private System.Numerics.BigInteger firstLastValue = 0;
+
+        /// <summary>
+        /// The second of the last two values for calculating a
+        /// fibonacci number.
+        /// </summary>
         private System.Numerics.BigInteger secondLastValue = 1;
 
         /// <summary>

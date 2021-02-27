@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="Form1.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,79 +15,38 @@ using System.Windows.Forms;
 
 namespace HW3
 {
+    /// <summary>
+    /// Windows Form for HW3.
+    /// </summary>
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Form1"/> class.
+        /// Constructor for the Windows form.
+        /// </summary>
         public Form1()
         {
-            InitializeComponent();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+            this.InitializeComponent();
         }
 
         /// <summary>
-        /// Load file button.
+        /// Setter for the textBox Text. Used during testing since
+        /// testBox1 is private.
         /// </summary>
-        /// <param name="sender">Reference to control/object that raised the event.</param>
-        /// <param name="e">Contains the event data.</param>
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.LoadFile();
-        }
-
-        /// <summary>
-        /// Button for displaying first 50 numbers of the fibonacci sequence.
-        /// </summary>
-        /// <param name="sender">Reference to control/object that raised the event.</param>
-        /// <param name="e">Contains the event data.</param>
-        private void button2_Click(object sender, EventArgs e)
-        {
-            FibonacciTextReader fiftyNumbers = new FibonacciTextReader(50);
-            this.textBox1.Text = fiftyNumbers.ReadToEnd();
-        }
-
-        /// <summary>
-        /// Button for displaying first 100 numbers of the fibonacci sequence.
-        /// </summary>
-        /// <param name="sender">Reference to control/object that raised the event.</param>
-        /// <param name="e">Contains the event data.</param>
-        private void button3_Click(object sender, EventArgs e)
-        {
-            FibonacciTextReader hundredNumbers = new FibonacciTextReader(100);
-            this.textBox1.Text = hundredNumbers.ReadToEnd();
-        }
-
-        /// <summary>
-        /// Save file button.
-        /// </summary>
-        /// <param name="sender">Reference to control/object that raised the event.</param>
-        /// <param name="e">Contains the event data.</param>
-        private void button4_Click(object sender, EventArgs e)
-        {
-            this.SaveFile();
-        }
-
-        private void openFileDialog1_FileOk_1(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        public string GetTextBoxText()
-        {
-            string textBoxText = this.textBox1.Text;
-            return textBoxText;
-        }
-
+        /// <param name="inputText">Text to be inserted into textBox1.</param>
         public void SetTextBoxText(string inputText)
         {
             this.textBox1.Text = inputText;
+        }
+
+        /// <summary>
+        /// Getter for the textBox Text. Used during testing since
+        /// testBox1 is private.
+        /// </summary>
+        /// <returns>A string of text from textBox1.</returns>
+        public string GetTextBoxText()
+        {
+            return this.textBox1.Text;
         }
 
         /// <summary>
@@ -144,6 +107,75 @@ namespace HW3
         {
             StreamReader streamReader = new StreamReader(fileName);
             this.textBox1.Text = streamReader.ReadToEnd();
+        }
+
+        /// <summary>
+        /// Provided by the form automatically. Throws errors when removed.
+        /// </summary>
+        /// <param name="sender">Reference to control/object that raised the event.</param>
+        /// <param name="e">Contains the event data.</param>
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        /// <summary>
+        /// Load file button.
+        /// </summary>
+        /// <param name="sender">Reference to control/object that raised the event.</param>
+        /// <param name="e">Contains the event data.</param>
+        private void LoadFileClick(object sender, EventArgs e)
+        {
+            this.LoadFile();
+        }
+
+        /// <summary>
+        /// Button for displaying first 50 numbers of the fibonacci sequence.
+        /// </summary>
+        /// <param name="sender">Reference to control/object that raised the event.</param>
+        /// <param name="e">Contains the event data.</param>
+        private void FibFiftyClick(object sender, EventArgs e)
+        {
+            FibonacciTextReader fiftyNumbers = new FibonacciTextReader(50);
+            this.textBox1.Text = fiftyNumbers.ReadToEnd();
+        }
+
+        /// <summary>
+        /// Button for displaying first 100 numbers of the fibonacci sequence.
+        /// </summary>
+        /// <param name="sender">Reference to control/object that raised the event.</param>
+        /// <param name="e">Contains the event data.</param>
+        private void FibHundredClick(object sender, EventArgs e)
+        {
+            FibonacciTextReader hundredNumbers = new FibonacciTextReader(100);
+            this.textBox1.Text = hundredNumbers.ReadToEnd();
+        }
+
+        /// <summary>
+        /// Save file button.
+        /// </summary>
+        /// <param name="sender">Reference to control/object that raised the event.</param>
+        /// <param name="e">Contains the event data.</param>
+        private void SaveFileClick(object sender, EventArgs e)
+        {
+            this.SaveFile();
+        }
+
+        /// <summary>
+        /// Provided by the form automatically. Not used but throws errors when removed.
+        /// </summary>
+        /// <param name="sender">Reference to control/object that raised the event.</param>
+        /// <param name="e">Contains the event data.</param>
+        private void OpenFileDialog1_FileOk_1(object sender, CancelEventArgs e)
+        {
+        }
+
+        /// <summary>
+        /// Provided by the form automatically. Not used but throws errors when removed.
+        /// </summary>
+        /// <param name="sender">Reference to control/object that raised the event.</param>
+        /// <param name="e">Contains the event data.</param>
+        private void SaveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
         }
     }
 }
