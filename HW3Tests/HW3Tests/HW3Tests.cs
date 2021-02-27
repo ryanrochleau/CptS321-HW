@@ -1,5 +1,7 @@
 using NUnit.Framework;
 using HW3;
+using System.Text;
+using System.IO;
 
 namespace HW3Tests
 {
@@ -71,6 +73,15 @@ namespace HW3Tests
         public void SaveFileTest()
         {
             Form1 testForm = new Form1();
+            string testText = "This is test text used for testing the save file.";
+            string testTextFileTitle = "SaveFileTestText.txt";
+
+            testForm.SetTextBoxText(testText);
+            testForm.SaveFile();
+            StreamReader newStreamWriter = new StreamReader(testTextFileTitle);
+
+            Assert.AreEqual(testText, newStreamWriter.ReadToEnd());
+
             Assert.Pass();
         }
     }
