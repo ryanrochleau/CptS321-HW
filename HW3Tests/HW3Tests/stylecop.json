@@ -8,7 +8,14 @@
   "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
   "settings": {
     "documentationRules": {
-      "companyName": "PlaceholderCompany"
+      "companyName": "Ryan Rochleau",
+      "copyrightText": "Copyright (c) {companyName}. All rights reserved.",
+      "documentPrivateElements": true,
+      "documentPrivateFields": true
+    },
+    "orderingRules": {
+      "usingDirectivesPlacement": "outsideNamespace"
     }
   }
 }
+

@@ -1,8 +1,12 @@
-using NUnit.Framework;
-using HW3;
-using System.Windows.Forms;
-using System.Text;
+// <copyright file="HW3Tests.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
+// </copyright>
+
 using System.IO;
+using System.Text;
+using System.Windows.Forms;
+using HW3;
+using NUnit.Framework;
 
 namespace HW3Tests
 {
@@ -33,7 +37,7 @@ namespace HW3Tests
                 + "16: 610\r\n17: 987\r\n18: 1597\r\n19: 2584\r\n20: 4181\r\n21: 6765\r\n22: 10946\r\n23: 17711\r\n24: 28657\r\n25: 46368\r\n";
             string firstFiveFibNumbers = "1: 0\r\n2: 1\r\n3: 1\r\n4: 2\r\n5: 3\r\n";
             string firstThirteenFibNumbers = "1: 0\r\n2: 1\r\n3: 1\r\n4: 2\r\n5: 3\r\n6: 5\r\n7: 8\r\n8: 13\r\n9: 21\r\n10: 34\r\n11: 55\r\n12: 89\r\n13: 144\r\n";
-            
+
             Assert.AreEqual(firstTwentyFibNumbers, testFibTextReaderTwenty.ReadToEnd());
             Assert.AreEqual(firstFiveFibNumbers, testFibTextReaderFive.ReadToEnd());
             Assert.AreEqual(firstThirteenFibNumbers, testFibTextReaderThirteen.ReadToEnd());
