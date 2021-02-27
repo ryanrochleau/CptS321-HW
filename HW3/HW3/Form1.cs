@@ -19,7 +19,7 @@ namespace HW3
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -50,6 +50,12 @@ namespace HW3
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
 
+        }
+
+        public string GetTextBoxText()
+        {
+            string textBoxText = this.textBox1.Text;
+            return textBoxText;
         }
     }
 }

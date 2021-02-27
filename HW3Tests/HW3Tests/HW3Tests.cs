@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using HW3;
 
 namespace HW3Tests
 {
@@ -21,6 +22,7 @@ namespace HW3Tests
         [Test]
         public void FibonacciTest()
         {
+            Form1 testForm = new Form1();
             Assert.Pass();
         }
 
@@ -30,6 +32,24 @@ namespace HW3Tests
         [Test]
         public void LoadFromFileTest()
         {
+            Form1 testForm = new Form1();
+
+            string emptyTextString = string.Empty;
+            string fullTestFileString = "Test text file used in the LoadFromFileTest test.";
+            string fullTestFileStringTwo = "Second test text file used in the LoadFromFileTest test.";
+
+            // Loading the empty file first.
+            testForm.LoadFromFile();
+            Assert.AreEqual(testForm.GetTextBoxText(), emptyTextString);
+
+            // Loading from fullTestFileString.
+            testForm.LoadFromFile();
+            Assert.AreEqual(testForm.GetTextBoxText(), fullTestFileString);
+
+            // Loading from fullTestFileStringTwo.
+            testForm.LoadFromFile();
+            Assert.AreEqual(testForm.GetTextBoxText(), fullTestFileStringTwo);
+
             Assert.Pass();
         }
 
@@ -39,6 +59,7 @@ namespace HW3Tests
         [Test]
         public void SaveFileTest()
         {
+            Form1 testForm = new Form1();
             Assert.Pass();
         }
     }
