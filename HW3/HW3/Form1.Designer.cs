@@ -30,10 +30,10 @@ namespace HW3
         private void InitializeComponent()
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.LoadFileButton = new System.Windows.Forms.Button();
+            this.FirstFiftyFibButton = new System.Windows.Forms.Button();
+            this.FirstHundredFibButton = new System.Windows.Forms.Button();
+            this.SaveFileButton = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
@@ -48,46 +48,46 @@ namespace HW3
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // button1
+            // LoadFileButton
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(-3, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 36);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Load From File";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.LoadFileButton.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LoadFileButton.Location = new System.Drawing.Point(-3, 0);
+            this.LoadFileButton.Name = "LoadFileButton";
+            this.LoadFileButton.Size = new System.Drawing.Size(91, 36);
+            this.LoadFileButton.TabIndex = 1;
+            this.LoadFileButton.Text = "Load From File";
+            this.LoadFileButton.UseVisualStyleBackColor = true;
+            this.LoadFileButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // FirstFiftyFibButton
             // 
-            this.button2.Location = new System.Drawing.Point(94, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(91, 36);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Fib 50";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.FirstFiftyFibButton.Location = new System.Drawing.Point(94, 0);
+            this.FirstFiftyFibButton.Name = "FirstFiftyFibButton";
+            this.FirstFiftyFibButton.Size = new System.Drawing.Size(91, 36);
+            this.FirstFiftyFibButton.TabIndex = 2;
+            this.FirstFiftyFibButton.Text = "Fib 50";
+            this.FirstFiftyFibButton.UseVisualStyleBackColor = true;
+            this.FirstFiftyFibButton.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // FirstHundredFibButton
             // 
-            this.button3.Location = new System.Drawing.Point(191, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(91, 36);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Fib 100";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.FirstHundredFibButton.Location = new System.Drawing.Point(191, 0);
+            this.FirstHundredFibButton.Name = "FirstHundredFibButton";
+            this.FirstHundredFibButton.Size = new System.Drawing.Size(91, 36);
+            this.FirstHundredFibButton.TabIndex = 3;
+            this.FirstHundredFibButton.Text = "Fib 100";
+            this.FirstHundredFibButton.UseVisualStyleBackColor = true;
+            this.FirstHundredFibButton.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // SaveFileButton
             // 
-            this.button4.Location = new System.Drawing.Point(288, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(91, 36);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Save File";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.SaveFileButton.Location = new System.Drawing.Point(288, 0);
+            this.SaveFileButton.Name = "SaveFileButton";
+            this.SaveFileButton.Size = new System.Drawing.Size(91, 36);
+            this.SaveFileButton.TabIndex = 4;
+            this.SaveFileButton.Text = "Save File";
+            this.SaveFileButton.UseVisualStyleBackColor = true;
+            this.SaveFileButton.Click += new System.EventHandler(this.button4_Click);
             // 
             // saveFileDialog1
             // 
@@ -103,10 +103,10 @@ namespace HW3
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.SaveFileButton);
+            this.Controls.Add(this.FirstHundredFibButton);
+            this.Controls.Add(this.FirstFiftyFibButton);
+            this.Controls.Add(this.LoadFileButton);
             this.Controls.Add(this.textBox1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -118,10 +118,10 @@ namespace HW3
         #endregion
 
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button LoadFileButton;
+        private System.Windows.Forms.Button FirstFiftyFibButton;
+        private System.Windows.Forms.Button FirstHundredFibButton;
+        private System.Windows.Forms.Button SaveFileButton;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
