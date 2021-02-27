@@ -104,5 +104,16 @@ namespace HW3
                 this.textBox1.Text = streamReader.ReadToEnd();
             }
         }
+
+        /// <summary>
+        /// Used for testing. Acts the same as LoadFile without OpenFileDialog.
+        /// NUnit will not open an OpenFileDialog.
+        /// </summary>
+        /// <param name="fileName">Input file name.</param>
+        public void LoadFile(string fileName)
+        {
+            StreamReader streamReader = new StreamReader(fileName);
+            this.textBox1.Text = streamReader.ReadToEnd();
+        }
     }
 }
