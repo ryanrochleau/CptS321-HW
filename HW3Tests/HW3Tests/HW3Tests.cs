@@ -74,11 +74,12 @@ namespace HW3Tests
         public void SaveFileTest()
         {
             Form1 testForm = new Form1();
-            string testText = "This is test text used for testing the save file.";
+            string testInputText = "This is test text used for testing the save file.";
+            string testText = "This is test text used for testing the save file.\r\n";
             string testTextFileTitle = "SaveFileTestText.txt";
 
-            //testForm.SetTextBoxText(testText);
-            testForm.SaveFile();
+            testForm.SetTextBoxText(testInputText);
+            testForm.SaveFile("SaveFileTestText.txt");
             StreamReader newStreamWriter = new StreamReader(testTextFileTitle);
 
             Assert.AreEqual(testText, newStreamWriter.ReadToEnd());

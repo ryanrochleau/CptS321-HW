@@ -69,6 +69,11 @@ namespace HW3
             return textBoxText;
         }
 
+        public void SetTextBoxText(string inputText)
+        {
+            this.textBox1.Text = inputText;
+        }
+
         /// <summary>
         /// Uses a savefiledialog to save the textbox to a file.
         /// </summary>
@@ -86,6 +91,19 @@ namespace HW3
                 streamWriter.WriteLine(this.textBox1.Text);
                 streamWriter.Close();
             }
+        }
+
+        /// <summary>
+        /// Save function identical to the other save function without
+        /// savefiledialog. NUnit does not work with savefiledialog.
+        /// </summary>
+        /// <param name="fileName">A file name string.</param>
+        public void SaveFile(string fileName)
+        {
+            StreamWriter streamWriter = new StreamWriter(fileName);
+
+            streamWriter.WriteLine(this.textBox1.Text);
+            streamWriter.Close();
         }
 
         /// <summary>
