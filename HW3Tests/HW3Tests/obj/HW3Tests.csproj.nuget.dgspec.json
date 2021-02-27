@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ryan\\source\\repos\\HW3Tests\\HW3Tests\\HW3Tests.csproj": {}
+    "C:\\Users\\Ryan\\Desktop\\CptS321-HW\\cpts321-hws\\HW3Tests\\HW3Tests\\HW3Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ryan\\source\\repos\\HW3Tests\\HW3Tests\\HW3Tests.csproj": {
+    "C:\\Users\\Ryan\\Desktop\\CptS321-HW\\cpts321-hws\\HW3Tests\\HW3Tests\\HW3Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ryan\\source\\repos\\HW3Tests\\HW3Tests\\HW3Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Ryan\\Desktop\\CptS321-HW\\cpts321-hws\\HW3Tests\\HW3Tests\\HW3Tests.csproj",
         "projectName": "HW3Tests",
-        "projectPath": "C:\\Users\\Ryan\\source\\repos\\HW3Tests\\HW3Tests\\HW3Tests.csproj",
+        "projectPath": "C:\\Users\\Ryan\\Desktop\\CptS321-HW\\cpts321-hws\\HW3Tests\\HW3Tests\\HW3Tests.csproj",
         "packagesPath": "C:\\Users\\Ryan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ryan\\source\\repos\\HW3Tests\\HW3Tests\\obj\\",
+        "outputPath": "C:\\Users\\Ryan\\Desktop\\CptS321-HW\\cpts321-hws\\HW3Tests\\HW3Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ryan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -51,6 +51,12 @@
             "NUnit3TestAdapter": {
               "target": "Package",
               "version": "[3.16.1, )"
+            },
+            "StyleCop.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.118, )"
             }
           },
           "imports": [
