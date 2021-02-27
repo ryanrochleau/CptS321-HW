@@ -36,16 +36,23 @@ namespace HW3
         /// <summary>
         /// Button for displaying first 50 numbers of the fibonacci sequence.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Reference to control/object that raised the event.</param>
+        /// <param name="e">Contains the event data.</param>
         private void button2_Click(object sender, EventArgs e)
         {
-
+            FibonacciTextReader fiftyNumbers = new FibonacciTextReader(50);
+            this.textBox1.Text = fiftyNumbers.ReadToEnd();
         }
 
+        /// <summary>
+        /// Button for displaying first 100 numbers of the fibonacci sequence.
+        /// </summary>
+        /// <param name="sender">Reference to control/object that raised the event.</param>
+        /// <param name="e">Contains the event data.</param>
         private void button3_Click(object sender, EventArgs e)
         {
-
+            FibonacciTextReader hundredNumbers = new FibonacciTextReader(100);
+            this.textBox1.Text = hundredNumbers.ReadToEnd();
         }
 
         /// <summary>

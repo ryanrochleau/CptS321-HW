@@ -5,18 +5,32 @@ using System.Text;
 
 namespace HW3
 {
-    class FibonacciTextReader : TextReader
+    /// <summary>
+    /// Custom TextReader which overrides Readline and ReadToEnd
+    /// to deliver fibonacci numbers.
+    /// </summary>
+    public class FibonacciTextReader : TextReader
     {
         private int maxLines = -1;
         private int callsMade = 0;
         private System.Numerics.BigInteger firstLastValue = 0;
         private System.Numerics.BigInteger secondLastValue = 1;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FibonacciTextReader"/> class.
+        /// Constructor which takes in an integer indicating how many
+        /// fibonacci numbers are to be calculated.
+        /// </summary>
+        /// <param name="newMax">Number of fibonacci numbers to calculate.</param>
         public FibonacciTextReader(int newMax)
         {
             this.maxLines = newMax;
         }
 
+        /// <summary>
+        /// Calculates and returns the next fibonacci number as a string.
+        /// </summary>
+        /// <returns>A string which is the next fibonacci number in the sequence.</returns>
         public override string ReadLine()
         {
             if (this.callsMade == 0)
@@ -40,6 +54,11 @@ namespace HW3
             }
         }
 
+        /// <summary>
+        /// Appends n fibonacci numbers to a StringBuilder and then returns that stringbuilder
+        /// as a string.
+        /// </summary>
+        /// <returns>A string of all fibonacci numbers.</returns>
         public override string ReadToEnd()
         {
             StringBuilder stringBuilder = new StringBuilder(string.Empty);

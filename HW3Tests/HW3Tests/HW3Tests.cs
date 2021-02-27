@@ -25,18 +25,18 @@ namespace HW3Tests
         [Test]
         public void FibonacciTest()
         {
-            //FibonacciTextReader testFibTextReaderTwenty = new FibonacciTextReader(20);
-            //FibonacciTextReader testFibTextReaderFive = new FibonacciTextReader(5);
-            //FibonacciTextReader testFibTextReaderThirteen = new FibonacciTextReader(13);
+            FibonacciTextReader testFibTextReaderTwenty = new FibonacciTextReader(25);
+            FibonacciTextReader testFibTextReaderFive = new FibonacciTextReader(5);
+            FibonacciTextReader testFibTextReaderThirteen = new FibonacciTextReader(13);
 
-            string firstTwentyFibNumbers = "1: 0\r\n2: 1\r\n3: 2\r\n4: 3\r\n5: 5\r\n6: 8\r\n7: 13\r\n8: 21\r\n9: 34\r\n10: 55\r\n11: 89\r\n12: 144\r\n13: 233\r\n14: 377\r\n14: 377\r\n"
-                + "15: 610\r\n16: 987\r\n17: 1597\r\n18: 2584\r\n19: 4184\r\n20: 6765\r\n21: 10946\r\n22: 17711\r\n23: 28657\r\n24: 46368\r\n25: 46368\r\n";
-            string firstFiveFibNumbers = "1: 0\r\n2: 1\r\n3: 2\r\n4: 3\r\n5: 5\r\n";
-            string firstThirteenFibNumbers = "1: 0\r\n2: 1\r\n3: 2\r\n4: 3\r\n5: 5\r\n6: 8\r\n7: 13\r\n8: 21\r\n9: 34\r\n10: 55\r\n11: 89\r\n12: 144\r\n13: 233\r\n";
-
-            //Assert.AreEqual(firstTwentyFibNumbers, testFibTextReaderTwenty.ReadToEnd());
-            //Assert.AreEqual(firstFiveFibNumbers, testFibTextReaderFive.ReadToEnd());
-            //Assert.AreEqual(firstThirteenFibNumbers, testFibTextReaderThirteen.ReadToEnd());
+            string firstTwentyFibNumbers = "1: 0\r\n2: 1\r\n3: 1\r\n4: 2\r\n5: 3\r\n6: 5\r\n7: 8\r\n8: 13\r\n9: 21\r\n10: 34\r\n11: 55\r\n12: 89\r\n13: 144\r\n14: 233\r\n15: 377\r\n"
+                + "16: 610\r\n17: 987\r\n18: 1597\r\n19: 2584\r\n20: 4181\r\n21: 6765\r\n22: 10946\r\n23: 17711\r\n24: 28657\r\n25: 46368\r\n";
+            string firstFiveFibNumbers = "1: 0\r\n2: 1\r\n3: 1\r\n4: 2\r\n5: 3\r\n";
+            string firstThirteenFibNumbers = "1: 0\r\n2: 1\r\n3: 1\r\n4: 2\r\n5: 3\r\n6: 5\r\n7: 8\r\n8: 13\r\n9: 21\r\n10: 34\r\n11: 55\r\n12: 89\r\n13: 144\r\n";
+            
+            Assert.AreEqual(firstTwentyFibNumbers, testFibTextReaderTwenty.ReadToEnd());
+            Assert.AreEqual(firstFiveFibNumbers, testFibTextReaderFive.ReadToEnd());
+            Assert.AreEqual(firstThirteenFibNumbers, testFibTextReaderThirteen.ReadToEnd());
             Assert.Pass();
         }
 
