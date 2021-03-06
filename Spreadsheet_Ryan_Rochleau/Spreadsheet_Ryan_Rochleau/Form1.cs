@@ -66,6 +66,8 @@ namespace Spreadsheet_Ryan_Rochleau
             this.spreadsheet = new Spreadsheet(50, 26);
 
             this.spreadsheet.PropertyChanged += this.UpdateGridCell;
+
+            this.dataGridView1.CellValueChanged += this.DataGridView1_CellValueChanged;
         }
 
         /// <summary>
@@ -76,11 +78,11 @@ namespace Spreadsheet_Ryan_Rochleau
         /// <param name="e">The event arguments given when the even was fired from the spreadsheet class.</param>
         private void UpdateGridCell(object sender, PropertyChangedEventArgs e)
         {
-            // String should be something like "Col,Row,Val" or "A,6,"Random text"".
-            string eString = e.PropertyName;
-            string[] eStringValues = eString.Split(',');
+                // String should be something like "Col,Row,Val" or "A,6,"Random text"".
+                string eString = e.PropertyName;
+                string[] eStringValues = eString.Split(',');
 
-            this.dataGridView1.Rows[Convert.ToInt32(eStringValues[1])].Cells[Convert.ToInt32(eStringValues[0])].Value = eStringValues[2];
+                this.dataGridView1.Rows[Convert.ToInt32(eStringValues[1])].Cells[Convert.ToInt32(eStringValues[0])].Value = eStringValues[2];
         }
 
         /// <summary>
@@ -113,9 +115,17 @@ namespace Spreadsheet_Ryan_Rochleau
             }
         }
 
+        /// <summary>
+        /// Event for when a cell value is changed in the DataGrid. Updates the spreadsheet cell using SetActualText.
+        /// </summary>
+        /// <param name="sender">Reference to control/object that raised the event.</param>
+        /// <param name="e">Contains the event data.</param>
         private void DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).SetActualText(this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+            if (e.RowIndex != -1)
+            {
+                this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).SetActualText(this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+            }
         }
     }
 }

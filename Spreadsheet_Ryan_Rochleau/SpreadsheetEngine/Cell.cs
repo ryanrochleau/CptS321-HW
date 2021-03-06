@@ -84,6 +84,7 @@ namespace Spreadsheet_Ryan_Rochleau
         /// <param name="newText">New string input value.</param>
         public void SetActualText(string newText)
         {
+            Console.WriteLine("Inside SetActualText Function");
             if (this.actualText == newText)
             {
                 return;

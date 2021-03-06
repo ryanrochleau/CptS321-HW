@@ -10,13 +10,16 @@ using System.Windows.Forms;
 
 namespace Spreadsheet_Ryan_Rochleau
 {
-    static class Program
+    /// <summary>
+    /// Main program class.
+    /// </summary>
+    internal static class Program
     {
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
