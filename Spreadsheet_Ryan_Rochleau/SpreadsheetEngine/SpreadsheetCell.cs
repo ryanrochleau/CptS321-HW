@@ -1,9 +1,16 @@
-﻿using System;
+﻿// <copyright file="SpreadsheetCell.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SpreadsheetEngine
+namespace Spreadsheet_Ryan_Rochleau
 {
+    /// <summary>
+    /// Class that inheritis from our abstract class Cell.
+    /// </summary>
     public class SpreadsheetCell : Cell
     {
         /// <summary>

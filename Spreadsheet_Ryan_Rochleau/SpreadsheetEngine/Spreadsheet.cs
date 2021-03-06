@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace SpreadsheetEngine
+namespace Spreadsheet_Ryan_Rochleau
 {
     /// <summary>
     /// Class for the spreadsheet.
@@ -55,7 +55,7 @@ namespace SpreadsheetEngine
         /// <summary>
         /// PropertyChangedEventHandler for notifying when a cell changed.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
 
         /// <summary>
         /// Getter for column count.
@@ -134,7 +134,7 @@ namespace SpreadsheetEngine
             {
                 cell.SetTextValue(this.FindCellText(cell.GetActualText()));
 
-                PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs(cell.GetColumnIndex().ToString() + cell.GetRowIndex().ToString() + '=' + cell.GetTextValue().ToString());
+                PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs(cell.GetColumnIndex().ToString() + ',' + cell.GetRowIndex().ToString() + ',' + cell.GetTextValue().ToString());
 
                 this.PropertyChanged(this, eventArgs);
             }

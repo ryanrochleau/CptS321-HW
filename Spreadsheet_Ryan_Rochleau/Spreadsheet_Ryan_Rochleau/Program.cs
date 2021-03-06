@@ -1,3 +1,7 @@
+// <copyright file="Program.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
+// </copyright>
+
 using System;
 using System.Collections.Generic;
 using System.Linq;

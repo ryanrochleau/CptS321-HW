@@ -5,7 +5,7 @@
 using System;
 using System.ComponentModel;
 
-namespace SpreadsheetEngine
+namespace Spreadsheet_Ryan_Rochleau
 {
     /// <summary>
     /// Abstract class representing a cell.
@@ -49,7 +49,7 @@ namespace SpreadsheetEngine
         /// <summary>
         /// PropertyChangedEventHandler for notifying when a cell changed.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
 
         /// <summary>
         /// Getter for RowIndex.
