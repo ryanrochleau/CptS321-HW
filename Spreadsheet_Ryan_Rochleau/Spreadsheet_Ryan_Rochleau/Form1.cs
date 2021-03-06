@@ -24,7 +24,18 @@ namespace Spreadsheet_Ryan_Rochleau
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.dataGridView1.ColumnCount = 26;
+            this.dataGridView1.RowCount = 50;
 
+            for (int i = 0; i < 26; i++)
+            {
+                this.dataGridView1.Columns[i].Name = ((char)(i + 65)).ToString();
+            }
+
+            for (int i = 0; i < 50; i++)
+            {
+                this.dataGridView1.Rows[i].HeaderCell.Value = (i + 1).ToString();
+            }
         }
     }
 }
