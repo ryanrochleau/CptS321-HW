@@ -30,6 +30,20 @@ namespace SpreadsheetEngine
         private int columnIndex;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Cell"/> class.
+        /// Constructor cell.
+        /// </summary>
+        /// <param name="row">Row of the cell.</param>
+        /// <param name="column">Column of the cell.</param>
+        public Cell(int row, int column)
+        {
+            this.rowIndex = row;
+            this.columnIndex = column;
+            this.actualText = string.Empty;
+            this.textValue = string.Empty;
+        }
+
+        /// <summary>
         /// PropertyChangedEventHandler for notifying when a cell changed.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
@@ -79,6 +93,24 @@ namespace SpreadsheetEngine
 
                 this.PropertyChanged(this, eventArgs);
             }
+        }
+
+        /// <summary>
+        /// Setter for textValue string.
+        /// </summary>
+        /// <param name="newTextValue">newTextValue string.</param>
+        public void SetTextValue(string newTextValue)
+        {
+            this.textValue = newTextValue;
+        }
+
+        /// <summary>
+        /// Getter for textValue string.
+        /// </summary>
+        /// <returns>textValue string.</returns>
+        public string GetTextValue()
+        {
+            return this.textValue;
         }
     }
 }
