@@ -7,6 +7,9 @@ using System.ComponentModel;
 
 namespace SpreadsheetEngine
 {
+    /// <summary>
+    /// Abstract class representing a cell.
+    /// </summary>
     public abstract class Cell : INotifyPropertyChanged
     {
         /// <summary>

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SpreadsheetEngine
 {
-    class Spreadsheet
+    public class Spreadsheet
     {
     }
 }
