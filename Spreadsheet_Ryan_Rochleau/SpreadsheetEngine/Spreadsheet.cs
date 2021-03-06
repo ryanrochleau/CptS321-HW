@@ -47,6 +47,7 @@ namespace SpreadsheetEngine
                 for (int j = 0; j < cols; j++)
                 {
                     this.cellArray[i, j] = new SpreadsheetCell(i, j);
+                    this.cellArray[i, j].PropertyChanged += this.CellPropertyChanged;
                 }
             }
         }
@@ -98,11 +99,45 @@ namespace SpreadsheetEngine
         /// <param name="row">Row where the cell is located.</param>
         /// <param name="col">Column where the cell is located.</param>
         /// <returns>A Cell at the location given.</returns>
-        public Cell GetCell(int row,int col)
+        public Cell GetCell(int row, int col)
         {
             return this.cellArray[row, col];
         }
 
+        /// <summary>
+        /// Gets the text value in the cell pointed to by the input string.
+        /// </summary>
+        /// <param name="inputText">String which points to cell.</param>
+        /// <returns>String of text value that was in the cell pointed to by inputText.</returns>
+        public string FindCellText(string inputText)
+        {
+            // Format of the inputText would be something like =A6
+            return this.GetCell(Convert.ToInt32(inputText.Substring(2)) - 1, Convert.ToInt32(inputText[1]) - 65).GetTextValue();
+        }
 
+        /// <summary>
+        /// Event to be fired when cell properties change.
+        /// </summary>
+        /// <param name="sender">The cell that is invoking the event.</param>
+        /// <param name="e">Event argument given when cell invokes event.</param>
+        public void CellPropertyChanged(object sender, EventArgs e)
+        {
+            SpreadsheetCell cell = sender as SpreadsheetCell;
+
+            // Set actual text is what fired the event.
+            // Need to check if the text has '=' as first char.
+            if (cell.GetActualText()[0] != '=')
+            {
+                cell.SetTextValue(cell.GetActualText());
+            }
+            else
+            {
+                cell.SetTextValue(this.FindCellText(cell.GetActualText()));
+
+                PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs(cell.GetColumnIndex().ToString() + cell.GetRowIndex().ToString() + '=' + cell.GetTextValue().ToString());
+
+                this.PropertyChanged(this, eventArgs);
+            }
+        }
     }
 }
