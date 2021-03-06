@@ -122,10 +122,7 @@ namespace Spreadsheet_Ryan_Rochleau
         /// <param name="e">Contains the event data.</param>
         private void DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex != -1)
-            {
-                this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).SetActualText(this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
-            }
+            this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).SetActualText(this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
         }
     }
 }
