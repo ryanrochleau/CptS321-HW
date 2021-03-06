@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="Form1.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,18 +14,34 @@ using System.Windows.Forms;
 
 namespace Spreadsheet_Ryan_Rochleau
 {
+    /// <summary>
+    /// Form for HW4.
+    /// </summary>
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Form1"/> class.
+        /// Constructor for the form.
+        /// </summary>
         public Form1()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        /// <summary>
+        /// Function for when a cell is clicked on.
+        /// </summary>
+        /// <param name="sender">Reference to control/object that raised the event.</param>
+        /// <param name="e">Contains the event data.</param>
+        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
 
+        /// <summary>
+        /// Function for when the Form loads.
+        /// </summary>
+        /// <param name="sender">Reference to control/object that raised the event.</param>
+        /// <param name="e">Contains the event data.</param>
         private void Form1_Load(object sender, EventArgs e)
         {
             this.dataGridView1.ColumnCount = 26;
