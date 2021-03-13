@@ -5,7 +5,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Spreadsheet_Ryan_Rochleau
+namespace CptS321
 {
     /// <summary>
     /// Abstract class representing a cell.

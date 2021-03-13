@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace Spreadsheet_Ryan_Rochleau
+namespace CptS321
 {
     /// <summary>
     /// Class for the spreadsheet.

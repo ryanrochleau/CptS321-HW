@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SpreadsheetEngine
+namespace CptS321
 {
     class ExpressionTree
     {

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Spreadsheet_Ryan_Rochleau
+namespace CptS321
 {
     /// <summary>
     /// Class that inheritis from our abstract class Cell.
