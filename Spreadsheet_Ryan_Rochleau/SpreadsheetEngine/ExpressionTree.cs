@@ -48,6 +48,7 @@ namespace CptS321
         public void SetVariable(string variableName, double variableValue)
         {
             this.variablesDictionary.Add(variableName, variableValue);
+            this.UpdateVariableValue(this.rootNode, variableName, variableValue);
         }
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace CptS321
                 {
                     case ConstantNode cNode: return cNode.Evaluate();
                     case BinaryOpNode bNode: return bNode.Evaluate();
-                    case VariableNode vNode: return vNode.Evaluate();
+                    case VariableNode vNode: return this.variablesDictionary[vNode.VariableName];
                     default: throw new ArgumentException(string.Format("The root node of the expression tree is not a valid node type."));
                 }
             }
@@ -138,10 +139,9 @@ namespace CptS321
                     // and not a double.
                     catch (FormatException)
                     {
-                        double variableValue = this.variablesDictionary[expression];
                         VariableNode variableNode = new VariableNode();
                         variableNode.VariableName = expression;
-                        variableNode.VariableValue = variableValue;
+                        variableNode.VariableValue = 1;
 
                         return variableNode;
                     }
@@ -149,6 +149,37 @@ namespace CptS321
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Updates all variables in the tree with the given value.
+        /// </summary>
+        /// <param name="currentNode">The current Node we are at in the tree.</param>
+        /// <param name="variable">The variable whos value needs to be changed.</param>
+        /// <param name="value">The new value for the variable.</param>
+        private void UpdateVariableValue(Node currentNode, string variable, double value)
+        {
+            if (currentNode != null)
+            {
+                switch (currentNode)
+                {
+                    case ConstantNode cNode: break;
+                    case BinaryOpNode bNode: this.UpdateVariableValue(bNode.LeftNode, variable, value); this.UpdateVariableValue(bNode.RightNode, variable, value); break;
+                    case VariableNode vNode:
+                        if (vNode.VariableName == variable)
+                        {
+                            vNode.VariableValue = value;
+                        }
+
+                        break;
+
+                    default: throw new ArgumentException(string.Format("The current node of the expression tree is not a valid node type."));
+                }
+            }
+            else
+            {
+                throw new ArgumentException(string.Format("The current node of the expression tree is null."));
+            }
         }
     }
 }
