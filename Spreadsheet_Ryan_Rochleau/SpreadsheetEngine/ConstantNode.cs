@@ -14,5 +14,14 @@ namespace CptS321
         /// a double.
         /// </summary>
         private double ConstantValue { get; set; }
+
+        /// <summary>
+        /// Evaluates the constant node.
+        /// </summary>
+        /// <returns>The value of the constant node.</returns>
+        public override double Evaluate()
+        {
+            return this.ConstantValue;
+        }
     }
 }
