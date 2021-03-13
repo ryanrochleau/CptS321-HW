@@ -4,7 +4,10 @@ using System.Text;
 
 namespace SpreadsheetEngine
 {
-    class VariableNode
+    /// <summary>
+    /// Represents a variable in the expression tree.
+    /// </summary>
+    internal class VariableNode : Node
     {
     }
 }

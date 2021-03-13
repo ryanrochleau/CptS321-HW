@@ -4,7 +4,10 @@ using System.Text;
 
 namespace SpreadsheetEngine
 {
-    class BinaryOpNode
+    /// <summary>
+    /// Represents a binary operation node.
+    /// </summary>
+    internal class BinaryOpNode : Node
     {
     }
 }

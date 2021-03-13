@@ -4,7 +4,10 @@ using System.Text;
 
 namespace SpreadsheetEngine
 {
-    class ConstantNode
+    /// <summary>
+    /// Node representing a contant value.
+    /// </summary>
+    internal class ConstantNode : Node
     {
     }
 }

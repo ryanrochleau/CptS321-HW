@@ -4,7 +4,11 @@ using System.Text;
 
 namespace CptS321
 {
-    class ExpressionTree
+    /// <summary>
+    /// Represents and expression tree.
+    /// </summary>
+    public class ExpressionTree
     {
+
     }
 }
