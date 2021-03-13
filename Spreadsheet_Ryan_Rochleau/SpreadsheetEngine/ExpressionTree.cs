@@ -27,8 +27,14 @@ namespace CptS321
         /// <param name="expression">Input expression as a string.</param>
         public ExpressionTree(string expression)
         {
-
+            this.Expression = expression;
+            this.CreateTree(expression);
         }
+
+        /// <summary>
+        /// Gets or sets the expression that is being evaluated in this tree.
+        /// </summary>
+        private string Expression { get; set; }
 
         /// <summary>
         /// Adds a variable to the classes dictionary.
@@ -60,6 +66,53 @@ namespace CptS321
             {
                 throw new ArgumentException(string.Format("The root node of the expression tree is null."));
             }
+        }
+
+        /// <summary>
+        /// Creates an expression tree and returns the root node.
+        /// </summary>
+        /// <param name="expression">Expression which is a string</param>
+        /// <returns>A Node which is the rootNode of the expression tree.</returns>
+        private Node CreateTree(string expression)
+        {
+            // Need to evaulate the expression right to left
+            // so the constructed tree is valid.
+
+            int expressionLength = expression.Length;
+            bool found = false;
+
+            if (expressionLength > 0)
+            {
+                // Find the first BinaryOp if it exists.
+                while (!found && expressionLength > 0)
+                {
+                    switch (expression[expressionLength - 1])
+                    {
+                        case '-': found = true; break;
+                        case '+': found = true; break;
+                        case '/': found = true; break;
+                        case '*': found = true; break;
+                        default: found = false; break;
+                    }
+
+                    if (found)
+                    {
+                        break;
+                    }
+
+                    expressionLength--;
+                }
+
+                if (found)
+                {
+                    BinaryOpNode binaryOpNode = new BinaryOpNode();
+                }
+                else
+                {
+
+                }
+            }
+            return null;
         }
     }
 }

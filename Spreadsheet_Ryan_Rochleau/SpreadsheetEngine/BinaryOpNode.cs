@@ -12,7 +12,7 @@ namespace CptS321
         /// <summary>
         /// Gets or sets the operator of this node.
         /// </summary>
-        private char Operator { get; set; }
+        public char Operator { get; set; }
 
         /// <summary>
         /// Gets or sets the left node.
