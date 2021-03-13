@@ -13,7 +13,7 @@ namespace CptS321
         /// Gets or sets the value that the constant node is set to which is
         /// a double.
         /// </summary>
-        private double ConstantValue { get; set; }
+        public double ConstantValue { get; set; }
 
         /// <summary>
         /// Evaluates the constant node.

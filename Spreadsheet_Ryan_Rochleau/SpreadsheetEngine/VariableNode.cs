@@ -12,12 +12,12 @@ namespace CptS321
         /// <summary>
         /// Gets or sets the name of the variable as a string.
         /// </summary>
-        private string VariableName { get; set; }
+        public string VariableName { get; set; }
 
         /// <summary>
         /// Gets or sets the value of the variable as a double.
         /// </summary>
-        private double VariableValue { get; set; }
+        public double VariableValue { get; set; }
 
         /// <summary>
         /// Evaluated the variable node.

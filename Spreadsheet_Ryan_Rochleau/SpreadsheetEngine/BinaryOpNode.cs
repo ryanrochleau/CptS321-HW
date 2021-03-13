@@ -17,12 +17,12 @@ namespace CptS321
         /// <summary>
         /// Gets or sets the left node.
         /// </summary>
-        private Node LeftNode { get; set; }
+        public Node LeftNode { get; set; }
 
         /// <summary>
         /// Gets or sets the right node.
         /// </summary>
-        private Node RightNode { get; set; }
+        public Node RightNode { get; set; }
 
         /// <summary>
         /// Evaluates the expression tree rooted by
