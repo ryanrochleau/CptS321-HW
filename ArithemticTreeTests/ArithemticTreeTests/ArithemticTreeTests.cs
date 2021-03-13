@@ -4,7 +4,6 @@
 
 using CptS321;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace ArithemticTreeTests
 {
@@ -52,13 +51,6 @@ namespace ArithemticTreeTests
         public void TestSubtraction()
         {
             ExpressionTree testTree;
-
-            //Dictionary<string, double> variablesDictionary = new Dictionary<string, double>();
-            //variablesDictionary.Add("A", 1);
-            //variablesDictionary.Add("B", 2);
-            //variablesDictionary.Add("C", 3);
-
-            //double testValue = variablesDictionary["A"];
 
             testTree = new ExpressionTree("9-6");
             Assert.AreEqual(testTree.Evaluate(), 3);
