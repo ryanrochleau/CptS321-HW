@@ -9,5 +9,12 @@ namespace CptS321
     /// </summary>
     internal abstract class Node
     {
+        /// <summary>
+        /// Evaluates the value of the node depending on what type of node it is.
+        /// All should evaluate to a double.
+        /// </summary>
+        /// <returns>The value of the expressiontree that
+        /// this node is the root of as a double.</returns>
+        public abstract double Evaluate();
     }
 }
