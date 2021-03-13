@@ -32,7 +32,7 @@ namespace CptS321
         public ExpressionTree(string expression)
         {
             this.Expression = expression;
-            this.CreateTree(expression);
+            this.rootNode = this.CreateTree(expression);
         }
 
         /// <summary>
