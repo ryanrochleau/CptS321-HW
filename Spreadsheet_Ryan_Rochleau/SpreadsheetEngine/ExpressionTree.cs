@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="ExpressionTree.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -71,13 +75,12 @@ namespace CptS321
         /// <summary>
         /// Creates an expression tree and returns the root node.
         /// </summary>
-        /// <param name="expression">Expression which is a string</param>
+        /// <param name="expression">Expression which is a string.</param>
         /// <returns>A Node which is the rootNode of the expression tree.</returns>
         private Node CreateTree(string expression)
         {
             // Need to evaulate the expression right to left
             // so the constructed tree is valid.
-
             int expressionLength = expression.Length;
             bool found = false;
 
@@ -103,15 +106,48 @@ namespace CptS321
                     expressionLength--;
                 }
 
+                // Found a binary operator so create a node and call CreateTree
+                // on the left and right substrings.
                 if (found)
                 {
                     BinaryOpNode binaryOpNode = new BinaryOpNode();
+                    binaryOpNode.Operator = expression[expressionLength - 1];
+                    binaryOpNode.LeftNode = this.CreateTree(expression.Substring(0, expressionLength - 1));
+                    binaryOpNode.RightNode = this.CreateTree(expression.Substring(expressionLength));
+
+                    return binaryOpNode;
                 }
+
+                // Binary operator wasn't found so we either have a variable or a
+                // constant value.
                 else
                 {
+                    // Checking to see if the value can be converted to double.
+                    // Will throw a FormatException if value is not in right format.
+                    // This should indicate a variable.
+                    try
+                    {
+                        double constantValue = Convert.ToDouble(expression);
+                        ConstantNode constantNode = new ConstantNode();
+                        constantNode.ConstantValue = constantValue;
 
+                        return constantNode;
+                    }
+
+                    // FormatException thrown should indicate that expression is a variable
+                    // and not a double.
+                    catch (FormatException)
+                    {
+                        double variableValue = this.variablesDictionary[expression];
+                        VariableNode variableNode = new VariableNode();
+                        variableNode.VariableName = expression;
+                        variableNode.VariableValue = variableValue;
+
+                        return variableNode;
+                    }
                 }
             }
+
             return null;
         }
     }
