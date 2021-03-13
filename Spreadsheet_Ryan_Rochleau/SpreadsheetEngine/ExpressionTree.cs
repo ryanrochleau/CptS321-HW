@@ -47,7 +47,15 @@ namespace CptS321
         /// <param name="variableValue">The value of the variable as a double.</param>
         public void SetVariable(string variableName, double variableValue)
         {
-            this.variablesDictionary.Add(variableName, variableValue);
+            if (this.variablesDictionary.ContainsKey(variableName))
+            {
+                this.variablesDictionary[variableName] = variableValue;
+            }
+            else
+            {
+                this.variablesDictionary.Add(variableName, variableValue);
+            }
+
             this.UpdateVariableValue(this.rootNode, variableName, variableValue);
         }
 
