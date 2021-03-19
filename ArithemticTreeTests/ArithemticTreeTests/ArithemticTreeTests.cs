@@ -112,5 +112,42 @@ namespace ArithemticTreeTests
 
             Assert.Pass();
         }
+
+        /// <summary>
+        /// Tests tree using generic expression will multiple
+        /// unique operators.
+        /// </summary>
+        [Test]
+        public void TestGeneric()
+        {
+            ExpressionTree testTree;
+
+            testTree = new ExpressionTree("2*(4+5)");
+            Assert.AreEqual(testTree.Evaluate(), 18);
+
+            testTree = new ExpressionTree("4+(5-3*2)+1");
+            Assert.AreEqual(testTree.Evaluate(), 4);
+
+            testTree = new ExpressionTree("(19-1)/2");
+            Assert.AreEqual(testTree.Evaluate(), 9);
+
+            testTree = new ExpressionTree("((((((((((2+3)*(4-1))))))))))");
+            Assert.AreEqual(testTree.Evaluate(), 15);
+
+            testTree = new ExpressionTree("A2*B2");
+            testTree.SetVariable("A2", 5);
+            testTree.SetVariable("B2", 2);
+            Assert.AreEqual(testTree.Evaluate(), 10);
+
+            testTree = new ExpressionTree("B2+(5-3*A2)+1");
+            testTree.SetVariable("A2", 7);
+            testTree.SetVariable("B2", 3);
+            Assert.AreEqual(testTree.Evaluate(), -12);
+
+            testTree = new ExpressionTree("3.2+5.4");
+            Assert.AreEqual(testTree.Evaluate(), 8.6);
+
+            Assert.Pass();
+        }
     }
 }
