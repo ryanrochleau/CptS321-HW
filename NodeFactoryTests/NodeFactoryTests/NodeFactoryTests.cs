@@ -7,6 +7,9 @@ using NUnit.Framework;
 
 namespace NodeFactoryTests
 {
+    /// <summary>
+    /// Test for the NodeFactory class.
+    /// </summary>
     public class NodeFactoryTests
     {
         [SetUp]
@@ -14,6 +17,10 @@ namespace NodeFactoryTests
         {
         }
 
+        /// <summary>
+        /// Tests the precendce of each operator to ensure
+        /// it is the correct value.
+        /// </summary>
         [Test]
         public void TestPrecedence()
         {
@@ -26,6 +33,10 @@ namespace NodeFactoryTests
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests the NodeFactory to ensure it returns the correct
+        /// node types when requesting a node.
+        /// </summary>
         [Test]
         public void TestTypes()
         {
