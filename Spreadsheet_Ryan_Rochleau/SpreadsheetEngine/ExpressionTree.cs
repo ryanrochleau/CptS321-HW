@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CptS321
 {
@@ -187,6 +188,117 @@ namespace CptS321
             else
             {
                 throw new ArgumentException(string.Format("The current node of the expression tree is null."));
+            }
+        }
+
+        /// <summary>
+        /// Converts the infix expression to a postfix expression for easy
+        /// expression tree construction.
+        /// </summary>
+        /// <param name="expression">The infix string expression.</param>
+        /// <returns>Equivalence post fix string expression.</returns>
+        public string[] ConvertInfixToPostFix(string expression)
+        {
+            List<string> result = new List<string>();
+            Stack<string> stack = new Stack<string>();
+            NodeFactory nodeFactory = new NodeFactory();
+
+            // Regex that splits the expression into an array of tokens
+            // Example "B2+(5-3*A2)+1" goes to ["B2",'+','(','5','-','3','*',"A2",')','+','1']
+            string[] expressionArray = Regex.Split(expression, @"(?=[-+*/()])|(?<=[-+*/()])");
+
+            for (int i = 0; i < expressionArray.Length; i++)
+            {
+                string stackString = expressionArray[i];
+
+                // Check for a variable or double value and push it immediately to the result.
+                if (this.IsVariableOrConstant(stackString))
+                {
+                    result.Add(stackString);
+                }
+
+                // Now check if instead, the value is an open parenthesis. This is pushed to the stack.
+                else if (stackString[0] == '(')
+                {
+                    stack.Push(stackString);
+                }
+
+                // Now check if instead, the value is a closed parenthesis. This will cause all values in between
+                // to be popped and added to the result.
+                else if (stackString[0] == ')')
+                {
+                    while (stack.Count > 0 && stack.Peek() != "(")
+                    {
+                        result.Add(stack.Pop());
+                    }
+
+                    // If the stack is empty, we did not find a "(". This is
+                    // an invalid expression.
+                    if (stack.Count == 0)
+                    {
+                        throw new ArgumentException(string.Format("The infix expression parenthesis are invalid."));
+                    }
+
+                    // If the count is not 0, the while loop must have ended when stack.Peek() == "("
+                    // so we just pop it off since we don't want it in the result.
+                    else
+                    {
+                        stack.Pop();
+                    }
+                }
+
+                // Now the value must be a BinaryOp of some sort.
+                else
+                {
+                    while (stack.Count > 0 && nodeFactory.GetPrecedence(stackString[0]) <= nodeFactory.GetPrecedence(stack.Peek()[0]))
+                    {
+                        result.Add(stack.Pop());
+                    }
+
+                    stack.Push(stackString);
+                }
+            }
+
+            while (stack.Count > 0)
+            {
+                result.Add(stack.Pop());
+            }
+
+            return result.ToArray();
+        }
+
+        /// <summary>
+        /// Checks if the string is a variable.
+        /// </summary>
+        /// <param name="value">String to check.</param>
+        /// <returns>True if the input is a variable and false
+        /// if the input is not a variable.</returns>
+        private bool IsVariableOrConstant(string value)
+        {
+            try
+            {
+                double constantValue = Convert.ToDouble(value);
+
+                return true;
+            }
+
+            // FormatException thrown should indicate that expression is a variable
+            // and not a double.
+            catch (FormatException)
+            {
+                NodeFactory nodeFactory = new NodeFactory();
+                if (value.Length > 1)
+                {
+                    return true;
+                }
+                else if (nodeFactory.GetPrecedence(value[0]) == -1 && value[0]!='(' && value[0]!=')')
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
     }

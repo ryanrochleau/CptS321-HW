@@ -4,6 +4,7 @@
 
 using System;
 using CptS321;
+using System.Text.RegularExpressions;
 
 namespace ExpressionTreeConsoleApp
 {
