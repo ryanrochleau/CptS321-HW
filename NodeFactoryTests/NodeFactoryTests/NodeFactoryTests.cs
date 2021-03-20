@@ -32,28 +32,5 @@ namespace NodeFactoryTests
             Assert.AreEqual(2, nodeFactory.GetPrecedence('/'));
             Assert.Pass();
         }
-
-        /// <summary>
-        /// Tests the NodeFactory to ensure it returns the correct
-        /// node types when requesting a node.
-        /// </summary>
-        [Test]
-        public void TestTypes()
-        {
-            NodeFactory nodeFactory = new NodeFactory();
-            double testConstantValue = 6.0;
-            string testVariableValue = "A2";
-
-            Assert.IsInstanceOf(ConstantNode, nodeFactory.GetNode(testConstantValue);
-
-            Assert.IsInstanceOf(BinaryOpNode, nodeFactory.GetNode('+');
-            Assert.IsInstanceOf(BinaryOpNode, nodeFactory.GetNode('-');
-            Assert.IsInstanceOf(BinaryOpNode, nodeFactory.GetNode('*');
-            Assert.IsInstanceOf(BinaryOpNode, nodeFactory.GetNode('/');
-
-            Assert.IsInstanceOf(VariableNode, nodeFactory.GetNode(testVariableValue);
-
-            Assert.Pass();
-        }
     }
 }
