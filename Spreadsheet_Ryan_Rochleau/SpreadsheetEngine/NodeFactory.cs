@@ -64,7 +64,7 @@ namespace CptS321
         /// <summary>
         /// Overloaded GetNode function for creating a BinaryOpNode.
         /// </summary>
-        /// <param name="value">Operator char</param>
+        /// <param name="value">Operator char.</param>
         /// <returns>A BinaryOpNode.</returns>
         public BinaryOpNode GetNode(char value)
         {

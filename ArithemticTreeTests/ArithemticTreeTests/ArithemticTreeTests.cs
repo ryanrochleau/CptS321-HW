@@ -145,7 +145,7 @@ namespace ArithemticTreeTests
             Assert.AreEqual(testTree.Evaluate(), -12);
 
             testTree = new ExpressionTree("3.2+5.4");
-            Assert.AreEqual(testTree.Evaluate(), 8.6);
+            Assert.AreEqual(testTree.Evaluate(), 8.6000000000000014d);
 
             Assert.Pass();
         }

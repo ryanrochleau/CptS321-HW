@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -95,6 +96,9 @@ namespace CptS321
 
             for (int i = 0; i < expression.Length; i++)
             {
+                // Check if the node is a current value is a variable
+                // or constant. If it is either, create the node and
+                // add it to the stack.
                 if (this.IsVariableOrConstant(expression[i]))
                 {
                     try
@@ -110,12 +114,16 @@ namespace CptS321
                 }
                 else
                 {
+                    // Not a variable or constant so it must be a operator.
+                    // Pop two nodes off the stack and add them to the left and
+                    // right of the operator node. Then push the node back on
+                    // the stack.
                     try
                     {
                         Node rightNode = nodeStack.Pop();
                         Node leftNode = nodeStack.Pop();
 
-                        BinaryOpNode binaryOpNode = nodeFactory.GetNode((expression[i])[0]);
+                        BinaryOpNode binaryOpNode = nodeFactory.GetNode(expression[i][0]);
                         binaryOpNode.LeftNode = leftNode;
                         binaryOpNode.RightNode = rightNode;
                         nodeStack.Push(binaryOpNode);
@@ -179,6 +187,16 @@ namespace CptS321
 
             for (int i = 0; i < expressionArray.Length; i++)
             {
+                if (expressionArray[i] == string.Empty)
+                {
+                    List<string> expressionList = expressionArray.ToList();
+                    expressionList.RemoveAll(string.IsNullOrWhiteSpace);
+                    expressionArray = expressionList.ToArray();
+                }
+            }
+
+            for (int i = 0; i < expressionArray.Length; i++)
+            {
                 string stackString = expressionArray[i];
 
                 // Check for a variable or double value and push it immediately to the result.
@@ -229,6 +247,7 @@ namespace CptS321
                 }
             }
 
+            // Pop all remaining operators off the stack and add them to the result.
             while (stack.Count > 0)
             {
                 result.Add(stack.Pop());
@@ -261,7 +280,7 @@ namespace CptS321
                 {
                     return true;
                 }
-                else if (nodeFactory.GetPrecedence(value[0]) == -1 && value[0]!='(' && value[0]!=')')
+                else if (nodeFactory.GetPrecedence(value[0]) == -1 && value[0] != '(' && value[0] != ')')
                 {
                     return true;
                 }

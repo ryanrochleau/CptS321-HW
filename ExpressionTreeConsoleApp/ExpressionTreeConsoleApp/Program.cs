@@ -3,8 +3,8 @@
 // </copyright>
 
 using System;
-using CptS321;
 using System.Text.RegularExpressions;
+using CptS321;
 
 namespace ExpressionTreeConsoleApp
 {
@@ -43,6 +43,7 @@ namespace ExpressionTreeConsoleApp
                     case 1:
                         Console.WriteLine("Enter an expression: ");
                         userInput = Console.ReadLine();
+                        expressionTree = new ExpressionTree(userInput);
                         break;
 
                     case 2:
