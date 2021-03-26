@@ -31,6 +31,20 @@ namespace MidTerm2
         private char character;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Shape"/> class.
+        /// Constructor for shape.
+        /// </summary>
+        /// <param name="type">New type for the shape.</param>
+        /// <param name="size">New size for the shape.</param>
+        /// <param name="character">New character for the shape.</param>
+        public Shape(string type, double size, char character)
+        {
+            this.SetType(type);
+            this.SetSize(size);
+            this.SetCharacter(character);
+        }
+
+        /// <summary>
         /// Computes the area of the shape.
         /// </summary>
         /// <returns>Area of the shape as a double.</returns>
