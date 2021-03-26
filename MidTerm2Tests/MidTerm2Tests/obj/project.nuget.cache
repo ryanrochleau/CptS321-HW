@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "U8JyFNc3u6A6jIQI9lvo/UjYL6OSqg3T6pzxFZ1YS5RLq5PbzLwIQcCw0Sbq3Cpbeo+AHVR2LA6O0CgxfHCejg==",
+  "dgSpecHash": "PDFSFaWbA4fwm5kYB1Slpacbth1zJvQ3g19kVAnkBJtUEtIXTzPW30Exyn2kp6T4wxdKOxuBKPgQNErkmb9r5g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ryan\\source\\repos\\MidTerm2Tests\\MidTerm2Tests\\MidTerm2Tests.csproj",
+  "projectFilePath": "C:\\Users\\Ryan\\Desktop\\CptS321-HW\\cpts321-hws\\MidTerm2Tests\\MidTerm2Tests\\MidTerm2Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ryan\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
     "C:\\Users\\Ryan\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
