@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="Shape.cs" company="Ryan Rochleau">
+// Copyright (c) Ryan Rochleau. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -36,36 +40,54 @@ namespace MidTerm2
         /// Gets the type of the shape.
         /// </summary>
         /// <returns>The type of the shape as a string.</returns>
-        public new abstract string GetType();
+        public new string GetType()
+        {
+            return this.type;
+        }
 
         /// <summary>
         /// Sets the type of the shape.
         /// </summary>
         /// <param name="type">The new type of the shape.</param>
-        public abstract void SetType(string type);
+        public void SetType(string type)
+        {
+            this.type = type;
+        }
 
         /// <summary>
         /// Gets the size of the shape.
         /// </summary>
         /// <returns>Size of the shape as a double.</returns>
-        public abstract double GetSize();
+        public double GetSize()
+        {
+            return this.size;
+        }
 
         /// <summary>
         /// Sets the size of the shape.
         /// </summary>
         /// <param name="size">New size for the shape.</param>
-        public abstract void SetSize(double size);
+        public void SetSize(double size)
+        {
+            this.size = size;
+        }
 
         /// <summary>
         /// Gets the character representing the shape.
         /// </summary>
         /// <returns>A character representing the shape.</returns>
-        public abstract string GetCharacter();
+        public char GetCharacter()
+        {
+            return this.character;
+        }
 
         /// <summary>
         /// Sets the character for the shape.
         /// </summary>
         /// <param name="character">A new character for the shape.</param>
-        public abstract void SetCharacter(char character);
+        public void SetCharacter(char character)
+        {
+            this.character = character;
+        }
     }
 }
