@@ -3,16 +3,27 @@
 // </copyright>
 
 using NUnit.Framework;
+using MidTerm2;
 
 namespace MidTermTests
 {
-    public class Tests
+    /// <summary>
+    /// Class for NUnit tests.
+    /// </summary>
+    public class MidTermTests
     {
+        /// <summary>
+        /// Setup function for tests.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
         }
 
+        /// <summary>
+        /// Tests the creating of a sequence. Creates a sequence from a string,
+        /// gets the sequence, and then checks that each shape is correct.
+        /// </summary>
         [Test]
         public void MidTermTestSequence()
         {
@@ -53,20 +64,11 @@ namespace MidTermTests
             Assert.AreEqual(shapes[3].getSize(), 12);
             Assert.AreEqual(shapes[3].getCharacter(), 'c');
             Assert.AreEqual(shapes[3].getArea(), 452.39);
-
-            // Current sequence is the first sequence in the history.
-            midTermProgram.setCurrentSequence(0);
-
-            midTermProgram.addToSequence('t');
-
-            shapes = midTermProgram.getCurrentSequence();
-
-            Assert.AreEqual(shapes[4].getType(), "Triangle");
-            Assert.AreEqual(shapes[4].getSize(), 15);
-            Assert.AreEqual(shapes[4].getCharacter(), 't');
-            Assert.AreEqual(shapes[4].getArea(), 97.43);
         }
 
+        /// <summary>
+        /// Tests that the default sizes of shapes is updated properly.
+        /// </summary>
         [Test]
         public void MidTermTestDefaultSize()
         {
@@ -82,6 +84,10 @@ namespace MidTermTests
             Assert.AreEqual(midTermProgram.getDefaultSize('t'), 4);
         }
 
+        /// <summary>
+        /// Tests adding a shape to a sequence in the history.
+        /// This is for modifying the history.
+        /// </summary>
         [Test]
         public void MidTermTestAddToSequence()
         {
@@ -106,6 +112,10 @@ namespace MidTermTests
             Assert.AreEqual(shapes[4].getArea(), 97.43);
         }
 
+        /// <summary>
+        /// Tests changing a shape to another shape in a sequence.
+        /// This is for modifying the history.
+        /// </summary>
         [Test]
         public void MidTermTestChangeShape()
         {
@@ -138,6 +148,10 @@ namespace MidTermTests
             Assert.AreEqual(shapes[0].getArea(), 3.90);
         }
 
+        /// <summary>
+        /// Tests deleting a shape from a sequence and ensuring the
+        /// sizes are updated properly. This is for modifying the history.
+        /// </summary>
         [Test]
         public void MidTermTestRemoveShape()
         {
