@@ -11,7 +11,7 @@ namespace MidTerm2
     /// <summary>
     /// Class representing a circle shape.
     /// </summary>
-    internal class Circle : Shape
+    public class Circle : Shape
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Circle"/> class.

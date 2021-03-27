@@ -11,7 +11,7 @@ namespace MidTerm2
     /// <summary>
     /// Abstract class representing a shape.
     /// </summary>
-    internal abstract class Shape
+    public abstract class Shape
     {
         /// <summary>
         /// Type of the shape which is the name of the shape

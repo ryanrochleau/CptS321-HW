@@ -11,7 +11,7 @@ namespace MidTerm2
     /// <summary>
     /// Class representing a Square shape.
     /// </summary>
-    internal class Square : Shape
+    public class Square : Shape
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Square"/> class.

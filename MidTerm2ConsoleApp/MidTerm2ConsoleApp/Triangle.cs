@@ -11,7 +11,7 @@ namespace MidTerm2
     /// <summary>
     /// Class representing the Triangle shape.
     /// </summary>
-    internal class Triangle : Shape
+    public class Triangle : Shape
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Triangle"/> class.
