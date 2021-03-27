@@ -251,6 +251,23 @@ namespace MidTerm2
         }
 
         /// <summary>
+        /// Get the total area of a sequence.
+        /// </summary>
+        /// <param name="index">The index of the sequence to sum.</param>
+        /// <returns>The sum of the areas.</returns>
+        public double GetTotalArea(int index)
+        {
+            double sum = 0;
+            foreach (Shape shape in this.history[index])
+            {
+                sum += shape.GetArea();
+            }
+
+            Console.WriteLine(string.Format("Sum for sequence at index {0} is", sum));
+            return sum;
+        }
+
+        /// <summary>
         /// Updates the sizes of all shapes in the current list.
         /// </summary>
         private void UpdateSizes()
