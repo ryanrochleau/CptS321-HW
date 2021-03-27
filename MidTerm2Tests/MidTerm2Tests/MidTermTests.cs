@@ -144,9 +144,9 @@ namespace MidTermTests
             shapes = midTermProgram.GetCurrentSequence();
 
             Assert.AreEqual(shapes[0].GetType(), "Triangle");
-            Assert.AreEqual(shapes[0].GetSize(), 3);
+            Assert.AreEqual(shapes[0].GetSize(), 1);
             Assert.AreEqual(shapes[0].GetCharacter(), 't');
-            Assert.AreEqual(shapes[0].GetArea(), 3.90);
+            Assert.AreEqual(shapes[0].GetArea(), 0.43);
         }
 
         /// <summary>

@@ -34,6 +34,18 @@ namespace MidTerm2
         private int currentIndex = -1;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="MidTermProgram"/> class.
+        /// Constructor for the class. Instantiates the base
+        /// values dictionary.
+        /// </summary>
+        public MidTermProgram()
+        {
+            this.baseValuesDictionary.Add('c', 1);
+            this.baseValuesDictionary.Add('s', 1);
+            this.baseValuesDictionary.Add('t', 1);
+        }
+
+        /// <summary>
         /// Sets the default size for a shape.
         /// </summary>
         /// <param name="shape">The shape whose defauly size we are modifying.</param>
