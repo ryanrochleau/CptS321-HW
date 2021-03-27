@@ -4,8 +4,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
+using System.Text;
 
 namespace MidTerm2
 {
@@ -147,11 +147,12 @@ namespace MidTerm2
         {
             if (index != 0)
             {
-                this.history[this.currentIndex][0] = this.shapeFactory.GetShape(shape, this.history[this.currentIndex][0].GetSize());
+                this.history[this.currentIndex][index] = this.shapeFactory.GetShape(shape, this.history[this.currentIndex][0].GetSize());
+                this.UpdateSizes();
             }
             else
             {
-                this.history[this.currentIndex][0] = this.shapeFactory.GetShape(shape, this.history[this.currentIndex][0].GetSize());
+                this.history[this.currentIndex][index] = this.shapeFactory.GetShape(shape, this.history[this.currentIndex][0].GetSize());
                 this.UpdateSizes();
             }
         }
@@ -178,7 +179,7 @@ namespace MidTerm2
                 Console.WriteLine(string.Format("********** Sequence {0} **********", count));
                 foreach (Shape shape in shapes)
                 {
-                    Console.WriteLine(string.Format("[Shape: {0} - Size: {1} - Character: {2}]", shape.GetType(), shape.GetSize(), shape.GetCharacter()));
+                    Console.WriteLine(string.Format("[Shape: {0} - Size: {1} - Character: {2} - Area: {3}]", shape.GetType(), shape.GetSize(), shape.GetCharacter(), shape.GetArea()));
                 }
 
                 Console.WriteLine(string.Empty);
@@ -198,7 +199,7 @@ namespace MidTerm2
                 Console.WriteLine(string.Format("********** Sequence {0} **********", count));
                 foreach (Shape shape in shapes)
                 {
-                    Console.WriteLine(string.Format("{0}",shape.GetType()));
+                    Console.WriteLine(string.Format("{0}", shape.GetType()));
                 }
 
                 Console.WriteLine(string.Empty);
@@ -212,9 +213,11 @@ namespace MidTerm2
         /// <param name="shapes">The list of shapes to be printed.</param>
         public void ListShapesIndivList(List<Shape> shapes)
         {
+            int index = 1;
             foreach (Shape shape in shapes)
             {
-                Console.WriteLine(string.Format("[Shape: {0} - Size: {1} - Character: {2} - Area: {3}]", shape.GetType(), shape.GetSize(), shape.GetCharacter(), shape.GetArea()));
+                Console.WriteLine(string.Format("{0} - [Shape: {1} - Size: {2} - Character: {3} - Area: {4}]", index, shape.GetType(), shape.GetSize(), shape.GetCharacter(), shape.GetArea()));
+                index++;
             }
         }
 
@@ -263,7 +266,7 @@ namespace MidTerm2
                 sum += shape.GetArea();
             }
 
-            Console.WriteLine(string.Format("Sum for sequence at index {0} is", sum));
+            Console.WriteLine(string.Format("Sum for sequence {0} is {1}", index + 1, sum));
             return sum;
         }
 
