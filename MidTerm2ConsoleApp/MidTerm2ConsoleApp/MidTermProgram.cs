@@ -166,6 +166,46 @@ namespace MidTerm2
         }
 
         /// <summary>
+        /// Prints all shapes in the history with extra detail.
+        /// This fulfills bullet point 2 on the doc.
+        /// </summary>
+        public void ListShapes()
+        {
+            int count = 1;
+            foreach (List<Shape> shapes in this.history)
+            {
+                Console.WriteLine(string.Format("********** Sequence {0} **********", count));
+                foreach (Shape shape in shapes)
+                {
+                    Console.WriteLine(string.Format("[Shape: {0} - Size: {1} - Character: {2}]", shape.GetType(), shape.GetSize(), shape.GetCharacter()));
+                }
+
+                Console.WriteLine(string.Empty);
+                count++;
+            }
+        }
+
+        /// <summary>
+        /// Prints all shapes in the history but just the types.
+        /// This fulfills bullet point 3 on the doc.
+        /// </summary>
+        public void ListHistory()
+        {
+            int count = 1;
+            foreach (List<Shape> shapes in this.history)
+            {
+                Console.WriteLine(string.Format("********** Sequence {0} **********", count));
+                foreach (Shape shape in shapes)
+                {
+                    Console.WriteLine(string.Format("{0}",shape.GetType()));
+                }
+
+                Console.WriteLine(string.Empty);
+                count++;
+            }
+        }
+
+        /// <summary>
         /// Updates the sizes of all shapes in the current list.
         /// </summary>
         private void UpdateSizes()

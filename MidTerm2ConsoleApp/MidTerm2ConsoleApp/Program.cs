@@ -17,7 +17,20 @@ namespace MidTerm2
         /// <param name="args">Inputs to the program.</param>
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            MidTermProgram midTermProgram = new MidTermProgram();
+            midTermProgram.SetDefaultSize('c', 5);
+
+            midTermProgram.CreateSequence("c t c s s c t");
+
+            midTermProgram.ListShapes();
+
+            midTermProgram.DeleteShape(0);
+
+            midTermProgram.ListShapes();
+
+            midTermProgram.CreateSequence("c c c");
+
+            midTermProgram.ListShapes();
         }
     }
 }
