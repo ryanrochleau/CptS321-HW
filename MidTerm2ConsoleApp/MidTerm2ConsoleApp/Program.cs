@@ -22,15 +22,9 @@ namespace MidTerm2
 
             midTermProgram.CreateSequence("c t c s s c t");
 
-            midTermProgram.ListShapes();
+            //midTermProgram.ListShapes();
 
-            midTermProgram.DeleteShape(0);
-
-            midTermProgram.ListShapes();
-
-            midTermProgram.CreateSequence("c c c");
-
-            midTermProgram.ListShapes();
+            midTermProgram.FilterShapes('>', 400);
         }
     }
 }

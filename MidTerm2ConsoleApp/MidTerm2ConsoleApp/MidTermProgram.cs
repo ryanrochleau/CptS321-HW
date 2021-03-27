@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace MidTerm2
 {
@@ -202,6 +203,50 @@ namespace MidTerm2
 
                 Console.WriteLine(string.Empty);
                 count++;
+            }
+        }
+
+        /// <summary>
+        /// Prints an individual list of shapes.
+        /// </summary>
+        /// <param name="shapes">The list of shapes to be printed.</param>
+        public void ListShapesIndivList(List<Shape> shapes)
+        {
+            foreach (Shape shape in shapes)
+            {
+                Console.WriteLine(string.Format("[Shape: {0} - Size: {1} - Character: {2} - Area: {3}]", shape.GetType(), shape.GetSize(), shape.GetCharacter(), shape.GetArea()));
+            }
+        }
+
+        /// <summary>
+        /// Filters shape based on their area.
+        /// </summary>
+        /// <param name="comparison">The type of comparison to be performed.</param>
+        /// <param name="value">The value to be compared to.</param>
+        public void FilterShapes(char comparison, int value)
+        {
+            List<Shape> shapes = new List<Shape>();
+
+            foreach (List<Shape> shapeList in this.history)
+            {
+                foreach (Shape shape in shapeList)
+                {
+                    shapes.Add(shape);
+                }
+            }
+
+            switch (comparison)
+            {
+                case '<': List<Shape> returnShapes = shapes.Where(x => x.GetArea() < value).ToList();
+                    this.ListShapesIndivList(returnShapes);
+                    break;
+                case '>': returnShapes = shapes.Where(x => x.GetArea() > value).ToList();
+                    this.ListShapesIndivList(returnShapes);
+                    break;
+                case '=': returnShapes = shapes.Where(x => x.GetArea() == value).ToList();
+                    this.ListShapesIndivList(returnShapes);
+                    break;
+                default: throw new ArgumentException("Invalid comparison method.");
             }
         }
 
