@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spreadsheet_Ryan_Rochleau", "Spreadsheet_Ryan_Rochleau\Spreadsheet_Ryan_Rochleau.csproj", "{33682315-C6F5-40BE-A6E2-C986223FB33C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpreadsheetEngine", "SpreadsheetEngine\SpreadsheetEngine.csproj", "{8AC97885-93A7-4FD8-A1E8-E8CFC08506C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33682315-C6F5-40BE-A6E2-C986223FB33C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33682315-C6F5-40BE-A6E2-C986223FB33C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33682315-C6F5-40BE-A6E2-C986223FB33C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33682315-C6F5-40BE-A6E2-C986223FB33C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AC97885-93A7-4FD8-A1E8-E8CFC08506C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AC97885-93A7-4FD8-A1E8-E8CFC08506C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AC97885-93A7-4FD8-A1E8-E8CFC08506C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AC97885-93A7-4FD8-A1E8-E8CFC08506C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FDDB45D-2008-482C-BCE2-AB811ECDF0D1}
+	EndGlobalSection
+EndGlobal
