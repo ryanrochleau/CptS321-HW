@@ -138,7 +138,10 @@ namespace CptS321
                 }
                 else
                 {
-                    cell.SetTextValue(this.FindCellText(cell.GetActualText()));
+                    cell.CreateCellTree(cell.GetActualText().Substring(1));
+
+
+                    //cell.SetTextValue(this.FindCellText(cell.GetActualText()));
 
                     PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs(cell.GetColumnIndex().ToString() + ',' + cell.GetRowIndex().ToString() + ',' + cell.GetTextValue().ToString());
 

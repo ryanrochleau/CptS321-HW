@@ -90,6 +90,44 @@ namespace CptS321
         }
 
         /// <summary>
+        /// Gets the variables dictionary.
+        /// </summary>
+        /// <returns>The variables dictionary.</returns>
+        public Dictionary<string, double> GetVariablesDictionary()
+        {
+            return this.variablesDictionary;
+        }
+
+        /// <summary>
+        /// Sets the variables dictionary.
+        /// </summary>
+        /// <param name="dictionary">New dictionary to set this.variablesDictionary to.</param>
+        public void SetVariablesDictionary(Dictionary<string, double> dictionary)
+        {
+            this.variablesDictionary = dictionary;
+        }
+
+        /// <summary>
+        /// Adds UpdateVariableDictionary to the cells PropertyChanged
+        /// so when a cells value changes, we update its variable value.
+        /// </summary>
+        /// <param name="cell">The input cell to add to.</param>
+        public void CellUpdateDictionary(Cell cell)
+        {
+            cell.PropertyChanged += this.UpdateVariableDictionary;
+
+            string key = ((char)cell.GetColumnIndex()).ToString() + cell.GetRowIndex().ToString();
+            if (double.TryParse(cell.GetTextValue(), out double result))
+            {
+                this.variablesDictionary[key] = result;
+            }
+            else
+            {
+                this.variablesDictionary[key] = 0.0;
+            }
+        }
+
+        /// <summary>
         /// Creates an expression tree and returns the root node.
         /// </summary>
         /// <param name="expression">Expression which is a string.</param>
@@ -293,6 +331,26 @@ namespace CptS321
                 {
                     return false;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Should be triggered when a cell changes. Updates the dictionary of variable with
+        /// the value in the cell assuming it can be paresed as a double.
+        /// </summary>
+        /// <param name="sender">The cell that is invoking the event.</param>
+        /// <param name="e">Event argument given when cell invokes event.</param>
+        private void UpdateVariableDictionary(object sender, EventArgs e)
+        {
+            SpreadsheetCell spreadsheetCell = sender as SpreadsheetCell;
+            string key = ((char)spreadsheetCell.GetColumnIndex()).ToString() + spreadsheetCell.GetRowIndex().ToString();
+            if (double.TryParse(spreadsheetCell.GetTextValue(), out double result))
+            {
+                this.variablesDictionary[key] = result;
+            }
+            else
+            {
+                this.variablesDictionary[key] = 0.0;
             }
         }
     }

@@ -138,6 +138,12 @@ namespace Spreadsheet_Ryan_Rochleau
             }
         }
 
+        /// <summary>
+        /// Triggers when the user begins to edit the cell. Shows the
+        /// actual text in the cell when editing.
+        /// </summary>
+        /// <param name="sender">Reference to control/object that raised the event.</param>
+        /// <param name="e">Contains the event data.</param>
         private void DataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             // Want to update the DataGridViews value to the actual text when we begin editing.
@@ -146,6 +152,12 @@ namespace Spreadsheet_Ryan_Rochleau
             this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = actualText;
         }
 
+        /// <summary>
+        /// Triggers when the user stops editing the cell. Shows
+        /// the cells value when done editing.
+        /// </summary>
+        /// <param name="sender">Reference to control/object that raised the event.</param>
+        /// <param name="e">Contains the event data.</param>
         private void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             // Want to update the DataGridViews value to the text value when we end editing.
