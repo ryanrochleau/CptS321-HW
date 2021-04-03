@@ -30,11 +30,6 @@ namespace CptS321
         private int rowCount;
 
         /// <summary>
-        /// The expression tree for this cell.
-        /// </summary>
-        private ExpressionTree tree;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Spreadsheet"/> class.
         /// Constructor for spreadsheet.
         /// </summary>
@@ -131,17 +126,24 @@ namespace CptS321
 
             // Set actual text is what fired the event.
             // Need to check if the text has '=' as first char.
-            if (cell.GetActualText()[0] != '=')
+            if (cell.GetActualText() == string.Empty)
             {
-                cell.SetTextValue(cell.GetActualText());
+                cell.SetTextValue(string.Empty);
             }
             else
             {
-                cell.SetTextValue(this.FindCellText(cell.GetActualText()));
+                if (cell.GetActualText()[0] != '=')
+                {
+                    cell.SetTextValue(cell.GetActualText());
+                }
+                else
+                {
+                    cell.SetTextValue(this.FindCellText(cell.GetActualText()));
 
-                PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs(cell.GetColumnIndex().ToString() + ',' + cell.GetRowIndex().ToString() + ',' + cell.GetTextValue().ToString());
+                    PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs(cell.GetColumnIndex().ToString() + ',' + cell.GetRowIndex().ToString() + ',' + cell.GetTextValue().ToString());
 
-                this.PropertyChanged(this, eventArgs);
+                    this.PropertyChanged(this, eventArgs);
+                }
             }
         }
     }

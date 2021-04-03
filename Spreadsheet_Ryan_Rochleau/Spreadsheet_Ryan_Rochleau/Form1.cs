@@ -69,6 +69,8 @@ namespace Spreadsheet_Ryan_Rochleau
             this.spreadsheet.PropertyChanged += this.UpdateGridCell;
 
             this.dataGridView1.CellValueChanged += this.DataGridView1_CellValueChanged;
+            this.dataGridView1.CellBeginEdit += this.DataGridView1_CellBeginEdit;
+            this.dataGridView1.CellEndEdit += this.DataGridView1_CellEndEdit;
         }
 
         /// <summary>
@@ -123,7 +125,33 @@ namespace Spreadsheet_Ryan_Rochleau
         /// <param name="e">Contains the event data.</param>
         private void DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).SetActualText(this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+            if (this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                if (this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).GetTextValue() != this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString())
+                {
+                    this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).SetActualText(this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+                }
+            }
+            else
+            {
+                this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).SetActualText(string.Empty);
+            }
+        }
+
+        private void DataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            // Want to update the DataGridViews value to the actual text when we begin editing.
+            string actualText = this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).GetActualText();
+
+            this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = actualText;
+        }
+
+        private void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            // Want to update the DataGridViews value to the text value when we end editing.
+            string textValue = this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).GetTextValue();
+
+            this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = textValue;
         }
     }
 }
