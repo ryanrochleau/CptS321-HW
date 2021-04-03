@@ -111,7 +111,18 @@ namespace CptS321
         /// <param name="newTextValue">newTextValue string.</param>
         public void SetTextValue(string newTextValue)
         {
-            this.textValue = newTextValue;
+            if (this.textValue == newTextValue)
+            {
+                return;
+            }
+            else
+            {
+                this.textValue = newTextValue;
+
+                PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs("TextValue");
+
+                this.PropertyChanged(this, eventArgs);
+            }
         }
 
         /// <summary>
@@ -140,7 +151,7 @@ namespace CptS321
         public void CreateCellTree(string expression)
         {
             this.tree = new ExpressionTree(expression);
-            this.tree.mainCell = this;
+            this.tree.SetMainCell(this);
         }
 
         /// <summary>

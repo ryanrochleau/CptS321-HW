@@ -144,7 +144,7 @@ namespace CptS321
                     cell.CreateCellTree(cell.GetActualText().Substring(1));
                     Dictionary<string, double> variableDictionary = cell.GetVariableDictionary();
 
-                    foreach (KeyValuePair<string,double> pair in variableDictionary.ToList())
+                    foreach (KeyValuePair<string, double> pair in variableDictionary.ToList())
                     {
                         cell.AddCellToTree(this.GetCell((int)char.GetNumericValue(pair.Key[1]) - 1, (int)pair.Key[0] - 65));
                     }

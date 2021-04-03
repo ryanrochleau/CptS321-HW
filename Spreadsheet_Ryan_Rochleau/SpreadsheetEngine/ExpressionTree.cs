@@ -18,7 +18,7 @@ namespace CptS321
         /// <summary>
         /// The cell this expression tree belongs to.
         /// </summary>
-        public Cell mainCell;
+        private Cell mainCell;
 
         /// <summary>
         /// Root node of the expression tree.
@@ -130,6 +130,15 @@ namespace CptS321
                 this.variablesDictionary[key] = 0.0;
                 this.UpdateVariableValue(this.rootNode, key, 0.0);
             }
+        }
+
+        /// <summary>
+        /// Sets the mainCell of this expression tree.
+        /// </summary>
+        /// <param name="cell">The cell which this tree will belong to.</param>
+        public void SetMainCell(Cell cell)
+        {
+            this.mainCell = cell;
         }
 
         /// <summary>
@@ -349,15 +358,19 @@ namespace CptS321
         private void UpdateVariableDictionary(object sender, EventArgs e)
         {
             SpreadsheetCell spreadsheetCell = sender as SpreadsheetCell;
-            string key = ((char)spreadsheetCell.GetColumnIndex()).ToString() + spreadsheetCell.GetRowIndex().ToString();
+            string key = ((char)(spreadsheetCell.GetColumnIndex() + 65)).ToString() + (spreadsheetCell.GetRowIndex() + 1).ToString();
             if (double.TryParse(spreadsheetCell.GetTextValue(), out double result))
             {
                 this.variablesDictionary[key] = result;
+                this.UpdateVariableValue(this.rootNode, key, result);
             }
             else
             {
                 this.variablesDictionary[key] = 0.0;
+                this.UpdateVariableValue(this.rootNode, key, 0.0);
             }
+
+            this.mainCell.SetTextValue(this.Evaluate().ToString());
         }
     }
 }
