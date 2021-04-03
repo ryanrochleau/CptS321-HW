@@ -149,5 +149,41 @@ namespace ArithemticTreeTests
 
             Assert.Pass();
         }
+
+        /// <summary>
+        /// Test function to test the spreadsheet and ensure
+        /// each cell is being properly evaluated and updated
+        /// when other cells are being updated.
+        /// </summary>
+        [Test]
+        public void TestSpreadsheet()
+        {
+            // Getting some cells to test with.
+            Spreadsheet spreadsheet = new Spreadsheet(15, 15);
+            SpreadsheetCell cellA1 = (SpreadsheetCell)spreadsheet.GetCell(0, 0);
+            SpreadsheetCell cellA2 = (SpreadsheetCell)spreadsheet.GetCell(1, 0);
+            SpreadsheetCell cellA3 = (SpreadsheetCell)spreadsheet.GetCell(2, 0);
+
+            cellA1.SetActualText("42");
+            cellA2.SetActualText("=A1");
+
+            Assert.AreEqual(cellA1.GetTextValue(), cellA2.GetTextValue());
+
+            cellA3.SetActualText("=A2*4-7");
+
+            Assert.AreEqual(cellA3.GetTextValue(), "161");
+
+            cellA1.SetActualText("13");
+
+            Assert.AreEqual(cellA1.GetTextValue(), cellA2.GetTextValue());
+            Assert.AreEqual(cellA3.GetTextValue(), "45");
+
+            cellA2.SetActualText("53");
+            cellA3.SetActualText("=A2/53*(4-7+5)");
+
+            Assert.AreEqual(cellA3.GetTextValue(), "53");
+
+            Assert.Pass();
+        }
     }
 }
