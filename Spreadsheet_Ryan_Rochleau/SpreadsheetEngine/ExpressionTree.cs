@@ -64,7 +64,10 @@ namespace CptS321
                 this.variablesDictionary.Add(variableName, variableValue);
             }
 
-            this.UpdateVariableValue(this.rootNode, variableName, variableValue);
+            if (this.rootNode != null)
+            {
+                this.UpdateVariableValue(this.rootNode, variableName, variableValue);
+            }
         }
 
         /// <summary>
@@ -116,14 +119,16 @@ namespace CptS321
         {
             cell.PropertyChanged += this.UpdateVariableDictionary;
 
-            string key = ((char)cell.GetColumnIndex()).ToString() + cell.GetRowIndex().ToString();
+            string key = ((char)(cell.GetColumnIndex() + 65)).ToString() + (cell.GetRowIndex() + 1).ToString();
             if (double.TryParse(cell.GetTextValue(), out double result))
             {
                 this.variablesDictionary[key] = result;
+                this.UpdateVariableValue(this.rootNode, key, result);
             }
             else
             {
                 this.variablesDictionary[key] = 0.0;
+                this.UpdateVariableValue(this.rootNode, key, 0.0);
             }
         }
 
@@ -152,6 +157,7 @@ namespace CptS321
                     }
                     catch (FormatException)
                     {
+                        this.SetVariable(expression[i], 0);
                         nodeStack.Push(nodeFactory.GetNode(expression[i]));
                     }
                 }

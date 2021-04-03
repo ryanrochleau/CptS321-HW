@@ -3,6 +3,7 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace CptS321
@@ -140,6 +141,24 @@ namespace CptS321
         {
             this.tree = new ExpressionTree(expression);
             this.tree.mainCell = this;
+        }
+
+        /// <summary>
+        /// Returns the variable dictionary of the cells tree.
+        /// </summary>
+        /// <returns>Dictionary of all variables in the cells tree.</returns>
+        public Dictionary<string, double> GetVariableDictionary()
+        {
+            return this.tree.GetVariablesDictionary();
+        }
+
+        /// <summary>
+        /// Takes a cell in and adds UpdateVariableDictionary event to it.
+        /// </summary>
+        /// <param name="cell">The cell to add the UpdateVariableDictionary event to.</param>
+        public void AddCellToTree(Cell cell)
+        {
+            this.tree.CellUpdateDictionary(cell);
         }
     }
 }

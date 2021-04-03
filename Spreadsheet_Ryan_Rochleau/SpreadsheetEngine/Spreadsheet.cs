@@ -5,6 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Runtime;
 using System.Text;
 
 namespace CptS321
@@ -138,10 +140,16 @@ namespace CptS321
                 }
                 else
                 {
+                    // Create tree with expression.
                     cell.CreateCellTree(cell.GetActualText().Substring(1));
+                    Dictionary<string, double> variableDictionary = cell.GetVariableDictionary();
 
+                    foreach (KeyValuePair<string,double> pair in variableDictionary.ToList())
+                    {
+                        cell.AddCellToTree(this.GetCell((int)char.GetNumericValue(pair.Key[1]) - 1, (int)pair.Key[0] - 65));
+                    }
 
-                    //cell.SetTextValue(this.FindCellText(cell.GetActualText()));
+                    cell.SetTextValue(cell.EvaluateCell());
 
                     PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs(cell.GetColumnIndex().ToString() + ',' + cell.GetRowIndex().ToString() + ',' + cell.GetTextValue().ToString());
 
