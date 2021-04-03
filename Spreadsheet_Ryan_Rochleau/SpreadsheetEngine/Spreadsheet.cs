@@ -30,6 +30,11 @@ namespace CptS321
         private int rowCount;
 
         /// <summary>
+        /// The expression tree for this cell.
+        /// </summary>
+        private ExpressionTree tree;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Spreadsheet"/> class.
         /// Constructor for spreadsheet.
         /// </summary>

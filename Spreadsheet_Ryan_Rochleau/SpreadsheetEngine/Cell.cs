@@ -33,6 +33,11 @@ namespace CptS321
         private int columnIndex;
 
         /// <summary>
+        /// The expression tree for this cell.
+        /// </summary>
+        private ExpressionTree tree;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Cell"/> class.
         /// Constructor cell.
         /// </summary>
@@ -115,6 +120,26 @@ namespace CptS321
         public string GetTextValue()
         {
             return this.textValue;
+        }
+
+        /// <summary>
+        /// Evaluates the value of the Cell.
+        /// </summary>
+        /// <returns>Evaluated value of the cell as a string.</returns>
+        public string EvaluateCell()
+        {
+            return this.tree.Evaluate().ToString();
+        }
+
+        /// <summary>
+        /// Creates the expression tree for the Cell
+        /// and sets the trees mainCell as this.
+        /// </summary>
+        /// <param name="expression">The expression parameter for the tree.</param>
+        public void CreateCellTree(string expression)
+        {
+            this.tree = new ExpressionTree(expression);
+            this.tree.mainCell = this;
         }
     }
 }

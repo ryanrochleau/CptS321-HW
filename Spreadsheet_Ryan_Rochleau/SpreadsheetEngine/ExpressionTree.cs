@@ -16,6 +16,11 @@ namespace CptS321
     public class ExpressionTree
     {
         /// <summary>
+        /// The cell this expression tree belongs to.
+        /// </summary>
+        public Cell mainCell;
+
+        /// <summary>
         /// Root node of the expression tree.
         /// </summary>
         private Node rootNode;
