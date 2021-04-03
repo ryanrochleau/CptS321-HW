@@ -25,6 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SpreadsheetEngine\SpreadsheetEngine.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="SpreadsheetEngine">
       <HintPath>..\..\Spreadsheet_Ryan_Rochleau\SpreadsheetEngine\bin\Debug\netstandard2.0\SpreadsheetEngine.dll</HintPath>
     </Reference>
