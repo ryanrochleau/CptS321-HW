@@ -32,6 +32,16 @@ namespace CptS321
         private int rowCount;
 
         /// <summary>
+        /// Stack for all undo operations.
+        /// </summary>
+        private Stack<IUndoRedoInterface> undoStack = new Stack<IUndoRedoInterface>();
+
+        /// <summary>
+        /// Stack for all redo operations.
+        /// </summary>
+        private Stack<IUndoRedoInterface> redoStack = new Stack<IUndoRedoInterface>();
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Spreadsheet"/> class.
         /// Constructor for spreadsheet.
         /// </summary>
@@ -125,6 +135,7 @@ namespace CptS321
         public void CellPropertyChanged(object sender, EventArgs e)
         {
             SpreadsheetCell cell = sender as SpreadsheetCell;
+            PropertyChangedEventArgs args = e as PropertyChangedEventArgs;
 
             // Set actual text is what fired the event.
             // Need to check if the text has '=' as first char.
