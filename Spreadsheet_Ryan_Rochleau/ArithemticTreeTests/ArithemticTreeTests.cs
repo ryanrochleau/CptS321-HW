@@ -4,6 +4,7 @@
 
 using CptS321;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace ArithemticTreeTests
 {
