@@ -185,5 +185,70 @@ namespace ArithemticTreeTests
 
             Assert.Pass();
         }
+
+        /// <summary>
+        /// Test function to test the undo and redo on text.
+        /// </summary>
+        [Test]
+        public void TestUndoRedo()
+        {
+            Spreadsheet spreadsheet = new Spreadsheet(15, 15);
+            SpreadsheetCell cellA1 = (SpreadsheetCell)spreadsheet.GetCell(0, 0);
+
+            cellA1.SetActualText("42");
+            TextUndoRedo undo = new TextUndoRedo(cellA1, string.Empty, "42");
+            spreadsheet.AddUndo(undo);
+
+            cellA1.SetActualText("73");
+            undo = new TextUndoRedo(cellA1, "42", "73");
+            spreadsheet.AddUndo(undo);
+
+            spreadsheet.Undo();
+
+            Assert.AreEqual(cellA1.GetTextValue(), "42");
+
+            spreadsheet.Redo();
+
+            Assert.AreEqual(cellA1.GetTextValue(), "73");
+
+            spreadsheet.Undo();
+            spreadsheet.Undo();
+
+            Assert.AreEqual(cellA1.GetTextValue(), string.Empty);
+        }
+
+        /// <summary>
+        /// Test function for testing undo and redo on color.
+        /// </summary>
+        [Test]
+        public void TestUndoRedoColor()
+        {
+            Spreadsheet spreadsheet = new Spreadsheet(15, 15);
+            SpreadsheetCell cellA1 = (SpreadsheetCell)spreadsheet.GetCell(0, 0);
+            SpreadsheetCell cellA2 = (SpreadsheetCell)spreadsheet.GetCell(1, 0);
+            List<Cell> cellList = new List<Cell>();
+            List<uint> oldcolors = new List<uint>();
+
+            oldcolors.Add(cellA1.GetColor());
+            oldcolors.Add(cellA2.GetColor());
+
+            cellA1.SetColor(0x4BCD3A9A);
+            cellA2.SetColor(0x4BCD3A9A);
+
+            cellList.Add(cellA1);
+            cellList.Add(cellA2);
+
+            ColorUndoRedo undo = new ColorUndoRedo(cellList, oldcolors, 0x4BCD3A9A);
+
+            spreadsheet.AddUndo(undo);
+
+            spreadsheet.Undo();
+
+            Assert.AreEqual(cellA1.GetColor(), 0xFFFFFFFF);
+
+            spreadsheet.Redo();
+
+            Assert.AreEqual(cellA1.GetColor(), 0x4BCD3A9A);
+        }
     }
 }
