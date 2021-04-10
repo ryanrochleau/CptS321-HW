@@ -149,12 +149,20 @@ namespace CptS321
             if (cell.GetActualText() == string.Empty)
             {
                 cell.SetTextValue(string.Empty);
+
+                PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs(cell.GetColumnIndex().ToString() + ',' + cell.GetRowIndex().ToString() + ',' + cell.GetTextValue().ToString());
+
+                this.PropertyChanged(this, eventArgs);
             }
             else
             {
                 if (cell.GetActualText()[0] != '=')
                 {
                     cell.SetTextValue(cell.GetActualText());
+
+                    PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs(cell.GetColumnIndex().ToString() + ',' + cell.GetRowIndex().ToString() + ',' + cell.GetTextValue().ToString());
+
+                    this.PropertyChanged(this, eventArgs);
                 }
                 else
                 {

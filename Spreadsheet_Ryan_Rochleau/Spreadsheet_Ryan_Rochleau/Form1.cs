@@ -71,6 +71,10 @@ namespace Spreadsheet_Ryan_Rochleau
             this.dataGridView1.CellValueChanged += this.DataGridView1_CellValueChanged;
             this.dataGridView1.CellBeginEdit += this.DataGridView1_CellBeginEdit;
             this.dataGridView1.CellEndEdit += this.DataGridView1_CellEndEdit;
+            foreach (ToolStripItem item in this.menuStrip1.Items)
+            {
+                item.Enabled = false;
+            }
         }
 
         /// <summary>
@@ -81,11 +85,30 @@ namespace Spreadsheet_Ryan_Rochleau
         /// <param name="e">The event arguments given when the even was fired from the spreadsheet class.</param>
         private void UpdateGridCell(object sender, PropertyChangedEventArgs e)
         {
-                // String should be something like "Col,Row,Val" or "A,6,"Random text"".
-                string eString = e.PropertyName;
-                string[] eStringValues = eString.Split(',');
+            // String should be something like "Col,Row,Val" or "A,6,"Random text"".
+            string eString = e.PropertyName;
+            string[] eStringValues = eString.Split(',');
 
+            if (eString == "BeginUndo")
+            {
+                this.menuStrip1.Items[0].Enabled = true;
+            }
+            else if (eString == "StopUndo")
+            {
+                this.menuStrip1.Items[0].Enabled = false;
+            }
+            else if (eString == "BeginRedo")
+            {
+                this.menuStrip1.Items[1].Enabled = true;
+            }
+            else if (eString == "StopRedo")
+            {
+                this.menuStrip1.Items[1].Enabled = false;
+            }
+            else
+            {
                 this.dataGridView1.Rows[Convert.ToInt32(eStringValues[1])].Cells[Convert.ToInt32(eStringValues[0])].Value = eStringValues[2];
+            }
         }
 
         /// <summary>
@@ -129,7 +152,11 @@ namespace Spreadsheet_Ryan_Rochleau
             {
                 if (this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).GetTextValue() != this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString())
                 {
-                    this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).SetActualText(this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+                    Cell cell = this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex);
+                    TextUndoRedo textUndoRedo = new TextUndoRedo(cell, cell.GetActualText(), this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+                    this.spreadsheet.AddUndo(textUndoRedo);
+
+                    cell.SetActualText(this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
                 }
             }
             else
@@ -164,6 +191,23 @@ namespace Spreadsheet_Ryan_Rochleau
             string textValue = this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).GetTextValue();
 
             this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = textValue;
+        }
+
+        /// <summary>
+        /// Handles when a button is pressed on the menu strip.
+        /// </summary>
+        /// <param name="sender">The menu strip.</param>
+        /// <param name="e">Argument parameters.</param>
+        private void MenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem.Text == "Undo")
+            {
+                this.spreadsheet.Undo();
+            }
+            else if (e.ClickedItem.Text == "Redo")
+            {
+                this.spreadsheet.Redo();
+            }
         }
     }
 }
