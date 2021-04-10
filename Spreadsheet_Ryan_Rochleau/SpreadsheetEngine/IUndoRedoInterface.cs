@@ -1,4 +1,4 @@
-﻿// <copyright file="UndoRedoInterface.cs" company="Ryan Rochleau">
+﻿// <copyright file="IUndoRedoInterface.cs" company="Ryan Rochleau">
 // Copyright (c) Ryan Rochleau. All rights reserved.
 // </copyright>
 
