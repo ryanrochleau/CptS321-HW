@@ -71,6 +71,9 @@ namespace Spreadsheet_Ryan_Rochleau
             this.dataGridView1.CellValueChanged += this.DataGridView1_CellValueChanged;
             this.dataGridView1.CellBeginEdit += this.DataGridView1_CellBeginEdit;
             this.dataGridView1.CellEndEdit += this.DataGridView1_CellEndEdit;
+
+            this.menuStrip1.Items[0].Enabled = false;
+            this.menuStrip1.Items[1].Enabled = false;
         }
 
         /// <summary>
@@ -81,11 +84,35 @@ namespace Spreadsheet_Ryan_Rochleau
         /// <param name="e">The event arguments given when the even was fired from the spreadsheet class.</param>
         private void UpdateGridCell(object sender, PropertyChangedEventArgs e)
         {
-                // String should be something like "Col,Row,Val" or "A,6,"Random text"".
-                string eString = e.PropertyName;
-                string[] eStringValues = eString.Split(',');
+            // String should be something like "Col,Row,Val" or "A,6,"Random text"".
+            string eString = e.PropertyName;
+            string[] eStringValues = eString.Split(',');
 
+            if (eString == "BeginUndo")
+            {
+                this.menuStrip1.Items[0].Enabled = true;
+            }
+            else if (eString == "StopUndo")
+            {
+                this.menuStrip1.Items[0].Enabled = false;
+            }
+            else if (eString == "BeginRedo")
+            {
+                this.menuStrip1.Items[1].Enabled = true;
+            }
+            else if (eString == "StopRedo")
+            {
+                this.menuStrip1.Items[1].Enabled = false;
+            }
+            else if (eStringValues[2].Contains("COLOR:"))
+            {
+                uint newColor = Convert.ToUInt32(eStringValues[2].Substring(6));
+                this.dataGridView1.Rows[Convert.ToInt32(eStringValues[1])].Cells[Convert.ToInt32(eStringValues[0])].Style.BackColor = Color.FromArgb((int)newColor);
+            }
+            else
+            {
                 this.dataGridView1.Rows[Convert.ToInt32(eStringValues[1])].Cells[Convert.ToInt32(eStringValues[0])].Value = eStringValues[2];
+            }
         }
 
         /// <summary>
@@ -129,7 +156,11 @@ namespace Spreadsheet_Ryan_Rochleau
             {
                 if (this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).GetTextValue() != this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString())
                 {
-                    this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).SetActualText(this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+                    Cell cell = this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex);
+                    TextUndoRedo textUndoRedo = new TextUndoRedo(cell, cell.GetActualText(), this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+                    this.spreadsheet.AddUndo(textUndoRedo);
+
+                    cell.SetActualText(this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
                 }
             }
             else
@@ -164,6 +195,44 @@ namespace Spreadsheet_Ryan_Rochleau
             string textValue = this.spreadsheet.GetCell(e.RowIndex, e.ColumnIndex).GetTextValue();
 
             this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = textValue;
+        }
+
+        /// <summary>
+        /// Handles when a button is pressed on the menu strip.
+        /// </summary>
+        /// <param name="sender">The menu strip.</param>
+        /// <param name="e">Argument parameters.</param>
+        private void MenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem.Text == "Undo")
+            {
+                this.spreadsheet.Undo();
+            }
+            else if (e.ClickedItem.Text == "Redo")
+            {
+                this.spreadsheet.Redo();
+            }
+            else if (e.ClickedItem.Text == "Change Color")
+            {
+                List<Cell> updatedCells = new List<Cell>();
+                List<uint> oldColors = new List<uint>();
+                ColorDialog colorDialog = new ColorDialog();
+
+                colorDialog.ShowDialog();
+
+                // Retrieved this line from https://www.daniweb.com/programming/software-development/code/217202/color-to-uint-and-back
+                uint newColor = (uint)((colorDialog.Color.A << 24) | (colorDialog.Color.R << 16) | (colorDialog.Color.G << 8) | (colorDialog.Color.B << 0));
+                foreach (DataGridViewTextBoxCell cell in this.dataGridView1.SelectedCells)
+                {
+                    updatedCells.Add(this.spreadsheet.GetCell(cell.RowIndex, cell.ColumnIndex));
+                    oldColors.Add(this.spreadsheet.GetCell(cell.RowIndex, cell.ColumnIndex).GetColor());
+
+                    this.spreadsheet.GetCell(cell.RowIndex, cell.ColumnIndex).SetColor(newColor);
+                }
+
+                ColorUndoRedo colorUndoRedo = new ColorUndoRedo(updatedCells, oldColors, newColor);
+                this.spreadsheet.AddUndo(colorUndoRedo);
+            }
         }
     }
 }

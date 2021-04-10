@@ -32,6 +32,16 @@ namespace CptS321
         private int rowCount;
 
         /// <summary>
+        /// Stack for all undo operations.
+        /// </summary>
+        private Stack<IUndoRedoInterface> undoStack = new Stack<IUndoRedoInterface>();
+
+        /// <summary>
+        /// Stack for all redo operations.
+        /// </summary>
+        private Stack<IUndoRedoInterface> redoStack = new Stack<IUndoRedoInterface>();
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Spreadsheet"/> class.
         /// Constructor for spreadsheet.
         /// </summary>
@@ -125,18 +135,34 @@ namespace CptS321
         public void CellPropertyChanged(object sender, EventArgs e)
         {
             SpreadsheetCell cell = sender as SpreadsheetCell;
+            PropertyChangedEventArgs args = e as PropertyChangedEventArgs;
 
             // Set actual text is what fired the event.
             // Need to check if the text has '=' as first char.
+            if (args.PropertyName == "Color")
+            {
+                PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs(cell.GetColumnIndex().ToString() + ',' + cell.GetRowIndex().ToString() + ',' + "COLOR:" + cell.GetColor());
+
+                this.PropertyChanged(this, eventArgs);
+            }
+
             if (cell.GetActualText() == string.Empty)
             {
                 cell.SetTextValue(string.Empty);
+
+                PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs(cell.GetColumnIndex().ToString() + ',' + cell.GetRowIndex().ToString() + ',' + cell.GetTextValue().ToString());
+
+                this.PropertyChanged(this, eventArgs);
             }
             else
             {
                 if (cell.GetActualText()[0] != '=')
                 {
                     cell.SetTextValue(cell.GetActualText());
+
+                    PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs(cell.GetColumnIndex().ToString() + ',' + cell.GetRowIndex().ToString() + ',' + cell.GetTextValue().ToString());
+
+                    this.PropertyChanged(this, eventArgs);
                 }
                 else
                 {
@@ -155,6 +181,71 @@ namespace CptS321
 
                     this.PropertyChanged(this, eventArgs);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Adds an undo onto the undo stack.
+        /// </summary>
+        /// <param name="undo">New undo to add to the stack.</param>
+        public void AddUndo(IUndoRedoInterface undo)
+        {
+            this.undoStack.Push(undo);
+
+            if (this.undoStack.Count == 1)
+            {
+                // Unlock the undo button.
+                PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs("BeginUndo");
+                this.PropertyChanged(undo, eventArgs);
+            }
+        }
+
+        /// <summary>
+        /// Undo function. Invoked propertychanged when the buttons should
+        /// be locked/unlocked.
+        /// </summary>
+        public void Undo()
+        {
+            this.undoStack.Peek().InterfaceUndo();
+            this.redoStack.Push(this.undoStack.Pop());
+
+            // Stack was empty.
+            if (this.redoStack.Count == 1)
+            {
+                // Unlock the redo button.
+                PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs("BeginRedo");
+                this.PropertyChanged(this.redoStack.Peek(), eventArgs);
+            }
+
+            if (this.undoStack.Count == 0)
+            {
+                // Lock the undo.
+                PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs("StopUndo");
+                this.PropertyChanged(this.redoStack.Peek(), eventArgs);
+            }
+        }
+
+        /// <summary>
+        /// Redo function. Invoked propertychanged when the buttons should
+        /// be locked/unlocked.
+        /// </summary>
+        public void Redo()
+        {
+            this.redoStack.Peek().InterfaceRedo();
+            this.undoStack.Push(this.redoStack.Pop());
+
+            if (this.undoStack.Count == 1)
+            {
+                // Unlock the undo button.
+                PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs("BeginUndo");
+                this.PropertyChanged(this.undoStack.Peek(), eventArgs);
+            }
+
+            if (this.redoStack.Count == 0)
+            {
+                // Lock the redo button.
+                PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs("StopRedo");
+                this.PropertyChanged(this.undoStack.Peek(), eventArgs);
             }
         }
     }

@@ -39,6 +39,11 @@ namespace CptS321
         private ExpressionTree tree;
 
         /// <summary>
+        /// Current color of this cell. Default is white.
+        /// </summary>
+        private uint color = 0xFFFFFFFF;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Cell"/> class.
         /// Constructor cell.
         /// </summary>
@@ -100,6 +105,35 @@ namespace CptS321
                 this.actualText = newText;
 
                 PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs("ActualText");
+
+                this.PropertyChanged(this, eventArgs);
+            }
+        }
+
+        /// <summary>
+        /// Gets the current color of the cell.
+        /// </summary>
+        /// <returns>A uint representing the color of the cell.</returns>
+        public uint GetColor()
+        {
+            return this.color;
+        }
+
+        /// <summary>
+        /// Sets the current color of the cell.
+        /// </summary>
+        /// <param name="newColor">A uint representing the new color.</param>
+        public void SetColor(uint newColor)
+        {
+            if (this.color == newColor)
+            {
+                return;
+            }
+            else
+            {
+                this.color = newColor;
+
+                PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs("Color");
 
                 this.PropertyChanged(this, eventArgs);
             }
