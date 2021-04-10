@@ -125,7 +125,18 @@ namespace CptS321
         /// <param name="newColor">A uint representing the new color.</param>
         public void SetColor(uint newColor)
         {
-            this.color = newColor;
+            if (this.color == newColor)
+            {
+                return;
+            }
+            else
+            {
+                this.color = newColor;
+
+                PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs("Color");
+
+                this.PropertyChanged(this, eventArgs);
+            }
         }
 
         /// <summary>
