@@ -301,5 +301,43 @@ namespace CptS321
             writer.WriteEndDocument();
             writer.Close();
         }
+
+        /// <summary>
+        /// Loads the xml file from the given file stream.
+        /// </summary>
+        /// <param name="fs">The xml filestream.</param>
+        public void Load(Stream fs)
+        {
+            Cell cell;
+            int row, col;
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.DtdProcessing = DtdProcessing.Parse;
+            settings.IgnoreWhitespace = true;
+
+            XmlReader reader = XmlReader.Create(fs, settings);
+
+            reader.ReadStartElement("spreadsheet");
+            reader.ReadToFollowing("cell");
+
+            do
+            {
+                reader.MoveToFirstAttribute();
+                row = Convert.ToInt32(reader.Value);
+
+                reader.ReadToFollowing("col");
+                col = Convert.ToInt32(reader.Value);
+
+                cell = this.GetCell(row, col);
+
+                reader.ReadToFollowing("text");
+                cell.SetActualText(reader.Value);
+
+                reader.ReadToFollowing("color");
+                cell.SetColor(Convert.ToUInt32(reader.Value));
+            }
+            while (reader.ReadToFollowing("cell"));
+
+            reader.Close();
+        }
     }
 }
