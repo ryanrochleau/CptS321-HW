@@ -108,8 +108,7 @@ namespace Spreadsheet_Ryan_Rochleau
             else if (eStringValues[2].Contains("COLOR:"))
             {
                 uint newColor = Convert.ToUInt32(eStringValues[2].Substring(6));
-                this.dataGridView1.Rows[Convert.ToInt32(eStringValues[1])].Cells[Convert.ToInt32(eStringValues[0])].Style.BackColor = 
-                    Color.FromArgb((int)newColor);
+                this.dataGridView1.Rows[Convert.ToInt32(eStringValues[1])].Cells[Convert.ToInt32(eStringValues[0])].Style.BackColor = Color.FromArgb((int)newColor);
             }
             else
             {

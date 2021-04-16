@@ -174,7 +174,7 @@ namespace CptS321
 
                     foreach (KeyValuePair<string, double> pair in variableDictionary.ToList())
                     {
-                        cell.AddCellToTree(this.GetCell((int)char.GetNumericValue(pair.Key[1]) - 1, (int)pair.Key[0] - 65));
+                        cell.AddCellToTree(this.GetCell(Convert.ToInt32(pair.Key.Substring(1)) - 1, (int)pair.Key[0] - 65));
                     }
 
                     cell.SetTextValue(cell.EvaluateCell());
