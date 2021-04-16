@@ -281,8 +281,8 @@ namespace ArithemticTreeTests
             cellA1 = (SpreadsheetCell)spreadsheet.GetCell(0, 0);
             cellA2 = (SpreadsheetCell)spreadsheet.GetCell(1, 0);
 
-            Assert.AreNotEqual(cellA1.GetTextValue(), 42);
-            Assert.AreNotEqual(cellA2.GetTextValue(), 42);
+            Assert.AreNotEqual(cellA1.GetTextValue(), "42");
+            Assert.AreNotEqual(cellA2.GetTextValue(), "42");
             Assert.AreNotEqual(cellA2.GetActualText(), "=A1");
             Assert.AreNotEqual(cellA1.GetColor(), 0x4BCD3A9A);
             Assert.AreNotEqual(cellA2.GetColor(), 0x7ACA2A9D);
@@ -292,8 +292,8 @@ namespace ArithemticTreeTests
             spreadsheet.Load(fs);
             fs.Close();
 
-            Assert.AreEqual(cellA1.GetTextValue(), 42);
-            Assert.AreEqual(cellA2.GetTextValue(), 42);
+            Assert.AreEqual(cellA1.GetTextValue(), "42");
+            Assert.AreEqual(cellA2.GetTextValue(), "42");
             Assert.AreEqual(cellA2.GetActualText(), "=A1");
             Assert.AreEqual(cellA1.GetColor(), 0x4BCD3A9A);
             Assert.AreEqual(cellA2.GetColor(), 0x7ACA2A9D);
