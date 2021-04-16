@@ -323,15 +323,12 @@ namespace CptS321
                 reader.ReadToFollowing("row");
                 row = Convert.ToInt32(reader.ReadElementContentAsString());
 
-                //reader.ReadToFollowing("col");
                 col = Convert.ToInt32(reader.ReadElementContentAsString());
 
                 cell = this.GetCell(row, col);
 
-                //reader.ReadToFollowing("text");
                 cell.SetActualText(reader.ReadElementContentAsString());
 
-                //reader.ReadToFollowing("color");
                 cell.SetColor(Convert.ToUInt32(reader.ReadElementContentAsString()));
             }
             while (reader.ReadToFollowing("cell"));
