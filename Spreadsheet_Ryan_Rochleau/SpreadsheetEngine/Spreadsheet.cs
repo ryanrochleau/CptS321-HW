@@ -5,9 +5,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime;
 using System.Text;
+using System.Xml;
 
 namespace CptS321
 {
@@ -247,6 +249,57 @@ namespace CptS321
                 PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs("StopRedo");
                 this.PropertyChanged(this.undoStack.Peek(), eventArgs);
             }
+        }
+
+        /// <summary>
+        /// Saves the current state of the spreadsheet.
+        /// </summary>
+        /// <param name="fs">The file stream to save the file to.</param>
+        public void Save(Stream fs)
+        {
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.IndentChars = "\t";
+            XmlWriter writer = XmlWriter.Create("spreadsheet.xml", settings);
+
+            writer.WriteStartDocument();
+            writer.WriteStartElement("spreadsheet");
+
+            foreach (var i in Enumerable.Range(0, this.rowCount))
+            {
+                foreach (var j in Enumerable.Range(0, this.columnCount))
+                {
+                    Cell cell = this.GetCell(i, j);
+
+                    // Cell is not a base cell
+                    if (cell.GetColor() != 0xFFFFFFFF || cell.GetActualText() != string.Empty)
+                    {
+                        writer.WriteStartElement("cell");
+
+                        writer.WriteStartElement("row");
+                        writer.WriteString(cell.GetRowIndex().ToString());
+                        writer.WriteEndElement();
+
+                        writer.WriteStartElement("col");
+                        writer.WriteString(cell.GetColumnIndex().ToString());
+                        writer.WriteEndElement();
+
+                        writer.WriteStartElement("text");
+                        writer.WriteString(cell.GetActualText());
+                        writer.WriteEndElement();
+
+                        writer.WriteStartElement("color");
+                        writer.WriteString(cell.GetColor().ToString());
+                        writer.WriteEndElement();
+
+                        writer.WriteEndElement();
+                    }
+                }
+            }
+
+            writer.WriteEndElement();
+            writer.WriteEndDocument();
+            writer.Close();
         }
     }
 }
