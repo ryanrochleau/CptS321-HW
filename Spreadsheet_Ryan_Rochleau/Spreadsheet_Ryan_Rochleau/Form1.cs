@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -232,6 +233,62 @@ namespace Spreadsheet_Ryan_Rochleau
 
                 ColorUndoRedo colorUndoRedo = new ColorUndoRedo(updatedCells, oldColors, newColor);
                 this.spreadsheet.AddUndo(colorUndoRedo);
+            }
+            else if (e.ClickedItem.Text == "Save Sheet")
+            {
+                SaveFileDialog save = new SaveFileDialog();
+                save.Filter = "XML Files|*.xml";
+                save.Title = "Select an XML File to Save to";
+
+                if (save.ShowDialog() == DialogResult.OK)
+                {
+                    FileStream fs = save.OpenFile() as FileStream;
+                    this.spreadsheet.Save(fs);
+                    fs.Close();
+                }
+            }
+            else if (e.ClickedItem.Text == "Load Sheet")
+            {
+                OpenFileDialog open = new OpenFileDialog();
+                open.Filter = "XML Files|*.xml";
+                open.Title = "Select an XML File to Load";
+
+                if (open.ShowDialog() == DialogResult.OK)
+                {
+                    FileStream fs = open.OpenFile() as FileStream;
+
+                    this.spreadsheet = new Spreadsheet(50, 26);
+                    this.spreadsheet.PropertyChanged += this.UpdateGridCell;
+
+                    this.menuStrip1.Items[0].Enabled = false;
+                    this.menuStrip1.Items[1].Enabled = false;
+
+                    this.dataGridView1.Rows.Clear();
+                    this.dataGridView1.Columns.Clear();
+                    this.dataGridView1.Refresh();
+
+                    this.dataGridView1.ColumnCount = 26;
+                    this.dataGridView1.RowCount = 50;
+
+                    this.dataGridView1.CellValueChanged -= this.DataGridView1_CellValueChanged;
+
+                    for (int i = 0; i < 26; i++)
+                    {
+                        this.dataGridView1.Columns[i].Name = ((char)(i + 65)).ToString();
+                    }
+
+                    for (int i = 0; i < 50; i++)
+                    {
+                        this.dataGridView1.Rows[i].HeaderCell.Value = (i + 1).ToString();
+                    }
+
+                    this.dataGridView1.CellValueChanged += this.DataGridView1_CellValueChanged;
+
+                    Console.WriteLine(this.dataGridView1.ColumnCount);
+
+                    this.spreadsheet.Load(fs);
+                    fs.Close();
+                }
             }
         }
     }

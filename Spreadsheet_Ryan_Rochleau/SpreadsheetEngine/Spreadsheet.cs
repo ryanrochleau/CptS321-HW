@@ -5,9 +5,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime;
 using System.Text;
+using System.Xml;
 
 namespace CptS321
 {
@@ -172,7 +174,7 @@ namespace CptS321
 
                     foreach (KeyValuePair<string, double> pair in variableDictionary.ToList())
                     {
-                        cell.AddCellToTree(this.GetCell((int)char.GetNumericValue(pair.Key[1]) - 1, (int)pair.Key[0] - 65));
+                        cell.AddCellToTree(this.GetCell(Convert.ToInt32(pair.Key.Substring(1)) - 1, (int)pair.Key[0] - 65));
                     }
 
                     cell.SetTextValue(cell.EvaluateCell());
@@ -247,6 +249,116 @@ namespace CptS321
                 PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs("StopRedo");
                 this.PropertyChanged(this.undoStack.Peek(), eventArgs);
             }
+        }
+
+        /// <summary>
+        /// Saves the current state of the spreadsheet.
+        /// </summary>
+        /// <param name="fs">The file stream to save the file to.</param>
+        public void Save(Stream fs)
+        {
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.IndentChars = "\t";
+            XmlWriter writer = XmlWriter.Create(fs, settings);
+
+            writer.WriteStartDocument();
+            writer.WriteStartElement("spreadsheet");
+
+            foreach (var i in Enumerable.Range(0, this.rowCount))
+            {
+                foreach (var j in Enumerable.Range(0, this.columnCount))
+                {
+                    Cell cell = this.GetCell(i, j);
+
+                    // Cell is not a base cell
+                    if (cell.GetColor() != 0xFFFFFFFF || cell.GetActualText() != string.Empty)
+                    {
+                        writer.WriteStartElement("cell");
+
+                        writer.WriteStartElement("row");
+                        writer.WriteString(cell.GetRowIndex().ToString());
+                        writer.WriteEndElement();
+
+                        writer.WriteStartElement("col");
+                        writer.WriteString(cell.GetColumnIndex().ToString());
+                        writer.WriteEndElement();
+
+                        writer.WriteStartElement("text");
+                        writer.WriteString(cell.GetActualText());
+                        writer.WriteEndElement();
+
+                        writer.WriteStartElement("color");
+                        writer.WriteString(cell.GetColor().ToString());
+                        writer.WriteEndElement();
+
+                        writer.WriteEndElement();
+                    }
+                }
+            }
+
+            writer.WriteEndElement();
+            writer.WriteEndDocument();
+            writer.Close();
+        }
+
+        /// <summary>
+        /// Loads the xml file from the given file stream.
+        /// </summary>
+        /// <param name="fs">The xml filestream.</param>
+        public void Load(Stream fs)
+        {
+            Cell cell;
+            int row = 0, col = 0, count = 0;
+            string text = string.Empty;
+            uint color = 0xFFFFFFFF;
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.DtdProcessing = DtdProcessing.Parse;
+            settings.IgnoreWhitespace = true;
+
+            XmlReader reader = XmlReader.Create(fs, settings);
+
+            reader.ReadStartElement("spreadsheet");
+            reader.ReadStartElement("cell");
+
+            do
+            {
+                while (count != 4)
+                {
+                    switch (reader.Name)
+                    {
+                        case "row": row = Convert.ToInt32(reader.ReadElementContentAsString()); count++; break;
+                        case "col": col = Convert.ToInt32(reader.ReadElementContentAsString()); count++; break;
+                        case "text": text = reader.ReadElementContentAsString(); count++; break;
+                        case "color": color = Convert.ToUInt32(reader.ReadElementContentAsString()); count++; break;
+                        case "cell": reader.Read(); break;
+                        default: reader.ReadElementContentAsString(); break;
+                    }
+                }
+
+                if (count == 4)
+                {
+                    cell = this.GetCell(row, col);
+
+                    cell.SetActualText(text);
+
+                    cell.SetColor(Convert.ToUInt32(color));
+
+                    count = 0;
+                }
+            }
+            while (reader.ReadToFollowing("cell"));
+
+            reader.Close();
+        }
+
+        /// <summary>
+        /// Resets the stacks of the spreadsheet.
+        /// </summary>
+        public void ClearStacks()
+        {
+            this.redoStack = new Stack<IUndoRedoInterface>();
+            this.undoStack = new Stack<IUndoRedoInterface>();
         }
     }
 }

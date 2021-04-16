@@ -34,9 +34,11 @@ namespace Spreadsheet_Ryan_Rochleau
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.Undo = new System.Windows.Forms.ToolStripMenuItem();
             this.Redo = new System.Windows.Forms.ToolStripMenuItem();
+            this.ChangeColor = new System.Windows.Forms.ToolStripMenuItem();
             this.UndoOption = new System.Windows.Forms.ToolStripMenuItem();
             this.RedoOption = new System.Windows.Forms.ToolStripMenuItem();
-            this.ChangeColor = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveSheet = new System.Windows.Forms.ToolStripMenuItem();
+            this.LoadSheet = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +70,9 @@ namespace Spreadsheet_Ryan_Rochleau
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Undo,
             this.Redo,
-            this.ChangeColor});
+            this.ChangeColor,
+            this.SaveSheet,
+            this.LoadSheet});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -88,6 +92,12 @@ namespace Spreadsheet_Ryan_Rochleau
             this.Redo.Size = new System.Drawing.Size(46, 20);
             this.Redo.Text = "Redo";
             // 
+            // ChangeColor
+            // 
+            this.ChangeColor.Name = "ChangeColor";
+            this.ChangeColor.Size = new System.Drawing.Size(92, 20);
+            this.ChangeColor.Text = "Change Color";
+            // 
             // UndoOption
             // 
             this.UndoOption.Name = "UndoOption";
@@ -100,11 +110,17 @@ namespace Spreadsheet_Ryan_Rochleau
             this.RedoOption.Size = new System.Drawing.Size(103, 22);
             this.RedoOption.Text = "Redo";
             // 
-            // ChangeColor
+            // SaveSheet
             // 
-            this.ChangeColor.Name = "ChangeColor";
-            this.ChangeColor.Size = new System.Drawing.Size(92, 20);
-            this.ChangeColor.Text = "Change Color";
+            this.SaveSheet.Name = "SaveSheet";
+            this.SaveSheet.Size = new System.Drawing.Size(75, 20);
+            this.SaveSheet.Text = "Save Sheet";
+            // 
+            // LoadSheet
+            // 
+            this.LoadSheet.Name = "LoadSheet";
+            this.LoadSheet.Size = new System.Drawing.Size(77, 20);
+            this.LoadSheet.Text = "Load Sheet";
             // 
             // Form1
             // 
@@ -136,6 +152,8 @@ namespace Spreadsheet_Ryan_Rochleau
         private System.Windows.Forms.ToolStripMenuItem Undo;
         private System.Windows.Forms.ToolStripMenuItem Redo;
         private System.Windows.Forms.ToolStripMenuItem ChangeColor;
+        private System.Windows.Forms.ToolStripMenuItem SaveSheet;
+        private System.Windows.Forms.ToolStripMenuItem LoadSheet;
     }
 }
 
