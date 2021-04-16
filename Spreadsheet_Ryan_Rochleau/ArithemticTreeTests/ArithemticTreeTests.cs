@@ -274,6 +274,7 @@ namespace ArithemticTreeTests
             cellA2.SetActualText("=A1");
 
             spreadsheet.Save(fs);
+            fs.Close();
 
             // Reset the spreadsheet
             spreadsheet = new Spreadsheet(15, 15);
@@ -289,6 +290,7 @@ namespace ArithemticTreeTests
             fs = File.Open(pathName, FileMode.Open, FileAccess.Read, FileShare.None);
 
             spreadsheet.Load(fs);
+            fs.Close();
 
             Assert.AreEqual(cellA1.GetTextValue(), 42);
             Assert.AreEqual(cellA2.GetTextValue(), 42);

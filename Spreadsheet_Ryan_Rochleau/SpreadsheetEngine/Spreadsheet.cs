@@ -260,7 +260,7 @@ namespace CptS321
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
             settings.IndentChars = "\t";
-            XmlWriter writer = XmlWriter.Create("spreadsheet.xml", settings);
+            XmlWriter writer = XmlWriter.Create(fs, settings);
 
             writer.WriteStartDocument();
             writer.WriteStartElement("spreadsheet");
@@ -317,23 +317,22 @@ namespace CptS321
             XmlReader reader = XmlReader.Create(fs, settings);
 
             reader.ReadStartElement("spreadsheet");
-            reader.ReadToFollowing("cell");
 
             do
             {
-                reader.MoveToFirstAttribute();
-                row = Convert.ToInt32(reader.Value);
+                reader.ReadToFollowing("row");
+                row = Convert.ToInt32(reader.ReadElementContentAsString());
 
-                reader.ReadToFollowing("col");
-                col = Convert.ToInt32(reader.Value);
+                //reader.ReadToFollowing("col");
+                col = Convert.ToInt32(reader.ReadElementContentAsString());
 
                 cell = this.GetCell(row, col);
 
-                reader.ReadToFollowing("text");
-                cell.SetActualText(reader.Value);
+                //reader.ReadToFollowing("text");
+                cell.SetActualText(reader.ReadElementContentAsString());
 
-                reader.ReadToFollowing("color");
-                cell.SetColor(Convert.ToUInt32(reader.Value));
+                //reader.ReadToFollowing("color");
+                cell.SetColor(Convert.ToUInt32(reader.ReadElementContentAsString()));
             }
             while (reader.ReadToFollowing("cell"));
 
