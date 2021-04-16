@@ -335,5 +335,14 @@ namespace CptS321
 
             reader.Close();
         }
+
+        /// <summary>
+        /// Resets the stacks of the spreadsheet.
+        /// </summary>
+        public void ClearStacks()
+        {
+            this.redoStack = new Stack<IUndoRedoInterface>();
+            this.undoStack = new Stack<IUndoRedoInterface>();
+        }
     }
 }
