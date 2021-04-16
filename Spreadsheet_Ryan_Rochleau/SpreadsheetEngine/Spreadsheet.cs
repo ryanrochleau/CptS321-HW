@@ -309,7 +309,9 @@ namespace CptS321
         public void Load(Stream fs)
         {
             Cell cell;
-            int row, col;
+            int row = 0, col = 0, count = 0;
+            string text = string.Empty;
+            uint color = 0xFFFFFFFF;
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.DtdProcessing = DtdProcessing.Parse;
             settings.IgnoreWhitespace = true;
@@ -317,19 +319,33 @@ namespace CptS321
             XmlReader reader = XmlReader.Create(fs, settings);
 
             reader.ReadStartElement("spreadsheet");
+            reader.ReadStartElement("cell");
 
             do
             {
-                reader.ReadToFollowing("row");
-                row = Convert.ToInt32(reader.ReadElementContentAsString());
+                while (count != 4)
+                {
+                    switch (reader.Name)
+                    {
+                        case "row": row = Convert.ToInt32(reader.ReadElementContentAsString()); count++; break;
+                        case "col": col = Convert.ToInt32(reader.ReadElementContentAsString()); count++; break;
+                        case "text": text = reader.ReadElementContentAsString(); count++; break;
+                        case "color": color = Convert.ToUInt32(reader.ReadElementContentAsString()); count++; break;
+                        case "cell": reader.Read(); break;
+                        default: reader.ReadElementContentAsString(); break;
+                    }
+                }
 
-                col = Convert.ToInt32(reader.ReadElementContentAsString());
+                if (count == 4)
+                {
+                    cell = this.GetCell(row, col);
 
-                cell = this.GetCell(row, col);
+                    cell.SetActualText(text);
 
-                cell.SetActualText(reader.ReadElementContentAsString());
+                    cell.SetColor(Convert.ToUInt32(color));
 
-                cell.SetColor(Convert.ToUInt32(reader.ReadElementContentAsString()));
+                    count = 0;
+                }
             }
             while (reader.ReadToFollowing("cell"));
 
