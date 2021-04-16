@@ -2,9 +2,12 @@
 // Copyright (c) Ryan Rochleau. All rights reserved.
 // </copyright>
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using CptS321;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace ArithemticTreeTests
 {
@@ -250,6 +253,48 @@ namespace ArithemticTreeTests
             spreadsheet.Redo();
 
             Assert.AreEqual(cellA1.GetColor(), 0x4BCD3A9A);
+        }
+
+        /// <summary>
+        /// Testing the load and save functionality of the spreadsheet.
+        /// </summary>
+        [Test]
+        public void TestSaveLoad()
+        {
+            Spreadsheet spreadsheet = new Spreadsheet(15, 15);
+            SpreadsheetCell cellA1 = (SpreadsheetCell)spreadsheet.GetCell(0, 0);
+            SpreadsheetCell cellA2 = (SpreadsheetCell)spreadsheet.GetCell(1, 0);
+            string pathName = Path.GetTempFileName();
+            FileStream fs = File.Open(pathName, FileMode.Open, FileAccess.Write, FileShare.None);
+
+            cellA1.SetColor(0x4BCD3A9A);
+            cellA2.SetColor(0x7ACA2A9D);
+
+            cellA1.SetActualText("42");
+            cellA2.SetActualText("=A1");
+
+            spreadsheet.Save(fs);
+
+            // Reset the spreadsheet
+            spreadsheet = new Spreadsheet(15, 15);
+            cellA1 = (SpreadsheetCell)spreadsheet.GetCell(0, 0);
+            cellA2 = (SpreadsheetCell)spreadsheet.GetCell(1, 0);
+
+            Assert.AreNotEqual(cellA1.GetTextValue(), 42);
+            Assert.AreNotEqual(cellA2.GetTextValue(), 42);
+            Assert.AreNotEqual(cellA2.GetActualText(), "=A1");
+            Assert.AreNotEqual(cellA1.GetColor(), 0x4BCD3A9A);
+            Assert.AreNotEqual(cellA2.GetColor(), 0x7ACA2A9D);
+
+            fs = File.Open(pathName, FileMode.Open, FileAccess.Read, FileShare.None);
+
+            spreadsheet.Load(fs);
+
+            Assert.AreEqual(cellA1.GetTextValue(), 42);
+            Assert.AreEqual(cellA2.GetTextValue(), 42);
+            Assert.AreEqual(cellA2.GetActualText(), "=A1");
+            Assert.AreEqual(cellA1.GetColor(), 0x4BCD3A9A);
+            Assert.AreEqual(cellA2.GetColor(), 0x7ACA2A9D);
         }
     }
 }
