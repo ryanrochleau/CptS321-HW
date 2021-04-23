@@ -391,6 +391,22 @@ namespace CptS321
         /// <returns>True if no self references and false otherwise.</returns>
         private bool CheckSelfReference(string currentCell, string checkCell)
         {
+            Cell curCell = this.GetCell(Convert.ToInt32(currentCell.Substring(1)) - 1, Convert.ToInt32(currentCell[0]) - 65);
+            Dictionary<string, double> variablesDictionary = curCell.GetVariableDictionary();
+
+            // Checking all variables in the currentCell variable dictionary for checkCell.
+            foreach (KeyValuePair<string, double> entry in variablesDictionary)
+            {
+                // checkCell is present in the dictionary so there is a self reference.
+                if (entry.Key == checkCell)
+                {
+                    return false;
+                }
+
+                // Check the trees of all cells in the currentCells tree.
+                return this.CheckSelfReference(entry.Key,checkCell);
+            }
+
             return true;
         }
     }
