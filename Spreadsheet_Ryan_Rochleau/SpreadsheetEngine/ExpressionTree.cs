@@ -31,6 +31,11 @@ namespace CptS321
         private Dictionary<string, double> variablesDictionary = new Dictionary<string, double>();
 
         /// <summary>
+        /// List of all cells that are subscribed to this tree.
+        /// </summary>
+        private List<Cell> cells = new List<Cell>();
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ExpressionTree"/> class.
         /// Constructor for the expression tree class. Constructs a tree
         /// from an expression string input.
@@ -119,6 +124,8 @@ namespace CptS321
         {
             cell.PropertyChanged += this.UpdateVariableDictionary;
 
+            this.cells.Add(cell);
+
             string key = ((char)(cell.GetColumnIndex() + 65)).ToString() + (cell.GetRowIndex() + 1).ToString();
             if (double.TryParse(cell.GetTextValue(), out double result))
             {
@@ -139,6 +146,19 @@ namespace CptS321
         public void SetMainCell(Cell cell)
         {
             this.mainCell = cell;
+        }
+
+        /// <summary>
+        /// When a new tree is constructed in place of this tree,
+        /// all cells should be unsubscribed from this trees UpdateVariableDictionary.
+        /// This function unsubscribes all cells.
+        /// </summary>
+        public void RemoveCells()
+        {
+            foreach (Cell cell in this.cells)
+            {
+                cell.PropertyChanged -= this.UpdateVariableDictionary;
+            }
         }
 
         /// <summary>

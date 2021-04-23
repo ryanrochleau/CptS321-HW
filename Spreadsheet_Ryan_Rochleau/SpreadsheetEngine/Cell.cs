@@ -184,6 +184,11 @@ namespace CptS321
         /// <param name="expression">The expression parameter for the tree.</param>
         public void CreateCellTree(string expression)
         {
+            if (this.tree != null)
+            {
+                this.tree.RemoveCells();
+            }
+
             this.tree = new ExpressionTree(expression);
             this.tree.SetMainCell(this);
         }
