@@ -369,6 +369,33 @@ namespace CptS321
         /// <returns>True if the cell is fine. False if the cell violates any check.</returns>
         private bool CheckValidCell(Cell cell)
         {
+            Dictionary<string, double> variablesDictionary = cell.GetVariableDictionary();
+
+            string cellName = string.Empty;
+            cellName += Convert.ToChar(cell.GetColumnIndex());
+            cellName += Convert.ToString(cell.GetRowIndex());
+
+            foreach (KeyValuePair<string, double> entry in variablesDictionary)
+            {
+                if (!this.CheckOnSheet(entry.Key))
+                {
+                    cell.SetTextValue("!(bad reference)");
+                    return false;
+                }
+                else if (entry.Key == cellName)
+                {
+                    // This handles the case that the cell has direct references to itself and not through other cells.
+                    cell.SetTextValue("!(self reference)");
+                    return false;
+                }
+                else if (!this.CheckSelfReference(entry.Key, cellName))
+                {
+                    // This handles the case that the cell has a reference to itself but through other cells.
+                    cell.SetTextValue("!(self reference)");
+                    return false;
+                }
+            }
+
             return true;
         }
 
