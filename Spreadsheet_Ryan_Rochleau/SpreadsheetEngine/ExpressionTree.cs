@@ -387,7 +387,7 @@ namespace CptS321
             else
             {
                 this.variablesDictionary[key] = 0.0;
-                this.UpdateVariableValue(this.rootNode, key, 0.0);
+                this.UpdateVariableValue(this.rootNode, key, 0);
             }
 
             this.mainCell.SetTextValue(this.Evaluate().ToString());

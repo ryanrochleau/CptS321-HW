@@ -360,5 +360,38 @@ namespace CptS321
             this.redoStack = new Stack<IUndoRedoInterface>();
             this.undoStack = new Stack<IUndoRedoInterface>();
         }
+
+        /// <summary>
+        /// Checks whether or not he cell violates the CheckOnSheet or CheckSelfReference
+        /// checks.
+        /// </summary>
+        /// <param name="cell">The cell to check.</param>
+        /// <returns>True if the cell is fine. False if the cell violates any check.</returns>
+        private bool CheckValidCell(Cell cell)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Checks if the cell contains valid cells as the input.
+        /// </summary>
+        /// <param name="cell">The string name of the cell.</param>
+        /// <returns>True if the cell passes and false if it doesn't.</returns>
+        private bool CheckOnSheet(string cell)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Checks if the checkCell is referenced at all in any of the currentCells
+        /// variables.
+        /// </summary>
+        /// <param name="currentCell">String name of the current cell.</param>
+        /// <param name="checkCell">String name of the cell we are checking for.</param>
+        /// <returns>True if no self references and false otherwise.</returns>
+        private bool CheckSelfReference(string currentCell, string checkCell)
+        {
+            return true;
+        }
     }
 }
