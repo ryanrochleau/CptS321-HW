@@ -391,10 +391,10 @@ namespace CptS321
                     cell.SetTextValue("!(self reference)");
                     return false;
                 }
-                else if (!this.CheckSelfReference(entry.Key, cellName))
+                else if (!this.CheckCircularReference(entry.Key, cellName))
                 {
                     // This handles the case that the cell has a reference to itself but through other cells.
-                    cell.SetTextValue("!(self reference)");
+                    cell.SetTextValue("!(circular reference)");
                     return false;
                 }
             }
@@ -427,7 +427,7 @@ namespace CptS321
         /// <param name="currentCell">String name of the current cell.</param>
         /// <param name="checkCell">String name of the cell we are checking for.</param>
         /// <returns>True if no self references and false otherwise.</returns>
-        private bool CheckSelfReference(string currentCell, string checkCell)
+        private bool CheckCircularReference(string currentCell, string checkCell)
         {
             Cell curCell = this.GetCell(Convert.ToInt32(currentCell.Substring(1)) - 1, Convert.ToInt32(currentCell[0]) - 65);
             Dictionary<string, double> variablesDictionary = curCell.GetVariableDictionary();
@@ -442,7 +442,7 @@ namespace CptS321
                 }
 
                 // Check the trees of all cells in the currentCells tree.
-                return this.CheckSelfReference(entry.Key,checkCell);
+                return this.CheckCircularReference(entry.Key,checkCell);
             }
 
             return true;
