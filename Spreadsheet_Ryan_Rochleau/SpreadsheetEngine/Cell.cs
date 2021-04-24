@@ -184,6 +184,11 @@ namespace CptS321
         /// <param name="expression">The expression parameter for the tree.</param>
         public void CreateCellTree(string expression)
         {
+            if (this.tree != null)
+            {
+                this.tree.RemoveCells();
+            }
+
             this.tree = new ExpressionTree(expression);
             this.tree.SetMainCell(this);
         }
@@ -194,7 +199,14 @@ namespace CptS321
         /// <returns>Dictionary of all variables in the cells tree.</returns>
         public Dictionary<string, double> GetVariableDictionary()
         {
-            return this.tree.GetVariablesDictionary();
+            if (this.tree != null)
+            {
+                return this.tree.GetVariablesDictionary();
+            }
+            else
+            {
+                return new Dictionary<string, double>();
+            }
         }
 
         /// <summary>

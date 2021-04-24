@@ -298,5 +298,37 @@ namespace ArithemticTreeTests
             Assert.AreEqual(cellA1.GetColor(), 0x4BCD3A9A);
             Assert.AreEqual(cellA2.GetColor(), 0x7ACA2A9D);
         }
+
+        /// <summary>
+        /// Tests to ensure invalid cells are changed to either bad reference or circular reference.
+        /// </summary>
+        [Test]
+        public void TestInvalidCells()
+        {
+            Spreadsheet spreadsheet = new Spreadsheet(15, 15);
+            SpreadsheetCell cellA1 = (SpreadsheetCell)spreadsheet.GetCell(0, 0);
+            SpreadsheetCell cellA2 = (SpreadsheetCell)spreadsheet.GetCell(1, 0);
+            SpreadsheetCell cellA3 = (SpreadsheetCell)spreadsheet.GetCell(2, 0);
+            SpreadsheetCell cellB1 = (SpreadsheetCell)spreadsheet.GetCell(0, 1);
+            SpreadsheetCell cellB2 = (SpreadsheetCell)spreadsheet.GetCell(1, 1);
+
+            cellA1.SetActualText("=A1");
+
+            Assert.AreEqual(cellA1.GetTextValue(), "!(self reference)");
+
+            cellA1.SetActualText("=B1*2");
+            cellB1.SetActualText("=B2*3");
+            cellB2.SetActualText("=A2*4");
+            cellA2.SetActualText("=A1*5");
+
+            Assert.AreEqual(cellA2.GetTextValue(), "!(circular reference)");
+
+            cellA2.SetActualText("=6+Cell*27");
+
+            Assert.AreEqual(cellA2.GetTextValue(), "!(bad reference)");
+
+            cellA3.SetActualText("=B90");
+            Assert.AreEqual(cellA2.GetTextValue(), "!(bad reference)");
+        }
     }
 }

@@ -170,14 +170,17 @@ namespace CptS321
                 {
                     // Create tree with expression.
                     cell.CreateCellTree(cell.GetActualText().Substring(1));
-                    Dictionary<string, double> variableDictionary = cell.GetVariableDictionary();
-
-                    foreach (KeyValuePair<string, double> pair in variableDictionary.ToList())
+                    if (this.CheckValidCell(cell))
                     {
-                        cell.AddCellToTree(this.GetCell(Convert.ToInt32(pair.Key.Substring(1)) - 1, (int)pair.Key[0] - 65));
-                    }
+                        Dictionary<string, double> variableDictionary = cell.GetVariableDictionary();
 
-                    cell.SetTextValue(cell.EvaluateCell());
+                        foreach (KeyValuePair<string, double> pair in variableDictionary.ToList())
+                        {
+                            cell.AddCellToTree(this.GetCell(Convert.ToInt32(pair.Key.Substring(1)) - 1, (int)pair.Key[0] - 65));
+                        }
+
+                        cell.SetTextValue(cell.EvaluateCell());
+                    }
 
                     PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs(cell.GetColumnIndex().ToString() + ',' + cell.GetRowIndex().ToString() + ',' + cell.GetTextValue().ToString());
 
@@ -359,6 +362,99 @@ namespace CptS321
         {
             this.redoStack = new Stack<IUndoRedoInterface>();
             this.undoStack = new Stack<IUndoRedoInterface>();
+        }
+
+        /// <summary>
+        /// Checks whether or not he cell violates the CheckOnSheet or CheckSelfReference
+        /// checks.
+        /// </summary>
+        /// <param name="cell">The cell to check.</param>
+        /// <returns>True if the cell is fine. False if the cell violates any check.</returns>
+        private bool CheckValidCell(Cell cell)
+        {
+            Dictionary<string, double> variablesDictionary = cell.GetVariableDictionary();
+
+            string cellName = string.Empty;
+            cellName += Convert.ToString(Convert.ToChar(cell.GetColumnIndex() + 65));
+            cellName += Convert.ToString(cell.GetRowIndex() + 1);
+
+            foreach (KeyValuePair<string, double> entry in variablesDictionary)
+            {
+                if (!this.CheckOnSheet(entry.Key))
+                {
+                    cell.SetTextValue("!(bad reference)");
+                    return false;
+                }
+                else if (entry.Key == cellName)
+                {
+                    // This handles the case that the cell has direct references to itself and not through other cells.
+                    cell.SetTextValue("!(self reference)");
+                    return false;
+                }
+                else if (!this.CheckCircularReference(entry.Key, cellName))
+                {
+                    // This handles the case that the cell has a reference to itself but through other cells.
+                    cell.SetTextValue("!(circular reference)");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Checks if the cell contains valid cells as the input.
+        /// </summary>
+        /// <param name="cell">The string name of the cell.</param>
+        /// <returns>True if the cell passes and false if it doesn't.</returns>
+        private bool CheckOnSheet(string cell)
+        {
+            int row;
+            try
+            {
+                row = Convert.ToInt32(cell.Substring(1)) - 1;
+            }
+            catch (System.FormatException)
+            {
+                return false;
+            }
+
+            int col = Convert.ToInt32(cell[0]) - 65;
+
+            if (row < 50 && col < 26)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Checks if the checkCell is referenced at all in any of the currentCells
+        /// variables.
+        /// </summary>
+        /// <param name="currentCell">String name of the current cell.</param>
+        /// <param name="checkCell">String name of the cell we are checking for.</param>
+        /// <returns>True if no self references and false otherwise.</returns>
+        private bool CheckCircularReference(string currentCell, string checkCell)
+        {
+            Cell curCell = this.GetCell(Convert.ToInt32(currentCell.Substring(1)) - 1, Convert.ToInt32(currentCell[0]) - 65);
+            Dictionary<string, double> variablesDictionary = curCell.GetVariableDictionary();
+
+            // Checking all variables in the currentCell variable dictionary for checkCell.
+            foreach (KeyValuePair<string, double> entry in variablesDictionary)
+            {
+                // checkCell is present in the dictionary so there is a self reference.
+                if (entry.Key == checkCell)
+                {
+                    return false;
+                }
+
+                // Check the trees of all cells in the currentCells tree.
+                return this.CheckCircularReference(entry.Key,checkCell);
+            }
+
+            return true;
         }
     }
 }
