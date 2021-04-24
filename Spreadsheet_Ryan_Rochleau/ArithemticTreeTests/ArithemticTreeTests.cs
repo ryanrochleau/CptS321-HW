@@ -320,7 +320,7 @@ namespace ArithemticTreeTests
             cellB2.SetActualText("=A2*4");
             cellA2.SetActualText("=A1*5");
 
-            Assert.AreEqual(cellA2.GetTextValue(), "!(self reference)");
+            Assert.AreEqual(cellA2.GetTextValue(), "!(circular reference)");
 
             cellA2.SetActualText("=6+Cell*27");
 
