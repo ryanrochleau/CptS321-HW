@@ -308,6 +308,7 @@ namespace ArithemticTreeTests
             Spreadsheet spreadsheet = new Spreadsheet(15, 15);
             SpreadsheetCell cellA1 = (SpreadsheetCell)spreadsheet.GetCell(0, 0);
             SpreadsheetCell cellA2 = (SpreadsheetCell)spreadsheet.GetCell(1, 0);
+            SpreadsheetCell cellA3 = (SpreadsheetCell)spreadsheet.GetCell(2, 0);
             SpreadsheetCell cellB1 = (SpreadsheetCell)spreadsheet.GetCell(0, 1);
             SpreadsheetCell cellB2 = (SpreadsheetCell)spreadsheet.GetCell(1, 1);
 
@@ -326,11 +327,7 @@ namespace ArithemticTreeTests
 
             Assert.AreEqual(cellA2.GetTextValue(), "!(bad reference)");
 
-            // Ensure A2 text value isn't bad reference before we use it to test again.
-            cellA2.SetActualText("50");
-            Assert.AreNotEqual(cellA2.GetTextValue(), "!(bad reference)");
-
-            cellA2.SetActualText("=B90");
+            cellA3.SetActualText("=B90");
             Assert.AreEqual(cellA2.GetTextValue(), "!(bad reference)");
         }
     }

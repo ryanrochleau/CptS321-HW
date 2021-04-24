@@ -409,7 +409,16 @@ namespace CptS321
         /// <returns>True if the cell passes and false if it doesn't.</returns>
         private bool CheckOnSheet(string cell)
         {
-            int row = Convert.ToInt32(cell.Substring(1)) - 1;
+            int row;
+            try
+            {
+                row = Convert.ToInt32(cell.Substring(1)) - 1;
+            }
+            catch (System.FormatException)
+            {
+                return false;
+            }
+
             int col = Convert.ToInt32(cell[0]) - 65;
 
             if (row < 50 && col < 26)
