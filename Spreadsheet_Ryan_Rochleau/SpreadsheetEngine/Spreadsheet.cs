@@ -170,14 +170,17 @@ namespace CptS321
                 {
                     // Create tree with expression.
                     cell.CreateCellTree(cell.GetActualText().Substring(1));
-                    Dictionary<string, double> variableDictionary = cell.GetVariableDictionary();
-
-                    foreach (KeyValuePair<string, double> pair in variableDictionary.ToList())
+                    if (this.CheckValidCell(cell))
                     {
-                        cell.AddCellToTree(this.GetCell(Convert.ToInt32(pair.Key.Substring(1)) - 1, (int)pair.Key[0] - 65));
-                    }
+                        Dictionary<string, double> variableDictionary = cell.GetVariableDictionary();
 
-                    cell.SetTextValue(cell.EvaluateCell());
+                        foreach (KeyValuePair<string, double> pair in variableDictionary.ToList())
+                        {
+                            cell.AddCellToTree(this.GetCell(Convert.ToInt32(pair.Key.Substring(1)) - 1, (int)pair.Key[0] - 65));
+                        }
+
+                        cell.SetTextValue(cell.EvaluateCell());
+                    }
 
                     PropertyChangedEventArgs eventArgs = new PropertyChangedEventArgs(cell.GetColumnIndex().ToString() + ',' + cell.GetRowIndex().ToString() + ',' + cell.GetTextValue().ToString());
 
@@ -372,8 +375,8 @@ namespace CptS321
             Dictionary<string, double> variablesDictionary = cell.GetVariableDictionary();
 
             string cellName = string.Empty;
-            cellName += Convert.ToChar(cell.GetColumnIndex());
-            cellName += Convert.ToString(cell.GetRowIndex());
+            cellName += Convert.ToString(Convert.ToChar(cell.GetColumnIndex() + 65));
+            cellName += Convert.ToString(cell.GetRowIndex() + 1);
 
             foreach (KeyValuePair<string, double> entry in variablesDictionary)
             {

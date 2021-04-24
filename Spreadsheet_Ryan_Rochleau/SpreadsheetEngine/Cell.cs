@@ -199,7 +199,14 @@ namespace CptS321
         /// <returns>Dictionary of all variables in the cells tree.</returns>
         public Dictionary<string, double> GetVariableDictionary()
         {
-            return this.tree.GetVariablesDictionary();
+            if (this.tree != null)
+            {
+                return this.tree.GetVariablesDictionary();
+            }
+            else
+            {
+                return new Dictionary<string, double>();
+            }
         }
 
         /// <summary>
